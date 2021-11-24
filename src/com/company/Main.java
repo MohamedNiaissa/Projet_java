@@ -44,6 +44,20 @@ public class Main {
                     Warrior warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
                     list.addListePerso(warrior1);
                     break;
+                case 4:
+                    System.out.println("entrer le nom de votre personnage: ");
+                    String nameMag = in.next();
+                    System.out.println("choisissez un montant de dégats: ");
+                    int dmgMag = in.nextInt();
+                    System.out.println("choisissez un montant de point de vie: ");
+                    int lpMag = in.nextInt();
+                    System.out.println("choisissez un montant d'initiative: ");
+                    int iniMag = in.nextInt();
+                    System.out.println("Choisssez un montant de degat magique: ");
+                    int dmgMagBonus = in.nextInt();
+                    Magician magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
+                    list.addListePerso(magician);
+                    break;
                 case 6:
                     list.displayList();
                     break;
