@@ -70,7 +70,11 @@ class ListPerso {
         return listePerso.get(index - 1);
     }
 
+    public void removeList(int index){
+        listePerso.remove(index);
+    }
 }
+
 class Warrior extends Recruit implements Cloneable{
     protected int shieldres;
 
@@ -107,9 +111,7 @@ class Warrior extends Recruit implements Cloneable{
                 ", initiative=" + initiative +
                 '}';
     }
-    public Object clone() throws CloneNotSupportedException {
-        return  (Warrior)super.clone();
-    }
+
 }
 class Magician extends Recruit implements Cloneable{
 
@@ -127,10 +129,6 @@ class Magician extends Recruit implements Cloneable{
         magicDamage /= 2;
         return totalDamage;
 
-    }
-
-    public Object clone() throws CloneNotSupportedException {
-        return  (Magician)super.clone();
     }
 
     @Override
