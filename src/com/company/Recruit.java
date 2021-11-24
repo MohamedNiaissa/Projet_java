@@ -54,6 +54,12 @@ class ListPerso {
         System.out.println(listePerso.get(index - 1));
     }
 
+    public void displayList(){
+        for (int i = 0; i < listePerso.size(); i++){
+            System.out.println((i + 1) + " - " + listePerso.get(i));
+        }
+    }
+
 }
 
 

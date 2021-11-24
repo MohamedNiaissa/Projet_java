@@ -2,7 +2,7 @@ package com.company;
 import java.util.Scanner;
 public class Main {
     public static void display_menu() {
-        System.out.println ( "1) Create basic recruit 1\n2) Create recruit \n3) Option 3 \n4) display character \n5) quit" );
+        System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) List \n4) display character \n5) quit" );
         System.out.print ( "Selection: " );
     }
     public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class Main {
                     list.addListePerso(recruit1);
                     break;
                 case 3:
-                    System.out.println("You picked option 3");
+                    list.displayList();
                     break;
                 case 4:
                     System.out.println("quel personnage voulez vous voir");
