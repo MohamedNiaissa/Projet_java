@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Recruit implements Cloneable {
     protected String name;
@@ -135,7 +136,7 @@ class Magician extends Recruit implements Cloneable{
     @Override
     public String toString() {
         return "Magician {" +
-                "name='" + getName() + '\'' +
+                "name='" + name + '\'' +
                 ", damage=" + damage +
                 ", lifePoints=" + lifePoints +
                 ", initiative=" + initiative +
@@ -143,6 +144,65 @@ class Magician extends Recruit implements Cloneable{
                 '}';
     }
 }
+
+class Rogue extends Recruit implements Cloneable {
+    Random random = new Random();
+    int critChance;
+    int dodgeChance;
+    int critcount = 0;
+
+    public Rogue(String name, int damage, int lifePoints, int initiative, int critChance, int dodgeChance) {
+        super(name, damage, lifePoints, initiative);
+        this.critChance = critChance;
+        this.dodgeChance = dodgeChance;
+    }
+
+    @Override
+    public int getDamage() {
+        int min = 0;
+        int max = 100;
+
+        int value = random.nextInt(max +min + 1) + min;
+
+        if (value <= critChance && critcount == 0){
+            critcount++;
+            System.out.println("Coup critique !");
+            return this.damage*2;
+        }
+        else {
+            critcount = 0;
+            return this.damage;
+        }
+    }
+
+    public int takeDamage(int Damage){
+        int min = 0;
+        int max = 100;
+
+        int value = random.nextInt(max +min + 1) + min;
+
+        if (value > dodgeChance){
+            this.lifePoints -= Damage;
+            return Damage;
+        }
+        else{
+            System.out.println(this.name + " à dodge le coup");
+            return 0;
+        }
+    }
+    public String toString() {
+        return "Rogue {" +
+                "name='" + name + '\'' +
+                ", damage=" + damage +
+                ", lifePoints=" + lifePoints +
+                ", dodgeChance=" + dodgeChance +
+                "%, critChance=" + critChance +
+                "%, initiative=" + initiative +
+                '}';
+    }
+}
+
+
 
 
 

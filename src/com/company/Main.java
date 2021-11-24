@@ -58,6 +58,21 @@ public class Main {
                     Magician magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
                     list.addListePerso(magician);
                     break;
+                case 5:
+                    System.out.println("entrer le nom de votre personnage: ");
+                    String name1 = in.next();
+                    System.out.println("choisissez un montant de dégats: ");
+                    int dmg1 = in.nextInt();
+                    System.out.println("choisissez un montant de point de vie: ");
+                    int lp1 = in.nextInt();
+                    System.out.println("choisissez un montant d'initiative: ");
+                    int ini1 = in.nextInt();
+                    System.out.println("choisissez un montant de critChance");
+                    int crit = in.nextInt();
+                    System.out.println("choisissez un montant de dodgeChance");
+                    int dodge = in.nextInt();
+                    Recruit rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
+                    list.addListePerso(rogue);
                 case 6:
                     list.displayList();
                     break;
