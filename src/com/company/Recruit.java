@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Recruit implements Cloneable {
-    private String name;
-    private int damage;
-    private int lifePoints;
-    private int initiative;
+    protected String name;
+    protected int damage;
+    protected int lifePoints;
+    protected int initiative;
 
     public Recruit(String name, int damage, int lifePoints, int initiative){
         this.damage = damage;
@@ -29,8 +29,9 @@ public class Recruit implements Cloneable {
         return this.initiative;
     }
 
-    public void takeDamage(int Damage){
+    public int takeDamage(int Damage){
         this.lifePoints -= Damage;
+        return Damage;
     }
 
     public Object clone() throws CloneNotSupportedException {
@@ -39,10 +40,10 @@ public class Recruit implements Cloneable {
 
     public String toString() {
         return "Recruit {" +
-                "name='" + getName() + '\'' +
-                ", damage=" + getDamage() +
-                ", lifePoints=" + getLifePoints() +
-                ", initiative=" + getInitiative() +
+                "name='" + name + '\'' +
+                ", damage=" + damage +
+                ", lifePoints=" + lifePoints +
+                ", initiative=" + initiative +
                 '}';
     }
 }
@@ -68,6 +69,46 @@ class ListPerso {
         return listePerso.get(index - 1);
     }
 
+}
+class Warrior extends Recruit implements Cloneable{
+    protected int shieldres;
+
+    public Warrior(String name, int damage, int lifePoints, int initiative, int shield) {
+        super(name, damage, lifePoints, initiative);
+        this.shieldres = shield;
+    }
+    public int takeDamage(int damage){
+        if (damage-shieldres<=0){
+            System.out.println("Bloqué");
+            try{
+                Thread.sleep(1000);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+            return 0;
+        } else {
+            System.out.println("Le bouclier bloque " + shieldres);
+            lifePoints -= damage-shieldres;
+            try{
+                Thread.sleep(1000);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+            return damage-shieldres;
+        }
+    }
+    public String toString() {
+        return "Warrior {" +
+                "name='" + name + '\'' +
+                ", damage=" + damage +
+                ", lifePoints=" + lifePoints +
+                ", shieldResistance=" + shieldres +
+                ", initiative=" + initiative +
+                '}';
+    }
+    public Object clone() throws CloneNotSupportedException {
+        return  (Warrior)super.clone();
+    }
 }
 
 
