@@ -2,12 +2,13 @@ package com.company;
 import java.util.Scanner;
 public class Main {
     public static void display_menu() {
-        System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) List \n4) display character \n5) quit \n6) Fight" );
+        System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) Create warrior \n4) Create mage \n5) Create Rogue \n6) List \n7) display character \n8) Fight \n9) Quit" );
         System.out.print ( "Selection: " );
     }
     public static void main(String[] args) throws CloneNotSupportedException {
         Scanner in = new Scanner ( System.in );
         Recruit recruit = new Recruit("didier",100,1000,50);
+        Recruit Rogue = new Rogue("gerard",100,800,90, 50,20);
         ListPerso list = new ListPerso();
         boolean cont = true;
         while(cont) {
@@ -30,17 +31,33 @@ public class Main {
                     list.addListePerso(recruit1);
                     break;
                 case 3:
+
+                case 4:
+
+                case 5:
+                    System.out.println("entrer le nom de votre personnage: ");
+                    String name1 = in.next();
+                    System.out.println("choisissez un montant de dégats: ");
+                    int dmg1 = in.nextInt();
+                    System.out.println("choisissez un montant de point de vie: ");
+                    int lp1 = in.nextInt();
+                    System.out.println("choisissez un montant d'initiative: ");
+                    int ini1 = in.nextInt();
+                    System.out.println("choisissez un montant de critChance");
+                    int crit = in.nextInt();
+                    System.out.println("choisissez un montant de dodgeChance");
+                    int dodge = in.nextInt();
+                    Recruit rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
+                    list.addListePerso(rogue);
+                case 6:
                     list.displayList();
                     break;
-                case 4:
+                case 7:
                     System.out.println("quel personnage voulez vous voir");
                     int index = in.nextInt();
                     list.displayChar(index);
                     break;
-                case 5:
-                    cont = false;
-                    break;
-                case 6:
+                case 8:
                     list.displayList();
                     System.out.println("choisissez le premier personnage : ");
                     int indexPerso1 = in.nextInt();
@@ -123,9 +140,11 @@ public class Main {
                             }
                         }
                     }
-
-
                     break;
+                case 9:
+                    cont = false;
+                    break;
+
                 default:
                     System.err.println("Unrecognized option");
                     break;
