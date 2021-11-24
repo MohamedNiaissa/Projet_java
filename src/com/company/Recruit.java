@@ -3,11 +3,12 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Recruit {
-    private String name;
-    private int damage;
-    private int lifePoints;
-    private int initiative;
+
+public class Recruit implements Cloneable {
+    protected String name;
+    protected int damage;
+    protected int lifePoints;
+    protected int initiative;
 
     public Recruit(String name, int damage, int lifePoints, int initiative){
         this.damage = damage;
