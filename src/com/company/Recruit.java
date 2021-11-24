@@ -1,5 +1,7 @@
 package com.company;
-
+import java.io.FileWriter;
+import java.io.IOException;
+import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -49,28 +51,6 @@ public class Recruit implements Cloneable {
     }
 }
 
-class ListPerso {
-    List<Recruit> listePerso = new ArrayList<>();
-
-    public void addListePerso (Recruit recru){
-        listePerso.add(recru);
-    }
-
-    public void displayChar(int index){
-        System.out.println(listePerso.get(index - 1));
-    }
-
-    public void displayList(){
-        for (int i = 0; i < listePerso.size(); i++){
-            System.out.println((i + 1) + " - " + listePerso.get(i));
-        }
-    }
-
-    public Recruit getRecruit (int index){
-        return listePerso.get(index - 1);
-    }
-
-}
 class Warrior extends Recruit implements Cloneable{
     protected int shieldres;
 
@@ -107,9 +87,6 @@ class Warrior extends Recruit implements Cloneable{
                 ", initiative=" + initiative +
                 '}';
     }
-    public Object clone() throws CloneNotSupportedException {
-        return  (Warrior)super.clone();
-    }
 }
 class Magician extends Recruit implements Cloneable{
 
@@ -127,10 +104,6 @@ class Magician extends Recruit implements Cloneable{
         magicDamage /= 2;
         return totalDamage;
 
-    }
-
-    public Object clone() throws CloneNotSupportedException {
-        return  (Magician)super.clone();
     }
 
     @Override
@@ -199,6 +172,72 @@ class Rogue extends Recruit implements Cloneable {
                 ", dodgeChance=" + dodgeChance +
                 "%, initiative=" + initiative +
                 '}';
+    }
+}
+
+class ListPerso {
+    List<Recruit> listePerso = new ArrayList<>();
+
+    public void addListePerso (Recruit recru){
+        listePerso.add(recru);
+    }
+
+    public void displayChar(int index){
+        System.out.println(listePerso.get(index - 1));
+    }
+
+    public void displayList(){
+        for (int i = 0; i < listePerso.size(); i++){
+            System.out.println((i + 1) + " - " + listePerso.get(i));
+        }
+    }
+
+    public Recruit getRecruit (int index){
+        return listePerso.get(index - 1);
+    }
+
+    public void importsave(String input){
+
+    }
+    public void exportsave(String outputFile){
+                //Creating a JSONObject object
+                JSONObject jsonObject = new JSONObject();
+                //Inserting key-value pairs into the json object
+                jsonObject.put("ID", "1");
+                jsonObject.put("First_Name", "Shikhar");
+                jsonObject.put("Last_Name", "Dhawan");
+                jsonObject.put("Date_Of_Birth", "1981-12-05");
+                jsonObject.put("Place_Of_Birth", "Delhi");
+                jsonObject.put("Country", "India");
+                try {
+                    FileWriter file = new FileWriter("E:/output.json");
+                    file.write(jsonObject.toJSONString());
+                    file.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                System.out.println("JSON file created: "+jsonObject);
+
+        /*Path chemin = Paths.get(outputFile);
+        String save = " ";
+        for (int i = 0; i < listePerso.size(); i++) {
+            save += listePerso.get(i) + "\n" ;
+        }
+
+        byte[] data = save.getBytes();
+
+        OutputStream output = null;
+        try {
+            output = new BufferedOutputStream(Files.newOutputStream(chemin, CREATE));
+            output.write(data);
+            output.flush();
+            output.close();
+            System.out.println("sauvegarde effectué");
+        } catch (Exception e) {
+            System.out.println("Message " + e);
+        }*/
+
     }
 }
 
