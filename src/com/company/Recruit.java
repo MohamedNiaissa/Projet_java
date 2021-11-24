@@ -107,9 +107,7 @@ class Warrior extends Recruit implements Cloneable{
                 ", initiative=" + initiative +
                 '}';
     }
-    public Object clone() throws CloneNotSupportedException {
-        return  (Warrior)super.clone();
-    }
+
 }
 class Magician extends Recruit implements Cloneable{
 
@@ -129,9 +127,8 @@ class Magician extends Recruit implements Cloneable{
 
     }
 
-    public Object clone() throws CloneNotSupportedException {
-        return  (Magician)super.clone();
-    }
+
+
 
     @Override
     public String toString() {
