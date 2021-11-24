@@ -63,14 +63,22 @@ public class Main {
                     String name1 = in.next();
                     System.out.println("choisissez un montant de dégats: ");
                     int dmg1 = in.nextInt();
-                    System.out.println("choisissez un montant de point de vie: ");
-                    int lp1 = in.nextInt();
-                    System.out.println("choisissez un montant d'initiative: ");
-                    int ini1 = in.nextInt();
                     System.out.println("choisissez un montant de critChance");
                     int crit = in.nextInt();
+                    while ((crit>100)||(crit<0)){
+                        System.out.println("la valeur de critChance se situe entre 0 et 100");
+                        crit = in.nextInt();
+                    }
+                    System.out.println("choisissez un montant de point de vie: ");
+                    int lp1 = in.nextInt();
                     System.out.println("choisissez un montant de dodgeChance");
                     int dodge = in.nextInt();
+                    while ((dodge>100)||(dodge<0)){
+                        System.out.println("la valeur de dodgeChance se situe entre 0 et 100");
+                        dodge = in.nextInt();
+                    }
+                    System.out.println("choisissez un montant d'initiative: ");
+                    int ini1 = in.nextInt();
                     Recruit rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
                     list.addListePerso(rogue);
                 case 6:

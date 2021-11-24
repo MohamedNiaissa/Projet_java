@@ -194,9 +194,9 @@ class Rogue extends Recruit implements Cloneable {
         return "Rogue {" +
                 "name='" + name + '\'' +
                 ", damage=" + damage +
-                ", lifePoints=" + lifePoints +
+                ", critChance=" + critChance +
+                "%, lifePoints=" + lifePoints +
                 ", dodgeChance=" + dodgeChance +
-                "%, critChance=" + critChance +
                 "%, initiative=" + initiative +
                 '}';
     }
