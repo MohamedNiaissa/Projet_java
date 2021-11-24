@@ -1,4 +1,5 @@
 package com.company;
+import java.util.Random;
 import java.util.Scanner;
 public class Main {
     public static void display_menu() {
@@ -9,7 +10,9 @@ public class Main {
     public static void main(String[] args) throws CloneNotSupportedException {
         Scanner in = new Scanner ( System.in );
         Recruit recruit = new Recruit("didier",100,1000,50);
+        Recruit Rogue = new Rogue("gerard",100,800,90, 50,20);
         ListPerso list = new ListPerso();
+        Recruit chooseChar = null;
         boolean cont = true;
         while(cont) {
             display_menu();
@@ -127,8 +130,13 @@ public class Main {
                     if (Perso1.getInitiative() > Perso2.getInitiative()) {
                         System.out.println(Perso1.getName() + " commence");
                     }
-                    else{
+                    else if(Perso1.getInitiative()< Perso2.getInitiative()){
                         System.out.println(Perso2.getName() + " commence");
+                    }else {
+                        Recruit[] tabPerso = {Perso1,Perso2};
+                        int randFirst = new Random().nextInt(tabPerso.length);
+                        chooseChar = tabPerso[randFirst];
+                        System.out.println("Même initiative, donc tirage au sort : " + chooseChar.getName());
                     }
                     while (fight){
                         if (Perso1.getInitiative() > Perso2.getInitiative()){
@@ -192,10 +200,80 @@ public class Main {
                             }catch(InterruptedException e){
                                 e.printStackTrace();
                             }
+                        }else{
+                            
+                            if( chooseChar == Perso1 ){
+                                int domage;
+                                if (Perso1.getLifePoints() > 0){
+                                    domage = Perso1.getDamage();
+                                    domage = Perso2.takeDamage(domage);
+                                    System.out.println(Perso1.getName() + " à infligé " + domage + " à " + Perso2.getName() + " il lui reste " + Perso2.getLifePoints());
+                                }
+                                else{
+                                    System.out.println(Perso2.getName() + " à gagné avec " + Perso2.getLifePoints() + " restant");
+                                    fight = false;
+                                }
+                                try{
+                                    Thread.sleep(500);
+                                }catch(InterruptedException e){
+                                    e.printStackTrace();
+                                }
+                                if (Perso2.getLifePoints() > 0){
+                                    domage = Perso2.getDamage();
+                                    domage = Perso1.takeDamage(domage);
+                                    System.out.println(Perso2.getName() + " à infligé " + domage + " à " + Perso1.getName() + " il lui reste " + Perso1.getLifePoints());
+                                }
+                                else{
+                                    System.out.println(Perso1.getName() + " à gagné avec " + Perso1.getLifePoints() + " restant");
+                                    fight = false;
+                                }
+                                try{
+                                    Thread.sleep(500);
+                                }catch(InterruptedException e){
+                                    e.printStackTrace();
+                                }
+                            }else {
+                                int domage;
+                                if (Perso2.getLifePoints() > 0){
+                                    domage = Perso2.getDamage();
+                                    domage = Perso1.takeDamage(domage);
+                                    System.out.println(Perso2.getName() + " à infligé " + domage + " à " + Perso1.getName() + " il lui reste " + Perso1.getLifePoints());
+                                }
+                                else{
+                                    System.out.println(Perso1.getName() + " à gagné avec " + Perso1.getLifePoints() + " restant");
+                                    fight = false;
+                                }
+                                try{
+                                    Thread.sleep(500);
+                                }catch(InterruptedException e){
+                                    e.printStackTrace();
+                                }
+                                if (Perso1.getLifePoints() > 0){
+                                    domage = Perso1.getDamage();
+                                    domage = Perso2.takeDamage(domage);
+                                    System.out.println(Perso1.getName() + " à infligé " + domage + " à " + Perso2.getName() + " il lui reste " + Perso2.getLifePoints());
+                                }
+                                else{
+                                    System.out.println(Perso2.getName() + " à gagné avec " + Perso2.getLifePoints() + " restant");
+                                    fight = false;
+                                }
+                                try{
+                                    Thread.sleep(500);
+                                }catch(InterruptedException e){
+                                    e.printStackTrace();
+                                }
+                            }
+
+
                         }
                     }
-
-
+                    break;
+                case 10:
+                    list.displayList();
+                    System.out.println("choissisez le personnage à supprimer");
+                    index = in.nextInt();
+                    list.removeList(index);
+                    list.displayList();
                     break;
                 default:
                     System.err.println("Unrecognized option");
