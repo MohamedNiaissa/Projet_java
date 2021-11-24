@@ -2,9 +2,8 @@ package com.company;
 import java.util.Scanner;
 public class Main {
     public static void display_menu() {
-        System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) Create warrior \n4) Create mage \n5) Create Rogue \n6) List \n7) display character \n8) Fight \n9) Quit" );
         System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) Create warrior \n4) Create mage \n" +
-         "5) Create rogue \n6) List \n7) display character \n8) quit \n9) Fight" );
+         "5) Create rogue \n6) List \n7) display character \n8) quit \n9) Fight \n10) Remove from list" );
         System.out.print ( "Selection: " );
     }
     public static void main(String[] args) throws CloneNotSupportedException {
@@ -43,7 +42,7 @@ public class Main {
                     int shieldwar = in.nextInt();
                     System.out.println("choisissez un montant d'initiative: ");
                     int iniwar = in.nextInt();
-                    Warrior warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
+                    Recruit warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
                     list.addListePerso(warrior1);
                     break;
                 case 4:
@@ -57,7 +56,7 @@ public class Main {
                     int iniMag = in.nextInt();
                     System.out.println("Choisssez un montant de degat magique: ");
                     int dmgMagBonus = in.nextInt();
-                    Magician magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
+                    Recruit magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
                     list.addListePerso(magician);
                     break;
                 case 5:
@@ -170,10 +169,13 @@ public class Main {
                         }
                     }
                     break;
-                case 9:
-                    cont = false;
+                case 10:
+                    list.displayList();
+                    System.out.println("choissisez le personnage à supprimer");
+                    index = in.nextInt();
+                    list.removeList(index);
+                    list.displayList();
                     break;
-
                 default:
                     System.err.println("Unrecognized option");
                     break;

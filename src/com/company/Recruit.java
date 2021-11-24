@@ -69,52 +69,12 @@ class ListPerso {
     public Recruit getRecruit (int index){
         return listePerso.get(index - 1);
     }
-}
 
-class Rogue extends Recruit implements Cloneable {
-    Random random = new Random();
-    int critChance;
-    int dodgeChance;
-    int critcount = 0;
-
-    public Rogue(String name, int damage, int lifePoints, int initiative, int critChance, int dodgeChance) {
-        super(name, damage, lifePoints, initiative);
-        this.critChance = critChance;
-        this.dodgeChance = dodgeChance;
-    }
-
-    @Override
-    public int getDamage() {
-        int min = 0;
-        int max = 100;
-
-        int value = random.nextInt(max +min + 1) + min;
-
-        if (value <= critChance && critcount == 0){
-            critcount++;
-            return this.damage*2;
-
-        }
-        else {
-            critcount = 0;
-            return this.damage;
-        }
-    }
-
-    public void takeDamage(int Damage){
-        int min = 0;
-        int max = 100;
-
-        int value = random.nextInt(max +min + 1) + min;
-
-        if (value > dodgeChance){
-            this.lifePoints -= Damage;
-        }
-        else{
-            System.out.println(this.name + " à dodge le coup");
-        }
+    public void removeList(int index){
+        listePerso.remove(index);
     }
 }
+
 class Warrior extends Recruit implements Cloneable{
     protected int shieldres;
 
@@ -151,9 +111,7 @@ class Warrior extends Recruit implements Cloneable{
                 ", initiative=" + initiative +
                 '}';
     }
-    public Object clone() throws CloneNotSupportedException {
-        return  (Warrior)super.clone();
-    }
+
 }
 class Magician extends Recruit implements Cloneable{
 
@@ -171,10 +129,6 @@ class Magician extends Recruit implements Cloneable{
         magicDamage /= 2;
         return totalDamage;
 
-    }
-
-    public Object clone() throws CloneNotSupportedException {
-        return  (Magician)super.clone();
     }
 
     @Override
