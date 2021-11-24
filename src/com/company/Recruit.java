@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Recruit {
+public class Recruit implements Cloneable {
     private String name;
     private int damage;
     private int lifePoints;
@@ -33,6 +33,10 @@ public class Recruit {
         this.lifePoints -= Damage;
     }
 
+    public Object clone() throws CloneNotSupportedException {
+        return  (Recruit)super.clone();
+    }
+
     public String toString() {
         return "Recruit {" +
                 "name='" + getName() + '\'' +
@@ -58,6 +62,10 @@ class ListPerso {
         for (int i = 0; i < listePerso.size(); i++){
             System.out.println((i + 1) + " - " + listePerso.get(i));
         }
+    }
+
+    public Recruit getRecruit (int index){
+        return listePerso.get(index - 1);
     }
 
 }
