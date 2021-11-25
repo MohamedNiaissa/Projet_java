@@ -8,12 +8,6 @@ import java.util.Random;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 
-public class Recruit implements Cloneable {
-    protected String name;
-    protected int damage;
-    protected int lifePoints;
-    protected int initiative;
-
     public Recruit(String name, int damage, int lifePoints, int initiative){
         this.damage = damage;
         this.initiative = initiative;
@@ -62,7 +56,7 @@ class Warrior extends Recruit implements Cloneable{
     }
     public int takeDamage(int damage){
         if (damage-shieldres<=0){
-            System.out.println("Bloqué");
+            System.out.println("Blocked");
             try{
                 Thread.sleep(1000);
             }catch(InterruptedException e){
@@ -70,7 +64,7 @@ class Warrior extends Recruit implements Cloneable{
             }
             return 0;
         } else {
-            System.out.println("Le bouclier bloque " + shieldres);
+            System.out.println("The shield blocked " + shieldres);
             lifePoints -= damage-shieldres;
             try{
                 Thread.sleep(1000);
@@ -141,7 +135,7 @@ class Rogue extends Recruit implements Cloneable {
 
         if (value <= critChance && critcount == 0){
             critcount++;
-            System.out.println("Coup critique !");
+            System.out.println("Critical Hit !");
             return this.damage*2;
         }
         else {
@@ -161,7 +155,7 @@ class Rogue extends Recruit implements Cloneable {
             return Damage;
         }
         else{
-            System.out.println(this.name + " à dodge le coup");
+            System.out.println(this.name + " dodged the hit");
             return 0;
         }
     }
