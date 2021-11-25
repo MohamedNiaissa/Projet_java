@@ -20,11 +20,12 @@ public class Main {
 
         //creation of the basic Fighter
         Fighter recruitDefault = new Recruit("didier",100,1000,50);
-        Fighter warriorDefault = new Warrior("Hercule",120,900,100,20);
+        Fighter wariorDefault = new Warrior("Theo",120,900,100,20);
         Fighter mageDefault = new Magician("Mesmer",90,1000,50,70);
-        Fighter rogueDefault = new Rogue("Naruto",100,800,90, 50,20);
-
-        //instantiation of the character list
+        Fighter roguedDefault = new Rogue("Naruto",100,800,90, 50,20);
+        Fighter mageguerrierDefault = new MageGuerrier("Eragon",100,1000,30, 20,70);
+        Fighter guerriervoleurDefault = new GuerrierVoleur("Robin",100,1000,40, 50,20,20);
+        Fighter magevoleurDefault = new MageVoleur("Renard gris",100,1000,30,70,50,20);
         ListPerso list = new ListPerso();
 
         //Fighter that has been chosen if the two fighters have the same initiative stats
@@ -38,7 +39,7 @@ public class Main {
                                         "  |  /__\\ \\/  | |   |/  ||\\  /   /__\\ /  /  |   ||/  /  | | /__\\  |--</  | |  | |/__\\  '--.||/ \\ / \\ |   ||/  | | / \\|/    |||\n" +
                                         "  |  \\__; /\\  |  \\_/|\\__|| \\/   /    \\\\__\\__ \\_/||   \\__| | \\__;  |__/\\__| |  | |\\__;  \\__/||   |   | \\_/||\\__| | \\_/|     ...\n" +
                                         "                          _/");
-        System.out.println("Appuyez sur entrée pour accéder au menu");
+        System.out.println("Press enter for access the menu");
         String wait = in.nextLine();
 
         //loop of the main menu
@@ -50,12 +51,13 @@ public class Main {
                 // First choice, display a new menu for basic Fighter creation
                 case 1:
                     //the choice of class
-                    System.out.println("Choose the type : \n1) Basic recruit \n2) Warrior  \n3) Mage \n4) Rogue");
+                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior");
 
                     switch (charDefault.nextInt()){
                         case 1:
                             System.out.println(recruitDefault);
                             list.addListePerso(recruitDefault);
+                            System.out.println("Hiring in progress");
                             try{
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){
@@ -64,8 +66,9 @@ public class Main {
                             break;
 
                         case 2:
-                            System.out.println(warriorDefault);
-                            list.addListePerso(warriorDefault);
+                            System.out.println(wariorDefault);
+                            list.addListePerso(wariorDefault);
+                            System.out.println("Hiring in progress");
                             try{
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){
@@ -76,6 +79,7 @@ public class Main {
                         case 3:
                             System.out.println(mageDefault);
                             list.addListePerso(mageDefault);
+                            System.out.println("Hiring in progress");
                             try{
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){
@@ -84,15 +88,54 @@ public class Main {
                             break;
 
                         case 4:
-                            System.out.println(rogueDefault);
-                            list.addListePerso(rogueDefault);
+                            System.out.println(roguedDefault);
+                            list.addListePerso(roguedDefault);
+                            System.out.println("Hiring in progress");
                             try{
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){
                                 e.printStackTrace();
                             }
                             break;
+                        case 5:
+                            System.out.println(mageguerrierDefault);
+                            list.addListePerso(mageguerrierDefault);
+                            System.out.println("Hiring in progress");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
+                        case 7:
+                            System.out.println(guerriervoleurDefault);
+                            list.addListePerso(guerriervoleurDefault);
+                            System.out.println("Hiring in progress");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
+                        case 6:
+                            System.out.println(magevoleurDefault);
+                            list.addListePerso(magevoleurDefault);
+                            System.out.println("Hiring in progress");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
+                        default:
 
+                            System.err.println("Unrecognized option");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
                     }
                     break;
 
@@ -101,9 +144,7 @@ public class Main {
                 // Second choice, display a new menu for the Fighter creation
                 case 2:
                     // choose the class of the fighter
-                    System.out.println("Choose the type : \n1) Recruit \n2) Warrior  \n3) Mage \n4) Rogue");
-
-
+                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior");
                     switch (charPersonalize.nextInt()){
                         // create a recruit
                         case 1:
@@ -170,8 +211,67 @@ public class Main {
                             Fighter rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
                             list.addListePerso(rogue);
                             break;
+                        case 5:
+                            System.out.println("entrer the name of your character: ");
+                            String namemg = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgmg = in.nextInt();
+                            System.out.println("choose an amount of magic damage: ");
+                            int dmgMagmg = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lpmg = in.nextInt();
+                            System.out.println("choose an amount of shield resistance: ");
+                            int shieldmg = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int inimg = in.nextInt();
+                            Fighter magicwarrior = new MageGuerrier(namemg,dmgmg,lpmg,inimg, shieldmg,dmgMagmg);
+                            list.addListePerso(magicwarrior);
+                            break;
+                        case 6:
+                            System.out.println("entrer the name of your character: ");
+                            String namerm = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgrm = in.nextInt();
+                            System.out.println("choose an amount of magic damage: ");
+                            int dmgMagrm = in.nextInt();
+                            System.out.println("choose a probability of critical chance: ");
+                            int critrm = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lprm = in.nextInt();
+                            System.out.println("choose a probability of dodge chance: ");
+                            int dodgerm = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int inirm = in.nextInt();
+                            Fighter roguemage = new MageVoleur(namerm,dmgrm,lprm,inirm,dmgMagrm,critrm,dodgerm);
+                            list.addListePerso(roguemage);
+                            break;
+                        case 7:
+                            System.out.println("entrer the name of your character: ");
+                            String namerw = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgrw = in.nextInt();
+                            System.out.println("choose a probability of critical chance: ");
+                            int critrw = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lprw = in.nextInt();
+                            System.out.println("choose an amount of shield resistance: ");
+                            int shieldrw = in.nextInt();
+                            System.out.println("choose a probability of dodge chance: ");
+                            int dodgerw = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int inirw = in.nextInt();
+                            Fighter roguewarrior = new GuerrierVoleur(namerw,dmgrw,lprw,inirw, critrw,dodgerw,shieldrw);
+                            list.addListePerso(roguewarrior);
+                            break;
+                        default:
 
-
+                            System.err.println("Unrecognized option");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
                     }
 
                 // Third choice, permit to display the list of fighter
@@ -307,6 +407,7 @@ public class Main {
 
                     // the loop that compose the fight
                     int nbtour = 0;
+                    System.out.println("It's time to du-du-du-duel !!!");
                     while (fight){
                         // case where the first fighter has more initiative
                         if (Perso1.getInitiative() > Perso2.getInitiative()){
@@ -316,6 +417,11 @@ public class Main {
                             //Whole function that permit to a Fighter to attack and receive damage, if the fighter hp are 0 he can't act
                             if (Perso1.getLifePoints() > 0){
                                 domage = Perso1.getDamage();
+                                try{
+                                    Thread.sleep(1000);
+                                }catch(InterruptedException e){
+                                    e.printStackTrace();
+                                }
                                 domage = Perso2.takeDamage(domage);
                                 System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " inflicted " + domage + " to " + Perso2.getName() + " he has " +Perso2.getLifePoints() + " HP left"  );
                             }else{
@@ -326,12 +432,17 @@ public class Main {
                                 break;
                             }
                             try{
-                                Thread.sleep(1500);
+                                Thread.sleep(1000);
                             }catch(InterruptedException e){
                                 e.printStackTrace();
                             }
                             if (Perso2.getLifePoints() > 0){
                                 domage = Perso2.getDamage();
+                                try{
+                                    Thread.sleep(1000);
+                                }catch(InterruptedException e){
+                                    e.printStackTrace();
+                                }
                                 domage = Perso1.takeDamage(domage);
                                 System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflicted " + domage + " to " + Perso1.getName() + " he has " + Perso1.getLifePoints() + " HP left");
                             }
@@ -353,6 +464,11 @@ public class Main {
                             int domage;
                             if (Perso2.getLifePoints() > 0){
                                 domage = Perso2.getDamage();
+                                try{
+                                    Thread.sleep(1000);
+                                }catch(InterruptedException e){
+                                    e.printStackTrace();
+                                }
                                 domage = Perso1.takeDamage(domage);
                                 System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflected " + domage + " to " + Perso1.getName() + "  he has " + Perso1.getLifePoints() + " HP left");
                                 try{
@@ -369,10 +485,20 @@ public class Main {
                             }
                             if (Perso1.getLifePoints() > 0){
                                 domage = Perso1.getDamage();
-                                domage = Perso2.takeDamage(domage);
-                                System.out.println("turn" + nbtour + ":" + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + " he has " + Perso2.getLifePoints()+ " HP left");
                                 try{
-                                    Thread.sleep(500);
+                                    Thread.sleep(1000);
+                                }catch(InterruptedException e){
+                                    e.printStackTrace();
+                                }
+                                domage = Perso2.takeDamage(domage);
+                                try{
+                                    Thread.sleep(1000);
+                                }catch(InterruptedException e){
+                                    e.printStackTrace();
+                                }
+                                System.out.println("Turn " + nbtour + ":" + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + " he has " + Perso2.getLifePoints()+ " HP left");
+                                try{
+                                    Thread.sleep(1000);
                                 }catch(InterruptedException e){
                                     e.printStackTrace();
                                 }
@@ -390,10 +516,15 @@ public class Main {
                                 int domage;
                                 if (Perso1.getLifePoints() > 0){
                                     domage = Perso1.getDamage();
+                                    try{
+                                        Thread.sleep(1000);
+                                    }catch(InterruptedException e){
+                                        e.printStackTrace();
+                                    }
                                     domage = Perso2.takeDamage(domage);
                                     System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + " he has " + Perso2.getLifePoints() + " HP left ");
                                     try{
-                                        Thread.sleep(500);
+                                        Thread.sleep(1000);
                                     }catch(InterruptedException e){
                                         e.printStackTrace();
                                     }
@@ -406,10 +537,15 @@ public class Main {
                                 }
                                 if (Perso2.getLifePoints() > 0){
                                     domage = Perso2.getDamage();
+                                    try{
+                                        Thread.sleep(1000);
+                                    }catch(InterruptedException e){
+                                        e.printStackTrace();
+                                    }
                                     domage = Perso1.takeDamage(domage);
                                     System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflected " + domage + " to " + Perso1.getName() + " he has " + Perso1.getLifePoints()+ " HP left ");
                                     try{
-                                        Thread.sleep(500);
+                                        Thread.sleep(1000);
                                     }catch(InterruptedException e){
                                         e.printStackTrace();
                                     }
@@ -425,10 +561,15 @@ public class Main {
                                 int domage;
                                 if (Perso2.getLifePoints() > 0){
                                     domage = Perso2.getDamage();
+                                    try{
+                                        Thread.sleep(1000);
+                                    }catch(InterruptedException e){
+                                        e.printStackTrace();
+                                    }
                                     domage = Perso1.takeDamage(domage);
                                     System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflected " + domage + " to " + Perso1.getName() + " he has " + Perso1.getLifePoints()+ " HP left");
                                     try{
-                                        Thread.sleep(500);
+                                        Thread.sleep(1000);
                                     }catch(InterruptedException e){
                                         e.printStackTrace();
                                     }
@@ -442,10 +583,15 @@ public class Main {
                                 }
                                 if (Perso1.getLifePoints() > 0){
                                     domage = Perso1.getDamage();
+                                    try{
+                                        Thread.sleep(1000);
+                                    }catch(InterruptedException e){
+                                        e.printStackTrace();
+                                    }
                                     domage = Perso2.takeDamage(domage);
                                     System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + "  he has " + Perso2.getLifePoints() + " HP left");
                                     try{
-                                        Thread.sleep(500);
+                                        Thread.sleep(1000);
                                     }catch(InterruptedException e){
                                         e.printStackTrace();
                                     }
