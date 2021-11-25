@@ -5,12 +5,14 @@ import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import static java.nio.file.StandardOpenOption.CREATE;
 
 public class Recruit implements Cloneable, Fighter {
     protected String name;
     protected int damage;
     protected int initiative;
     protected int lifePoints;
+
     public Recruit(String name, int damage, int lifePoints, int initiative){
         this.damage = damage;
         this.initiative = initiative;
@@ -60,7 +62,7 @@ public class Recruit implements Cloneable, Fighter {
     }
 
     public Object clone() throws CloneNotSupportedException {
-        return  (Recruit)super.clone();
+        return  (Fighter)super.clone();
     }
 
     public String toString() {
@@ -73,7 +75,11 @@ public class Recruit implements Cloneable, Fighter {
     }
 }
 
-class Warrior extends Recruit implements Cloneable{
+class Warrior implements Cloneable, Guerrier{
+    protected String name;
+    protected int damage;
+    protected int initiative;
+    protected int lifePoints;
     protected int shieldres;
 
     public Warrior(String name, int damage, int lifePoints, int initiative, int shield) {
@@ -147,7 +153,7 @@ class Warrior extends Recruit implements Cloneable{
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return null;
+        return  (Fighter)super.clone();
     }
 
     public String toString() {
@@ -236,7 +242,7 @@ class Magician implements Cloneable, Magicien {
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return null;
+        return  (Fighter)super.clone();
     }
 
     @Override
@@ -351,7 +357,7 @@ class Rogue implements Cloneable, Voleur {
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return null;
+        return  (Fighter)super.clone();
     }
 
     public String toString() {
@@ -387,9 +393,9 @@ class Rogue implements Cloneable, Voleur {
 }
 
 class ListPerso {
-    List<Recruit> listePerso = new ArrayList<>();
+    List<Fighter> listePerso = new ArrayList<>();
 
-    public void addListePerso (Recruit recru){
+    public void addListePerso (Fighter recru){
         listePerso.add(recru);
     }
 
@@ -403,7 +409,7 @@ class ListPerso {
         }
     }
 
-    public Recruit getRecruit (int index){
+    public Fighter getRecruit (int index){
         return listePerso.get(index - 1);
     }
 
