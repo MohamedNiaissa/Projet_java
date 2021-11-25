@@ -1,21 +1,17 @@
 package com.company;
 
+import java.io.*;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static java.nio.file.StandardOpenOption.CREATE;
 public class Recruit implements Cloneable {
     protected String name;
     protected int damage;
-    protected int lifePoints;
     protected int initiative;
-
-public class Recruit implements Cloneable {
-    protected String name;
-    protected int damage;
     protected int lifePoints;
-    protected int initiative;
-
     public Recruit(String name, int damage, int lifePoints, int initiative){
         this.damage = damage;
         this.initiative = initiative;
@@ -55,32 +51,6 @@ public class Recruit implements Cloneable {
     }
 }
 
-class ListPerso {
-    List<Recruit> listePerso = new ArrayList<>();
-
-    public void addListePerso (Recruit recru){
-        listePerso.add(recru);
-    }
-
-    public void displayChar(int index){
-        System.out.println(listePerso.get(index - 1));
-    }
-
-    public void displayList(){
-        for (int i = 0; i < listePerso.size(); i++){
-            System.out.println((i + 1) + " - " + listePerso.get(i));
-        }
-    }
-
-    public Recruit getRecruit (int index){
-        return listePerso.get(index - 1);
-    }
-
-    public void removeList(int index){
-        listePerso.remove(index);
-    }
-}
-
 class Warrior extends Recruit implements Cloneable{
     protected int shieldres;
 
@@ -90,7 +60,7 @@ class Warrior extends Recruit implements Cloneable{
     }
     public int takeDamage(int damage){
         if (damage-shieldres<=0){
-            System.out.println("Bloqué");
+            System.out.println("Blocked");
             try{
                 Thread.sleep(1000);
             }catch(InterruptedException e){
@@ -98,7 +68,7 @@ class Warrior extends Recruit implements Cloneable{
             }
             return 0;
         } else {
-            System.out.println("Le bouclier bloque " + shieldres);
+            System.out.println("The shield blocked " + shieldres);
             lifePoints -= damage-shieldres;
             try{
                 Thread.sleep(1000);
@@ -117,7 +87,6 @@ class Warrior extends Recruit implements Cloneable{
                 ", initiative=" + initiative +
                 '}';
     }
-
 }
 class Magician extends Recruit implements Cloneable{
 
@@ -170,7 +139,7 @@ class Rogue extends Recruit implements Cloneable {
 
         if (value <= critChance && critcount == 0){
             critcount++;
-            System.out.println("Coup critique !");
+            System.out.println("Critical Hit !");
             return this.damage*2;
         }
         else {
@@ -190,7 +159,7 @@ class Rogue extends Recruit implements Cloneable {
             return Damage;
         }
         else{
-            System.out.println(this.name + " à dodge le coup");
+            System.out.println(this.name + " dodged the hit");
             return 0;
         }
     }
@@ -198,11 +167,81 @@ class Rogue extends Recruit implements Cloneable {
         return "Rogue {" +
                 "name='" + name + '\'' +
                 ", damage=" + damage +
-                ", lifePoints=" + lifePoints +
+                ", critChance=" + critChance +
+                "%, lifePoints=" + lifePoints +
                 ", dodgeChance=" + dodgeChance +
-                "%, critChance=" + critChance +
                 "%, initiative=" + initiative +
                 '}';
+    }
+}
+
+class ListPerso {
+    List<Recruit> listePerso = new ArrayList<>();
+
+    public void addListePerso (Recruit recru){
+        listePerso.add(recru);
+    }
+
+    public void displayChar(int index){
+        System.out.println(listePerso.get(index - 1));
+    }
+
+    public void displayList(){
+        for (int i = 0; i < listePerso.size(); i++){
+            System.out.println((i + 1) + " - " + listePerso.get(i));
+        }
+    }
+
+    public Recruit getRecruit (int index){
+        return listePerso.get(index - 1);
+    }
+
+    public void removeList(int index){
+        listePerso.remove(index - 1);
+    }
+
+    public int sizeList(){
+        return listePerso.size();
+    }
+    public void importsave(String input){
+
+    }
+    public void exportsave(String outputFile){
+                /*JSONObject jsonObject = new JSONObject();
+                jsonObject.put("ID", "1");
+                jsonObject.put("First_Name", "Shikhar");
+                jsonObject.put("Last_Name", "Dhawan");
+                jsonObject.put("Date_Of_Birth", "1981-12-05");
+                jsonObject.put("Place_Of_Birth", "Delhi");
+                jsonObject.put("Country", "India");
+                try {
+                    FileWriter file = new FileWriter("E:/output.json");
+                    file.write(jsonObject.toJSONString());
+                    file.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("JSON file created: "+jsonObject);*/
+
+        Path chemin = Paths.get(outputFile);
+        String save = " ";
+        for (int i = 0; i < listePerso.size(); i++) {
+            save += listePerso.get(i) + "\n" ;
+        }
+
+        byte[] data = save.getBytes();
+
+        OutputStream output = null;
+        try {
+            output = new BufferedOutputStream(Files.newOutputStream(chemin, CREATE));
+            output.write(data);
+            output.flush();
+            output.close();
+            System.out.println("sauvegarde effectué");
+        } catch (Exception e) {
+            System.out.println("Message " + e);
+        }
+
     }
 }
 
