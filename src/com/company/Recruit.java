@@ -107,6 +107,16 @@ class Warrior implements Cloneable, Guerrier{
 
     @Override
     public int getDamage() {
+        System.out.println("<n>\n" +
+                " O /\\\n" +
+                " |/\\/\n" +
+                "/| \n" +
+                "/ \\");
+        try{
+            Thread.sleep(1000);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
         return this.damage;
     }
 
@@ -133,6 +143,11 @@ class Warrior implements Cloneable, Guerrier{
     public int takeDamage(int damage){
         if (damage-shieldres<=0){
             System.out.println("Blocked");
+            System.out.println("<n>\n" +
+                    " O ___\n" +
+                    " |/| |\n" +
+                    "/| \\_/\n" +
+                    "/ \\");
             try{
                 Thread.sleep(1000);
             }catch(InterruptedException e){
@@ -142,6 +157,11 @@ class Warrior implements Cloneable, Guerrier{
         } else {
             System.out.println("The shield blocked " + shieldres);
             lifePoints -= damage-shieldres;
+            System.out.println("<n>\n" +
+                    " O ___\n" +
+                    " |/| |\n" +
+                    "/| \\_/\n" +
+                    "/ \\");
             try{
                 Thread.sleep(1000);
             }catch(InterruptedException e){
@@ -209,6 +229,24 @@ class Magician implements Cloneable, Magicien {
 
     @Override
     public int getDamage() {
+        if (magicDamage > 0){
+            System.out.println(" n\n" +
+                    " O /\\--/\\\n" +
+                    " |/ /--\\//\n" +
+                    "/|\n" +
+                    "/ \\");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println(" n\n" +
+                    " O /\\\n" +
+                    " |/ /\n" +
+                    "/| \n" +
+                    "/ \\");
+        }
         int totalDamage = damage + magicDamage;
         magicDamage /= 2;
         return totalDamage;
@@ -250,9 +288,9 @@ class Magician implements Cloneable, Magicien {
         return "Magician {" +
                 "name='" + name + '\'' +
                 ", damage=" + damage +
+                ", magicDamage=" + magicDamage +
                 ", lifePoints=" + lifePoints +
                 ", initiative=" + initiative +
-                ", magicDamage=" + magicDamage +
                 '}';
     }
 
@@ -389,6 +427,313 @@ class Rogue implements Cloneable, Voleur {
     @Override
     public int getDodgeChance() {
         return this.dodgeChance;
+    }
+}
+class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
+    protected String name;
+    protected int damage;
+    protected int initiative;
+    protected int lifePoints;
+    protected int shieldres;
+    protected int dodgeChance;
+    protected int critChance;
+    int critcount = 0;
+    Random random = new Random();
+
+    public int getShieldRes() {
+        return this.shieldres;
+    }
+
+    public void setShieldRes(int shieldRes) {
+        this.shieldres = shieldRes;
+    }
+
+    public GuerrierVoleur(String name, int damage, int lifePoints, int initiative, int critChance, int dodgeChance,int shieldres) {
+        this.name = name;
+        this.damage = damage;
+        this.lifePoints = lifePoints;
+        this.initiative = initiative;
+        this.shieldres = shieldres;
+        this.critChance = critChance;
+        this.dodgeChance = dodgeChance;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    @Override
+    public int getDamage() {
+        int min = 0;
+        int max = 100;
+
+        int value = random.nextInt(max +min + 1) + min;
+
+        if (value <= critChance && critcount == 0){
+            critcount++;
+            System.out.println("Critical Hit !");
+            return this.damage*2;
+        }
+        else {
+            critcount = 0;
+            return this.damage;
+        }
+    }
+
+    @Override
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints;
+    }
+
+    @Override
+    public int getLifePoints() {
+        return this.lifePoints;
+    }
+
+    @Override
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+    }
+
+    @Override
+    public int getInitiative() {
+        return this.initiative;
+    }
+
+    public int takeDamage(int Damage){
+        int min = 0;
+        int max = 100;
+
+        int value = random.nextInt(max +min + 1) + min;
+
+        if (value > dodgeChance){
+            if (damage-shieldres<=0){
+                System.out.println(" O  _\n" +
+                        " |/| |\n" +
+                        " | \\_/\n" +
+                        "/ \\");
+                System.out.println("Blocked");
+                try{
+                    Thread.sleep(1000);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+                return 0;
+            } else {
+                System.out.println("The shield blocked " + shieldres);
+                lifePoints -= damage - shieldres;
+                System.out.println(" O  _\n" +
+                        " |/| |\n" +
+                        " | \\_/\n" +
+                        "/ \\");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return damage - shieldres;
+            }
+        }
+        else{
+            System.out.println(this.name + " dodged the hit");
+            return 0;
+        }
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return  (Fighter)super.clone();
+    }
+
+    public String toString() {
+        return "RogueWarrior {" +
+                "name='" + name + '\'' +
+                ", damage=" + damage +
+                ", critChance=" + critChance +
+                "%, lifePoints=" + lifePoints +
+                ", shieldResistance=" + shieldres +
+                ", dodgeChance=" + dodgeChance +
+                "%, initiative=" + initiative +
+                '}';
+    }
+
+    @Override
+    public void setCritChance(int critChance) {
+        this.critChance = critChance;
+    }
+
+    @Override
+    public int getCritChance() {
+        return this.critChance;
+    }
+
+    @Override
+    public void setDodgeChance(int dodgeChance) {
+        this.dodgeChance = dodgeChance;
+    }
+
+    @Override
+    public int getDodgeChance() {
+        return this.dodgeChance;
+    }
+}
+class MageGuerrier implements Cloneable,Magicien,Guerrier{
+    protected String name;
+    protected int damage;
+    protected int initiative;
+    protected int lifePoints;
+    protected int shieldres;
+    protected int magicDamage;
+    @Override
+    public void setMagicDamage(int magicDamage) {
+        this.magicDamage = magicDamage;
+    }
+
+    @Override
+    public int getMagicDamage() {
+        return this.magicDamage;
+    }
+    public MageGuerrier(String name, int damage, int lifePoints, int initiative, int shield, int magicDamage) {
+        this.name = name;
+        this.damage = damage;
+        this.lifePoints = lifePoints;
+        this.initiative = initiative;
+        this.shieldres = shield;
+        this.magicDamage = magicDamage;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    @Override
+    public int getDamage() {
+        if (magicDamage>0) {
+            System.out.println(name + " utilise son épée magique");
+            System.out.println(" n  ///\n" +
+                    "<n>///\n" +
+                    " O\\/\n" +
+                    " |/\\\n" +
+                    "/| \n" +
+                    "/ \\");
+        }else{
+            System.out.println(name + " utilise son épée");
+            System.out.println(" n   /\n" +
+                    "<n> /\n" +
+                    " O\\/\n" +
+                    " |/\\\n" +
+                    "/| \n" +
+                    "/ \\");
+        }
+        try{
+            Thread.sleep(1000);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        int totalDamage = damage + magicDamage;
+        magicDamage /= 2;
+        return totalDamage;
+    }
+
+    @Override
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints;
+    }
+
+    @Override
+    public int getLifePoints() {
+        return this.lifePoints;
+    }
+
+    @Override
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+    }
+
+    @Override
+    public int getInitiative() {
+        return this.initiative;
+    }
+
+    public int takeDamage(int damage){
+        if (damage-shieldres<=0){
+            System.out.println("Blocked");
+            System.out.println(" n\n" +
+                    "<n>\n" +
+                    " O ___\n" +
+                    " |/| |\n" +
+                    "/| \\_/\n" +
+                    "/ \\");
+            try{
+                Thread.sleep(1000);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+            return 0;
+        } else {
+            System.out.println("The shield blocked " + shieldres);
+            lifePoints -= damage-shieldres;
+            System.out.println(" n\n" +
+                    "<n>\n" +
+                    " O ___\n" +
+                    " |/| |\n" +
+                    "/| \\_/\n" +
+                    "/ \\");
+            try{
+                Thread.sleep(1000);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+            return damage-shieldres;
+        }
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return  (Fighter)super.clone();
+    }
+
+    public String toString() {
+        return "MagicWarrior {" +
+                "name='" + name + '\'' +
+                ", damage=" + damage +
+                ", magicDamage=" + magicDamage +
+                ", lifePoints=" + lifePoints +
+                ", shieldResistance=" + shieldres +
+                ", initiative=" + initiative +
+                '}';
+    }
+
+    @Override
+    public void setShieldRes(int shieldRes) {
+        this.shieldres = shieldRes;
+    }
+
+    @Override
+    public int getShieldRes() {
+        return this.shieldres;
     }
 }
 

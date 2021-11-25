@@ -14,9 +14,11 @@ public class Main {
         Scanner liste = new Scanner(System.in);
 
         Fighter recruitDefault = new Recruit("didier",100,1000,50);
-        Fighter wariorDefault = new Warrior("Hercule",120,900,100,20);
+        Fighter wariorDefault = new Warrior("Theo",120,900,100,20);
         Fighter mageDefault = new Magician("Mesmer",90,1000,50,70);
         Fighter roguedDefault = new Rogue("Naruto",100,800,90, 50,20);
+        Fighter mageguerrierDefault = new MageGuerrier("Eragon",100,1000,30, 20,70);
+        Fighter guerriervoleurDefault = new GuerrierVoleur("Robin",100,1000,30, 50,20,20);
         ListPerso list = new ListPerso();
         Fighter chooseChar = null;
         boolean cont = true;
@@ -24,7 +26,7 @@ public class Main {
                                         "  |  /__\\ \\/  | |   |/  ||\\  /   /__\\ /  /  |   ||/  /  | | /__\\  |--</  | |  | |/__\\  '--.||/ \\ / \\ |   ||/  | | / \\|/    |||\n" +
                                         "  |  \\__; /\\  |  \\_/|\\__|| \\/   /    \\\\__\\__ \\_/||   \\__| | \\__;  |__/\\__| |  | |\\__;  \\__/||   |   | \\_/||\\__| | \\_/|     ...\n" +
                                         "                          _/");
-        System.out.println("Appuyez sur entrée pour accéder au menu");
+        System.out.println("Press enter for access the menu");
         String wait = in.nextLine();
         while(cont) {
 
@@ -33,12 +35,13 @@ public class Main {
 
 
                 case 1:
-                    System.out.println("Choose the type : \n1) Basic recruit \n2) Warior  \n3) Mage \n4) Rogue");
+                    System.out.println("Choose the type : \n1) Basic recruit \n2) Warrior  \n3) Mage \n4) Rogue \n5) MagicWarrior \n6) RogueWarrior");
 
                     switch (charDefault.nextInt()){
                         case 1:
                             System.out.println(recruitDefault);
                             list.addListePerso(recruitDefault);
+                            System.out.println("Hiring in progress");
                             try{
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){
@@ -49,6 +52,7 @@ public class Main {
                         case 2:
                             System.out.println(wariorDefault);
                             list.addListePerso(wariorDefault);
+                            System.out.println("Hiring in progress");
                             try{
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){
@@ -59,6 +63,7 @@ public class Main {
                         case 3:
                             System.out.println(mageDefault);
                             list.addListePerso(mageDefault);
+                            System.out.println("Hiring in progress");
                             try{
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){
@@ -69,13 +74,33 @@ public class Main {
                         case 4:
                             System.out.println(roguedDefault);
                             list.addListePerso(roguedDefault);
+                            System.out.println("Hiring in progress");
                             try{
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){
                                 e.printStackTrace();
                             }
                             break;
-
+                        case 5:
+                            System.out.println(mageguerrierDefault);
+                            list.addListePerso(mageguerrierDefault);
+                            System.out.println("Hiring in progress");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
+                        case 6:
+                            System.out.println(guerriervoleurDefault);
+                            list.addListePerso(guerriervoleurDefault);
+                            System.out.println("Hiring in progress");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
                     }
                     break;
 
@@ -93,6 +118,12 @@ public class Main {
                     int ini = in.nextInt();
                     Fighter recruit1 = new Recruit(name, dmg, lp, ini);
                     list.addListePerso(recruit1);
+                    System.out.println("Hiring in progress");
+                    try{
+                        Thread.sleep(1000);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
                     break;
 
 
@@ -109,6 +140,12 @@ public class Main {
                     int iniwar = in.nextInt();
                     Fighter warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
                     list.addListePerso(warrior1);
+                    System.out.println("Hiring in progress");
+                    try{
+                        Thread.sleep(1000);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
                     break;
 
 
@@ -125,6 +162,12 @@ public class Main {
                     int dmgMagBonus = in.nextInt();
                     Fighter magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
                     list.addListePerso(magician);
+                    System.out.println("Hiring in progress");
+                    try{
+                        Thread.sleep(1000);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
                     break;
 
 
@@ -144,6 +187,12 @@ public class Main {
                     int dodge = in.nextInt();
                     Fighter rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
                     list.addListePerso(rogue);
+                    System.out.println("Hiring in progress");
+                    try{
+                        Thread.sleep(1000);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
                 case 6:
                     list.displayList();
                     System.out.println("Come back to the menu : (Press Enter)");
@@ -315,7 +364,7 @@ public class Main {
                             if (Perso1.getLifePoints() > 0){
                                 domage = Perso1.getDamage();
                                 domage = Perso2.takeDamage(domage);
-                                System.out.println("turn" + nbtour + ":" + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + " he has " + Perso2.getLifePoints()+ " HP left");
+                                System.out.println("Turn " + nbtour + ":" + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + " he has " + Perso2.getLifePoints()+ " HP left");
                                 try{
                                     Thread.sleep(500);
                                 }catch(InterruptedException e){
