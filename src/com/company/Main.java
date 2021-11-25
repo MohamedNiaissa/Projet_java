@@ -1,41 +1,56 @@
 package com.company;
+import javax.script.ScriptEngine;
 import java.util.Random;
 import java.util.Scanner;
 public class Main {
+
+    // a function that display the main menu
     public static void display_menu() {
-        System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) List  \n4) Display Characeter   \n5) Quit   \n6) Save \n7) Remove Character  \n8) Fight  " );
+        System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) List  \n4) Display Character   \n5) Quit   \n6) Save \n7) Remove Character  \n8) Fight  \n9) Class dictionary" );
         System.out.print ( "Selection: " );
     }
 
     public static void main(String[] args) throws CloneNotSupportedException {
 
+        //instantiation of the Scanner util
         Scanner in = new Scanner ( System.in );
         Scanner charDefault = new Scanner(System.in);
         Scanner charPersonalize = new Scanner(System.in);
-
         Scanner liste = new Scanner(System.in);
 
+        //creation of the basic Fighter
         Fighter recruitDefault = new Recruit("didier",100,1000,50);
-        Fighter wariorDefault = new Warrior("Hercule",120,900,100,20);
+        Fighter warriorDefault = new Warrior("Hercule",120,900,100,20);
         Fighter mageDefault = new Magician("Mesmer",90,1000,50,70);
-        Fighter roguedDefault = new Rogue("Naruto",100,800,90, 50,20);
+        Fighter rogueDefault = new Rogue("Naruto",100,800,90, 50,20);
+
+        //instantiation of the character list
         ListPerso list = new ListPerso();
+
+        //Fighter that has been chosen if the two fighters have the same initiative stats
         Fighter chooseChar = null;
+
+        //boolean that permit to do the loop
         boolean cont = true;
+
+        //print of the welcome msg
         System.out.println("Welcome in \n--¡-- __     ___      __ |        /\\   __ __     ¡ _  __ ___ __   ¡--\\ __ ______| __   /--\\'  _   _       | __ ___ _ ¡ _   |||\n" +
                                         "  |  /__\\ \\/  | |   |/  ||\\  /   /__\\ /  /  |   ||/  /  | | /__\\  |--</  | |  | |/__\\  '--.||/ \\ / \\ |   ||/  | | / \\|/    |||\n" +
                                         "  |  \\__; /\\  |  \\_/|\\__|| \\/   /    \\\\__\\__ \\_/||   \\__| | \\__;  |__/\\__| |  | |\\__;  \\__/||   |   | \\_/||\\__| | \\_/|     ...\n" +
                                         "                          _/");
         System.out.println("Appuyez sur entrée pour accéder au menu");
         String wait = in.nextLine();
+
+        //loop of the main menu
         while(cont) {
 
             display_menu();
             switch (in.nextInt()) {
 
-
+                // First choice, display a new menu for basic Fighter creation
                 case 1:
-                    System.out.println("Choose the type : \n1) Basic recruit \n2) Warior  \n3) Mage \n4) Rogue");
+                    //the choice of class
+                    System.out.println("Choose the type : \n1) Basic recruit \n2) Warrior  \n3) Mage \n4) Rogue");
 
                     switch (charDefault.nextInt()){
                         case 1:
@@ -49,8 +64,8 @@ public class Main {
                             break;
 
                         case 2:
-                            System.out.println(wariorDefault);
-                            list.addListePerso(wariorDefault);
+                            System.out.println(warriorDefault);
+                            list.addListePerso(warriorDefault);
                             try{
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){
@@ -69,8 +84,8 @@ public class Main {
                             break;
 
                         case 4:
-                            System.out.println(roguedDefault);
-                            list.addListePerso(roguedDefault);
+                            System.out.println(rogueDefault);
+                            list.addListePerso(rogueDefault);
                             try{
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){
@@ -83,12 +98,14 @@ public class Main {
 
 
 
-
+                // Second choice, display a new menu for the Fighter creation
                 case 2:
-                    System.out.println("Choose the type : \n1) Recruit \n2) Warior  \n3) Mage \n4) Rogue");
+                    // choose the class of the fighter
+                    System.out.println("Choose the type : \n1) Recruit \n2) Warrior  \n3) Mage \n4) Rogue");
 
 
                     switch (charPersonalize.nextInt()){
+                        // create a recruit
                         case 1:
 
                             System.out.println("entrer the name of your character: ");
@@ -103,7 +120,9 @@ public class Main {
                             list.addListePerso(recruit1);
                             break;
 
+                        // create a warrior
                         case 2:
+
                             System.out.println("entrer the name of your character: ");
                             String namewar = in.next();
                             System.out.println("choose a damage amount: ");
@@ -117,6 +136,8 @@ public class Main {
                             Fighter warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
                             list.addListePerso(warrior1);
                             break;
+
+                        // create a magician
                         case 3:
                             System.out.println("entrer the name of your character: ");
                             String nameMag = in.next();
@@ -131,6 +152,8 @@ public class Main {
                             Fighter magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
                             list.addListePerso(magician);
                             break;
+
+                        // create a rogue
                         case 4:
                             System.out.println("entrer the name of your character: ");
                             String name1 = in.next();
@@ -151,18 +174,16 @@ public class Main {
 
                     }
 
-
-
-
-
+                // Third choice, permit to display the list of fighter
                 case 3:
                     list.displayList();
                     System.out.println("Come back to the menu : (Press Enter)");
                     String valUser = liste.nextLine();
                     break;
 
-
+                // Fourth choice, permit to look at specific Fighter
                 case 4:
+                    //A loop that make the menu for seeing a character reappears if you enter an invalid index
                     boolean wantLook = true;
                     while (wantLook) {
                         System.out.println("Which character do you want to see : ");
@@ -181,10 +202,14 @@ public class Main {
                         }
                     }
                     break;
+
+                // Fifth choice, permit to quit the simulation
                 case 5:
                     System.out.println("You have just left the simulation");
                     cont = false;
                     break;
+
+                // Sixth, menu that permit to save
                 case 6:
                     System.out.println("save(1) or load(2) or return to the menu(3) ?");
                     int choose = in.nextInt();
@@ -205,8 +230,9 @@ public class Main {
                         break;
                     }
 
+                // Seventh choice, function that permit to remove a Fighter from the list
                 case 7:
-
+                    // a loop that make the menu for deleting a character reappears if you give a wrong index
                     boolean wantSuppr = true;
                     while (wantSuppr) {
                         list.displayList();
@@ -227,8 +253,11 @@ public class Main {
                     list.displayList();
                     break;
 
+                //Function to make two different fighters fight
                 case 8:
                     list.displayList();
+
+                    // a loop that make sure that you pick an existing fighter
                     boolean Perso1noselected= true;
                     int indexPerso1 = 0;
                     while (Perso1noselected) {
@@ -241,6 +270,7 @@ public class Main {
                             System.out.println("This character doesn't exist in the list");
                         }
                     }
+                    // cloning the first fighter
                     Fighter Perso = list.getRecruit(indexPerso1);
                     Fighter Perso1 = (Fighter)Perso.clone();
 
@@ -256,8 +286,12 @@ public class Main {
                             System.out.println("This character doesn't exist in the list");
                         }
                     }
+                    //cloning the second fighter
+
                     Fighter PersoBis = list.getRecruit(indexPerso2);
                     Fighter Perso2 = (Fighter)PersoBis.clone();
+
+                    //function that determine which player start the fight
                     boolean fight = true;
                     if (Perso1.getInitiative() > Perso2.getInitiative()) {
                         System.out.println(Perso1.getName() + " start");
@@ -270,11 +304,16 @@ public class Main {
                         chooseChar = tabPerso[randFirst];
                         System.out.println("Same initiative, so random draw : " + chooseChar.getName());
                     }
+
+                    // the loop that compose the fight
                     int nbtour = 0;
                     while (fight){
+                        // case where the first fighter has more initiative
                         if (Perso1.getInitiative() > Perso2.getInitiative()){
+                            //incrementation of the number of turn
                             nbtour++;
                             int domage;
+                            //Whole function that permit to a Fighter to attack and receive damage, if the fighter hp are 0 he can't act
                             if (Perso1.getLifePoints() > 0){
                                 domage = Perso1.getDamage();
                                 domage = Perso2.takeDamage(domage);
@@ -422,6 +461,60 @@ public class Main {
                         }
                     }
                     break;
+                case 9:
+                    // A class dictionary that explain the effect of the different class
+                    int displayInformation = 0;
+
+                    while(displayInformation == 0) {
+
+                        System.out.println("which class information do you want to see ? :\n 1) the Recruit \n 2) the Warrior \n 3) the Mage \n 4) the Rogue \n 5) the Magic Warrior \n 6) the Rogue Mage \n 7) the Rogue warrior\n 8) Quit");
+                        switch (in.nextInt()){
+                            case 1:
+                                System.out.println("A basic fighter with no special specificity");
+                                System.out.println("Come back to the Dictionary : (Press Enter)");
+                                String continutoMenu = liste.nextLine();
+                                break;
+                            case 2:
+                                System.out.println("The Warrior is a more advanced fighter well trained in the way of the shield \n " +
+                                        "He have a supplementary stat called ShieldRes that block a fixed amount of incoming damage");
+                                System.out.println("Come back to the Dictionary : (Press Enter)");
+                                continutoMenu = liste.nextLine();
+                                break;
+                            case 3:
+                                System.out.println("the Mage is a scholar that pursuit the best spell in the world, he resided in the magic tower with a bunch of other mage \n" +
+                                        "he have a supplementary stat called MagicDamage that deal additional damage, but the value of MagicDamage halves each turn");
+                                System.out.println("Come back to the Dictionary : (Press Enter)");
+                                continutoMenu = liste.nextLine();
+                                break;
+                            case 4:
+                                System.out.println("The Rogue is an orphan that grew in the undercity, he has been trained in the way of assassination since his childhood making him a fierce enemy \n" +
+                                        "The Rogue have the possibilities of making a critical strike and dodge any attack, the probability of those two characteristic are influenced by the stats CritChance and Dodge Chance  ");
+                                System.out.println("Come back to the Dictionary : (Press Enter)");
+                                continutoMenu = liste.nextLine();
+                                break;
+                            case 5:
+                                System.out.println("The Magic Warrior is a man that grew up with the dream using magic, but he was born in a important military family making him train as a knight \n despite that he trained secretly his magic by himself. While his magic is not very powerful it can do some serious damage \n" +
+                                        "The Magic Warrior have the possibility to block a fixed amount of damage due to his ShieldRes stat and he inflict more damage with his Magic Damage stat but those additional damage halves every turn");
+                                System.out.println("Come back to the Dictionary : (Press Enter)");
+                                continutoMenu = liste.nextLine();
+                                break;
+                            case 6:
+                                System.out.println("The Rogue mage is an infiltrated Rogue in the magic tower, while his magic may not be top notch, he got some serious assassination skills making him a versatile Fighter \n" +
+                                        "The Rogue Mage have the same abilities as a basic rogue, but he use a dagger infused with his magic power that deal additional damage until his power runs out");
+                                System.out.println("Come back to the Dictionary : (Press Enter)");
+                                continutoMenu = liste.nextLine();
+                                break;
+                            case 7:
+                                System.out.println("The Rogue Warrior is a fallen knight that lost his position after an incident, since then he roam around the world and steal from people to pay his debt back \n" +
+                                        "The Rogue Warrior can block a fixed amount of damage with his shield and can even dodge incoming attack. Ultimately he can do critical strike");
+                                System.out.println("Come back to the Dictionary : (Press Enter)");
+                                continutoMenu = liste.nextLine();
+                                break;
+                            case 8:
+                                displayInformation = 1;
+                                break;
+                        }
+                    }
 
                 default:
 
