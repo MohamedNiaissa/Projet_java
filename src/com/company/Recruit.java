@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.Random;
 
 import static java.nio.file.StandardOpenOption.CREATE;
-
+public class Recruit implements Cloneable {
+    protected String name;
+    protected int damage;
+    protected int initiative;
+    protected int lifePoints;
     public Recruit(String name, int damage, int lifePoints, int initiative){
         this.damage = damage;
         this.initiative = initiative;
