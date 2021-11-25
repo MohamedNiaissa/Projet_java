@@ -18,7 +18,7 @@ public class Main {
         Recruit mageDefault = new Magician("Mesmer",90,1000,50,70);
         Recruit roguedDefault = new Rogue("Naruto",100,800,90, 50,20);
         ListPerso list = new ListPerso();
-        Recruit chooseChar = null;
+        Fighter chooseChar = null;
         boolean cont = true;
         System.out.println("Welcome in \n--¡-- __     ___      __ |        /\\   __ __     ¡ _  __ ___ __   ¡--\\ __ ______| __   /--\\'  _   _       | __ ___ _ ¡ _   |||\n" +
                                         "  |  /__\\ \\/  | |   |/  ||\\  /   /__\\ /  /  |   ||/  /  | | /__\\  |--</  | |  | |/__\\  '--.||/ \\ / \\ |   ||/  | | / \\|/    |||\n" +
@@ -107,7 +107,7 @@ public class Main {
                     int shieldwar = in.nextInt();
                     System.out.println("choose an initative amount: ");
                     int iniwar = in.nextInt();
-                    Recruit warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
+                    Fighter warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
                     list.addListePerso(warrior1);
                     break;
 
@@ -123,7 +123,7 @@ public class Main {
                     int iniMag = in.nextInt();
                     System.out.println("choose an amount of magic damage: ");
                     int dmgMagBonus = in.nextInt();
-                    Recruit magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
+                    Fighter magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
                     list.addListePerso(magician);
                     break;
 
@@ -142,7 +142,7 @@ public class Main {
                     int crit = in.nextInt();
                     System.out.println("choose a probability of dodge chance: ");
                     int dodge = in.nextInt();
-                    Recruit rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
+                    Fighter rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
                     list.addListePerso(rogue);
                 case 6:
                     list.displayList();
@@ -250,7 +250,7 @@ public class Main {
                     else if(Perso1.getInitiative()< Perso2.getInitiative()){
                         System.out.println(Perso2.getName() + " start");
                     }else {
-                        Recruit[] tabPerso = {Perso1,Perso2};
+                        Fighter[] tabPerso = {Perso1,Perso2};
                         int randFirst = new Random().nextInt(tabPerso.length);
                         chooseChar = tabPerso[randFirst];
                         System.out.println("Same initiative, so random draw : " + chooseChar.getName());
