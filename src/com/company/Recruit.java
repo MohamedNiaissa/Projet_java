@@ -1,10 +1,12 @@
 package com.company;
-import java.io.FileWriter;
-import java.io.IOException;
-import org.json.simple.JSONObject;
+
+import java.io.*;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static java.nio.file.StandardOpenOption.CREATE;
 
 public class Recruit implements Cloneable {
     protected String name;
@@ -196,13 +198,18 @@ class ListPerso {
         return listePerso.get(index - 1);
     }
 
+    public void removeList(int index){
+        listePerso.remove(index - 1);
+    }
+
+    public int sizeList(){
+        return listePerso.size();
+    }
     public void importsave(String input){
 
     }
     public void exportsave(String outputFile){
-                //Creating a JSONObject object
-                JSONObject jsonObject = new JSONObject();
-                //Inserting key-value pairs into the json object
+                /*JSONObject jsonObject = new JSONObject();
                 jsonObject.put("ID", "1");
                 jsonObject.put("First_Name", "Shikhar");
                 jsonObject.put("Last_Name", "Dhawan");
@@ -214,12 +221,11 @@ class ListPerso {
                     file.write(jsonObject.toJSONString());
                     file.close();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                System.out.println("JSON file created: "+jsonObject);
+                System.out.println("JSON file created: "+jsonObject);*/
 
-        /*Path chemin = Paths.get(outputFile);
+        Path chemin = Paths.get(outputFile);
         String save = " ";
         for (int i = 0; i < listePerso.size(); i++) {
             save += listePerso.get(i) + "\n" ;
@@ -236,7 +242,7 @@ class ListPerso {
             System.out.println("sauvegarde effectué");
         } catch (Exception e) {
             System.out.println("Message " + e);
-        }*/
+        }
 
     }
 }
