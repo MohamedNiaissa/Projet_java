@@ -114,6 +114,15 @@ public class Main {
                                 e.printStackTrace();
                             }
                             break;
+                        default:
+
+                            System.err.println("Unrecognized option");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
                     }
                     break;
 
@@ -121,9 +130,7 @@ public class Main {
 
 
                 case 2:
-                    System.out.println("Choose the type : \n1) Recruit \n2) Warior  \n3) Mage \n4) Rogue");
-
-
+                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior");
                     switch (charPersonalize.nextInt()){
                         case 1:
 
@@ -183,8 +190,67 @@ public class Main {
                             Fighter rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
                             list.addListePerso(rogue);
                             break;
+                        case 5:
+                            System.out.println("entrer the name of your character: ");
+                            String namemg = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgmg = in.nextInt();
+                            System.out.println("choose an amount of magic damage: ");
+                            int dmgMagmg = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lpmg = in.nextInt();
+                            System.out.println("choose an amount of shield resistance: ");
+                            int shieldmg = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int inimg = in.nextInt();
+                            Fighter magicwarrior = new MageGuerrier(namemg,dmgmg,lpmg,inimg, shieldmg,dmgMagmg);
+                            list.addListePerso(magicwarrior);
+                            break;
+                        case 6:
+                            System.out.println("entrer the name of your character: ");
+                            String namerm = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgrm = in.nextInt();
+                            System.out.println("choose an amount of magic damage: ");
+                            int dmgMagrm = in.nextInt();
+                            System.out.println("choose a probability of critical chance: ");
+                            int critrm = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lprm = in.nextInt();
+                            System.out.println("choose a probability of dodge chance: ");
+                            int dodgerm = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int inirm = in.nextInt();
+                            Fighter roguemage = new MageVoleur(namerm,dmgrm,lprm,inirm,dmgMagrm,critrm,dodgerm);
+                            list.addListePerso(roguemage);
+                            break;
+                        case 7:
+                            System.out.println("entrer the name of your character: ");
+                            String namerw = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgrw = in.nextInt();
+                            System.out.println("choose a probability of critical chance: ");
+                            int critrw = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lprw = in.nextInt();
+                            System.out.println("choose an amount of shield resistance: ");
+                            int shieldrw = in.nextInt();
+                            System.out.println("choose a probability of dodge chance: ");
+                            int dodgerw = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int inirw = in.nextInt();
+                            Fighter roguewarrior = new GuerrierVoleur(namerw,dmgrw,lprw,inirw, critrw,dodgerw,shieldrw);
+                            list.addListePerso(roguewarrior);
+                            break;
+                        default:
 
-
+                            System.err.println("Unrecognized option");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
                     }
 
 
