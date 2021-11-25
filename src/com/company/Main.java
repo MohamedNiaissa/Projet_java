@@ -1,13 +1,25 @@
 package com.company;
+
+
+import java.io.FileReader;
+import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
+
 public class Main {
+
     public static void display_menu() {
         System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) List  \n4) Display Characeter   \n5) Quit   \n6) Save \n7) Remove Character  \n8) Fight  " );
         System.out.print ( "Selection: " );
     }
 
+
+
+
     public static void main(String[] args) throws CloneNotSupportedException {
+
+
+
 
         Scanner in = new Scanner ( System.in );
         Scanner charDefault = new Scanner(System.in);
@@ -22,13 +34,23 @@ public class Main {
         ListPerso list = new ListPerso();
         Fighter chooseChar = null;
         boolean cont = true;
+
+
         System.out.println("Welcome in \n--¡-- __     ___      __ |        /\\   __ __     ¡ _  __ ___ __   ¡--\\ __ ______| __   /--\\'  _   _       | __ ___ _ ¡ _   |||\n" +
                                         "  |  /__\\ \\/  | |   |/  ||\\  /   /__\\ /  /  |   ||/  /  | | /__\\  |--</  | |  | |/__\\  '--.||/ \\ / \\ |   ||/  | | / \\|/    |||\n" +
                                         "  |  \\__; /\\  |  \\_/|\\__|| \\/   /    \\\\__\\__ \\_/||   \\__| | \\__;  |__/\\__| |  | |\\__;  \\__/||   |   | \\_/||\\__| | \\_/|     ...\n" +
                                         "                          _/");
         System.out.println("Appuyez sur entrée pour accéder au menu");
+        Boolean begin = false;
+
         String wait = in.nextLine();
+
+
+
+
+
         while(cont) {
+
 
             display_menu();
             switch (in.nextInt()) {
@@ -189,7 +211,6 @@ public class Main {
                     System.out.println("save(1) or load(2) or return to the menu(3) ?");
                     int choose = in.nextInt();
                     while ((choose != 1)&&(choose != 2)&&(choose != 3)){
-                        System.out.println();
                         choose = in.nextInt();
                     }
                     if (choose==1){
@@ -200,6 +221,44 @@ public class Main {
                     }else if (choose==2){
                         System.out.println("which file's path ?");
                         String output = in.next();
+
+                        try(FileReader reader = new FileReader("/Users/mohamed/Desktop/db.properties")){
+
+                            System.out.println("lifePointChar");
+
+                            Properties properties = new Properties();
+                            properties.load(reader);
+                            String classChar = properties.getProperty("Class");
+                            String nameChar = properties.getProperty("Name_"+"didier");
+                            String damageChar = properties.getProperty("Damage_"+"didier");
+                            int damageCharInt = Integer.parseInt(damageChar);
+                            System.out.println(damageChar);
+                            String lifePointChar = properties.getProperty("lifePoints_"+"didier");
+                            int lifePointCharInt = Integer.parseInt(lifePointChar);
+                            System.out.println(lifePointCharInt);
+                            String initiativeChar = properties.getProperty("Initiative_"+"didier");
+                            int initiativeCharInt = Integer.parseInt(initiativeChar);
+                            System.out.println(initiativeCharInt);
+                           /* String shieldResistanceChar = properties.getProperty("ShieldResistance_"+"didier");
+                            int shieldResistanceCharInt = Integer.parseInt(shieldResistanceChar);
+                            String magicDamageChar = properties.getProperty("magicDamage_"+"didier");
+                            int magicDamageCharInt = Integer.parseInt(magicDamageChar);
+                            String critChanceChar = properties.getProperty("CritChance_"+"didier");
+                            int critChanceCharInt = Integer.parseInt(critChanceChar);
+                            String dodgeChanceChar = properties.getProperty("DodgeChance_"+"didier");
+                            int dodgeChanceCharInt = Integer.parseInt(dodgeChanceChar); */
+
+                            if(classChar == "Recruit"){
+                                Recruit recruitChar = new Recruit(nameChar,damageCharInt,lifePointCharInt,initiativeCharInt);
+                                list.addListePerso(recruitChar);
+                            }
+
+
+                        }catch (Exception e){
+                            System.out.println("Error in the process of loading the file " + e);
+                        }
+
+
                         break;
                     }else{
                         break;
@@ -226,6 +285,7 @@ public class Main {
                     }
                     list.displayList();
                     break;
+
 
                 case 8:
                     list.displayList();

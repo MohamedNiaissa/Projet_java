@@ -1,10 +1,14 @@
 package com.company;
 
-import java.io.*;
-import java.nio.file.*;
+import java.io.BufferedOutputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import static java.nio.file.StandardOpenOption.CREATE;
 
 public class Recruit implements Cloneable, Fighter {
@@ -73,14 +77,28 @@ public class Recruit implements Cloneable, Fighter {
                 ", initiative=" + initiative +
                 '}';
     }
+
+
+    public String toStringFile() {
+
+        return  "\nClass=Recruit" +
+                "\nName_"+name+ "="+ name +
+                "\nDamage_"+name+ "=" + damage +
+                "\nlifePoints_" +name+ "=" + lifePoints +
+                "\nInitiative_"+name +"=" + initiative ;
+
+    }
+
+
+
 }
 
-class Warrior implements Cloneable, Guerrier{
-    protected String name;
-    protected int damage;
-    protected int initiative;
-    protected int lifePoints;
-    protected int shieldres;
+    class Warrior implements Cloneable, Guerrier{
+        protected String name;
+        protected int damage;
+        protected int initiative;
+        protected int lifePoints;
+        protected int shieldres;
 
     public Warrior(String name, int damage, int lifePoints, int initiative, int shield) {
         this.name = name;
@@ -130,6 +148,7 @@ class Warrior implements Cloneable, Guerrier{
         return this.initiative;
     }
 
+    @Override
     public int takeDamage(int damage){
         if (damage-shieldres<=0){
             System.out.println("Blocked");
@@ -156,6 +175,7 @@ class Warrior implements Cloneable, Guerrier{
         return  (Fighter)super.clone();
     }
 
+    @Override
     public String toString() {
         return "Warrior {" +
                 "name='" + name + '\'' +
@@ -166,6 +186,16 @@ class Warrior implements Cloneable, Guerrier{
                 '}';
     }
 
+
+    @Override
+    public String toStringFile() {
+        return  "\nClass = Warior" +
+                "\nName_"+name+ " = "+ name +
+                "\nDamage_"+name+ " = " + damage +
+                "\nlifePoints_" +name+ " = " + lifePoints +
+                "\nShieldResistance_" +name+" = " + shieldres +
+                "\ninitiative_"+name+" = " + initiative;
+    }
     @Override
     public void setShieldRes(int shieldRes) {
         this.shieldres = shieldRes;
@@ -176,12 +206,15 @@ class Warrior implements Cloneable, Guerrier{
         return this.shieldres;
     }
 }
-class Magician implements Cloneable, Magicien {
-    protected String name;
-    protected int damage;
-    protected int lifePoints;
-    protected int initiative;
-    protected int magicDamage;
+
+
+    class Magician implements Cloneable, Magicien {
+        protected String name;
+        protected int damage;
+        protected int lifePoints;
+        protected int initiative;
+        protected int magicDamage;
+
 
     public Magician(String name, int damage, int lifePoints, int initiative, int magicDamage) {
         this.name = name;
@@ -256,6 +289,16 @@ class Magician implements Cloneable, Magicien {
                 '}';
     }
 
+
+    @Override
+    public String toStringFile() {
+        return  "\nClass = Magician " +
+                "\nname_"+ name + " = " + name +
+                "\ndamage_" +name+ " = " + damage +
+                "\nlifePoints_" +name+ " = " + lifePoints +
+                "\ninitiative_" + name+ " = " + initiative +
+                "\nmagicDamage_"+ name +" = " + magicDamage;
+    }
     @Override
     public void setMagicDamage(int magicDamage) {
         this.magicDamage = magicDamage;
@@ -267,15 +310,15 @@ class Magician implements Cloneable, Magicien {
     }
 }
 
-class Rogue implements Cloneable, Voleur {
-    Random random = new Random();
-    protected String name;
-    protected int damage;
-    protected int lifePoints;
-    protected int initiative;
-    int critChance;
-    int dodgeChance;
-    int critcount = 0;
+    class Rogue implements Cloneable, Voleur {
+        Random random = new Random();
+        protected String name;
+        protected int damage;
+        protected int lifePoints;
+        protected int initiative;
+        int critChance;
+        int dodgeChance;
+        int critcount = 0;
 
     public Rogue(String name, int damage, int lifePoints, int initiative, int critChance, int dodgeChance) {
         this.name = name;
@@ -360,6 +403,7 @@ class Rogue implements Cloneable, Voleur {
         return  (Fighter)super.clone();
     }
 
+    @Override
     public String toString() {
         return "Rogue {" +
                 "name='" + name + '\'' +
@@ -371,6 +415,17 @@ class Rogue implements Cloneable, Voleur {
                 '}';
     }
 
+    @Override
+    public String toStringFile() {
+        return  "\nClass = Rogue" +
+                "\nName_" + name + "= " + name +
+                "\nDamage_" + name + " = " + damage +
+                "\nCritChance_" +name + " = " + critChance +
+                "\nLifePoints_"+name+ " = " + lifePoints +
+                "\nDodgeChance_"+name+" = " + dodgeChance +
+                "\nInitiative_"+name+" = " + initiative
+                ;
+    }
     @Override
     public void setCritChance(int critChance) {
         this.critChance = critChance;
@@ -423,6 +478,11 @@ class ListPerso {
     public void importsave(String input){
 
     }
+
+    /*public void LoadData(String name){
+
+
+    } */
     public void exportsave(String outputFile){
                 /*JSONObject jsonObject = new JSONObject();
                 jsonObject.put("ID", "1");
@@ -442,8 +502,10 @@ class ListPerso {
 
         Path chemin = Paths.get(outputFile);
         String save = " ";
+
         for (int i = 0; i < listePerso.size(); i++) {
-            save += listePerso.get(i) + "\n" ;
+            save += listePerso.get(i).toStringFile();
+
         }
 
         byte[] data = save.getBytes();
@@ -460,6 +522,9 @@ class ListPerso {
         }
 
     }
+
+
+
 }
 
 
