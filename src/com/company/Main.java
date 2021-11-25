@@ -9,10 +9,10 @@ public class Main {
     }
     public static void main(String[] args) throws CloneNotSupportedException {
         Scanner in = new Scanner ( System.in );
-        Recruit recruit = new Recruit("didier",100,1000,50);
-        Recruit Rogue = new Rogue("gerard",100,800,90, 50,20);
+        Fighter recruit = new Recruit("didier",100,1000,50);
+        Fighter Rogue = new Rogue("gerard",100,800,90, 50,20);
         ListPerso list = new ListPerso();
-        Recruit chooseChar = null;
+        Fighter chooseChar = null;
         boolean cont = true;
         while(cont) {
             display_menu();
@@ -44,7 +44,7 @@ public class Main {
                     int shieldwar = in.nextInt();
                     System.out.println("choisissez un montant d'initiative: ");
                     int iniwar = in.nextInt();
-                    Recruit warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
+                    Fighter warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
                     list.addListePerso(warrior1);
                     break;
                 case 4:
@@ -58,7 +58,7 @@ public class Main {
                     int iniMag = in.nextInt();
                     System.out.println("Choisssez un montant de degat magique: ");
                     int dmgMagBonus = in.nextInt();
-                    Recruit magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
+                    Fighter magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
                     list.addListePerso(magician);
                     break;
                 case 5:
@@ -74,7 +74,7 @@ public class Main {
                     int crit = in.nextInt();
                     System.out.println("choisissez un montant de dodgeChance");
                     int dodge = in.nextInt();
-                    Recruit rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
+                    Fighter rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
                     list.addListePerso(rogue);
                 case 6:
                     list.displayList();
@@ -91,13 +91,13 @@ public class Main {
                     list.displayList();
                     System.out.println("choisissez le premier personnage : ");
                     int indexPerso1 = in.nextInt();
-                    Recruit Perso = list.getRecruit(indexPerso1);
-                    Recruit Perso1 = (Recruit)Perso.clone();
+                    Fighter Perso = list.getRecruit(indexPerso1);
+                    Fighter Perso1 = (Recruit)Perso.clone();
 
                     System.out.println("choisissez le deuxième personnage : ");
                     int indexPerso2 = in.nextInt();
-                    Recruit PersoBis = list.getRecruit(indexPerso2);
-                    Recruit Perso2 = (Recruit)PersoBis.clone();
+                    Fighter PersoBis = list.getRecruit(indexPerso2);
+                    Fighter Perso2 = (Recruit)PersoBis.clone();
 
                     boolean fight = true;
                     if (Perso1.getInitiative() > Perso2.getInitiative()) {
@@ -106,7 +106,7 @@ public class Main {
                     else if(Perso1.getInitiative()< Perso2.getInitiative()){
                         System.out.println(Perso2.getName() + " commence");
                     }else {
-                        Recruit[] tabPerso = {Perso1,Perso2};
+                        Fighter[] tabPerso = {Perso1,Perso2};
                         int randFirst = new Random().nextInt(tabPerso.length);
                         chooseChar = tabPerso[randFirst];
                         System.out.println("Même initiative, donc tirage au sort : " + chooseChar.getName());
