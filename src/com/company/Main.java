@@ -1,5 +1,4 @@
 package com.company;
-import javax.script.ScriptEngine;
 import java.util.Random;
 import java.util.Scanner;
 public class Main {
@@ -26,6 +25,7 @@ public class Main {
         Fighter mageguerrierDefault = new MageGuerrier("Eragon",100,1000,30, 20,70);
         Fighter guerriervoleurDefault = new GuerrierVoleur("Robin",100,1000,40, 50,20,20);
         Fighter magevoleurDefault = new MageVoleur("Renard gris",100,1000,30,70,50,20);
+        Fighter fouDefault = new Fou("David",100,1000,70,50);
         ListPerso list = new ListPerso();
 
         //Fighter that has been chosen if the two fighters have the same initiative stats
@@ -51,7 +51,7 @@ public class Main {
                 // First choice, display a new menu for basic Fighter creation
                 case 1:
                     //the choice of class
-                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior");
+                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8)Foul");
 
                     switch (charDefault.nextInt()){
                         case 1:
@@ -127,8 +127,17 @@ public class Main {
                                 e.printStackTrace();
                             }
                             break;
+                        case 8:
+                            System.out.println(fouDefault);
+                            list.addListePerso(fouDefault);
+                            System.out.println("Hiring in progress");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
                         default:
-
                             System.err.println("Unrecognized option");
                             try{
                                 Thread.sleep(1000);
@@ -144,7 +153,7 @@ public class Main {
                 // Second choice, display a new menu for the Fighter creation
                 case 2:
                     // choose the class of the fighter
-                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior");
+                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8)Foul");
                     switch (charPersonalize.nextInt()){
                         // create a recruit
                         case 1:
@@ -262,6 +271,20 @@ public class Main {
                             int inirw = in.nextInt();
                             Fighter roguewarrior = new GuerrierVoleur(namerw,dmgrw,lprw,inirw, critrw,dodgerw,shieldrw);
                             list.addListePerso(roguewarrior);
+                            break;
+                        case 8:
+                            System.out.println("entrer the name of your character: ");
+                            String namef = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgf = in.nextInt();
+                            System.out.println("choose an amount of mental sanity: ");
+                            int msf = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lpf = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int inif = in.nextInt();
+                            Fighter foul = new Fou(namef, dmgf, lpf, inif, msf);
+                            list.addListePerso(foul);
                             break;
                         default:
 
