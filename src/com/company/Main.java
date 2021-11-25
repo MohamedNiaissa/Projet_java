@@ -13,12 +13,12 @@ public class Main {
         Scanner charDefault = new Scanner(System.in);
         Scanner liste = new Scanner(System.in);
 
-        Recruit recruitDefault = new Recruit("didier",100,1000,50);
-        Recruit wariorDefault = new Warrior("Hercule",120,900,100,20);
-        Recruit mageDefault = new Magician("Mesmer",90,1000,50,70);
-        Recruit roguedDefault = new Rogue("Naruto",100,800,90, 50,20);
+        Fighter recruitDefault = new Recruit("didier",100,1000,50);
+        Fighter wariorDefault = new Warrior("Hercule",120,900,100,20);
+        Fighter mageDefault = new Magician("Mesmer",90,1000,50,70);
+        Fighter roguedDefault = new Rogue("Naruto",100,800,90, 50,20);
         ListPerso list = new ListPerso();
-        Recruit chooseChar = null;
+        Fighter chooseChar = null;
         boolean cont = true;
         System.out.println("Welcome in \n--¡-- __     ___      __ |        /\\   __ __     ¡ _  __ ___ __   ¡--\\ __ ______| __   /--\\'  _   _       | __ ___ _ ¡ _   |||\n" +
                                         "  |  /__\\ \\/  | |   |/  ||\\  /   /__\\ /  /  |   ||/  /  | | /__\\  |--</  | |  | |/__\\  '--.||/ \\ / \\ |   ||/  | | / \\|/    |||\n" +
@@ -91,7 +91,7 @@ public class Main {
                     int lp = in.nextInt();
                     System.out.println("choose an initative amount: ");
                     int ini = in.nextInt();
-                    Recruit recruit1 = new Recruit(name, dmg, lp, ini);
+                    Fighter recruit1 = new Recruit(name, dmg, lp, ini);
                     list.addListePerso(recruit1);
                     break;
 
@@ -107,7 +107,7 @@ public class Main {
                     int shieldwar = in.nextInt();
                     System.out.println("choose an initative amount: ");
                     int iniwar = in.nextInt();
-                    Recruit warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
+                    Fighter warrior1 = new Warrior(namewar, dmgwar, lpwar, iniwar, shieldwar);
                     list.addListePerso(warrior1);
                     break;
 
@@ -123,7 +123,7 @@ public class Main {
                     int iniMag = in.nextInt();
                     System.out.println("choose an amount of magic damage: ");
                     int dmgMagBonus = in.nextInt();
-                    Recruit magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
+                    Fighter magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
                     list.addListePerso(magician);
                     break;
 
@@ -142,7 +142,7 @@ public class Main {
                     int crit = in.nextInt();
                     System.out.println("choose a probability of dodge chance: ");
                     int dodge = in.nextInt();
-                    Recruit rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
+                    Fighter rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
                     list.addListePerso(rogue);
                 case 6:
                     list.displayList();
@@ -225,14 +225,13 @@ public class Main {
                             System.out.println("This character doesn't exist in the list");
                         }
                     }
-                    Recruit Perso = list.getRecruit(indexPerso1);
-                    Recruit Perso1 = (Recruit)Perso.clone();
+                    Fighter Perso = list.getRecruit(indexPerso1);
+                    Fighter Perso1 = (Fighter)Perso.clone();
 
-                    System.out.println("Choose your second character : ");
                     boolean Perso2noselected= true;
                     int indexPerso2 = 0;
                     while(Perso2noselected) {
-                        System.out.println("choisissez le deuxième personnage : ");
+                        System.out.println("Choose your second character : ");
                         indexPerso2 = in.nextInt();
                         if ((list.sizeList()>indexPerso2-1)&&(indexPerso2-1!=-1)) {
                             list.getRecruit(indexPerso2);
@@ -241,8 +240,8 @@ public class Main {
                             System.out.println("This character doesn't exist in the list");
                         }
                     }
-                    Recruit PersoBis = list.getRecruit(indexPerso2);
-                    Recruit Perso2 = (Recruit) PersoBis.clone();
+                    Fighter PersoBis = list.getRecruit(indexPerso2);
+                    Fighter Perso2 = (Fighter)PersoBis.clone();
                     boolean fight = true;
                     if (Perso1.getInitiative() > Perso2.getInitiative()) {
                         System.out.println(Perso1.getName() + " start");
@@ -250,7 +249,7 @@ public class Main {
                     else if(Perso1.getInitiative()< Perso2.getInitiative()){
                         System.out.println(Perso2.getName() + " start");
                     }else {
-                        Recruit[] tabPerso = {Perso1,Perso2};
+                        Fighter[] tabPerso = {Perso1,Perso2};
                         int randFirst = new Random().nextInt(tabPerso.length);
                         chooseChar = tabPerso[randFirst];
                         System.out.println("Same initiative, so random draw : " + chooseChar.getName());
@@ -263,7 +262,7 @@ public class Main {
                             if (Perso1.getLifePoints() > 0){
                                 domage = Perso1.getDamage();
                                 domage = Perso2.takeDamage(domage);
-                                System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " inflicted " + domage + " to " + Perso2.getName() + " he has " +Perso2.getLifePoints() + " left"  );
+                                System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " inflicted " + domage + " to " + Perso2.getName() + " he has " +Perso2.getLifePoints() + " HP left"  );
                             }else{
                                 System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " wins with " + Perso2.getLifePoints() + " left. ");
                                 System.out.println("Come back to the menu : (Press Enter)");
@@ -279,7 +278,7 @@ public class Main {
                             if (Perso2.getLifePoints() > 0){
                                 domage = Perso2.getDamage();
                                 domage = Perso1.takeDamage(domage);
-                                System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflicted " + domage + " to " + Perso1.getName() + " he has " + Perso1.getLifePoints() + " left");
+                                System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflicted " + domage + " to " + Perso1.getName() + " he has " + Perso1.getLifePoints() + " HP left");
                             }
                             else{
                                 System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " wins with " + Perso1.getLifePoints() + " left");
@@ -300,14 +299,14 @@ public class Main {
                             if (Perso2.getLifePoints() > 0){
                                 domage = Perso2.getDamage();
                                 domage = Perso1.takeDamage(domage);
-                                System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflected " + domage + " to " + Perso1.getName() + "  he has " + Perso1.getLifePoints() + " left");
+                                System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflected " + domage + " to " + Perso1.getName() + "  he has " + Perso1.getLifePoints() + " HP left");
                                 try{
                                     Thread.sleep(1000);
                                 }catch(InterruptedException e){
                                     e.printStackTrace();
                                 }
                             }else{
-                                System.out.println("Turn " + nbtour + " : " + Perso1.getName() + "  wins with " + Perso1.getLifePoints() + " left");
+                                System.out.println("Turn " + nbtour + " : " + Perso1.getName() + "  wins with " + Perso1.getLifePoints() + " HP left");
                                 System.out.println("Come back to the menu : (Press Enter)");
                                 String gotoMenu = liste.nextLine();
                                 fight = false;
@@ -316,19 +315,18 @@ public class Main {
                             if (Perso1.getLifePoints() > 0){
                                 domage = Perso1.getDamage();
                                 domage = Perso2.takeDamage(domage);
-                                System.out.println(Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + " he has " + Perso2.getLifePoints()+ " left");
-                                System.out.println("Tour " + nbtour + " : " + Perso1.getName() + " à infligé " + domage + " à " + Perso2.getName() + " il lui reste " + Perso2.getLifePoints());
+                                System.out.println("turn" + nbtour + ":" + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + " he has " + Perso2.getLifePoints()+ " HP left");
                                 try{
                                     Thread.sleep(500);
                                 }catch(InterruptedException e){
                                     e.printStackTrace();
                                 }
                             }else{
-                                System.out.println(Perso2.getName() + " wins with " + Perso2.getLifePoints() + " left");
+                                System.out.println(Perso2.getName() + " wins with " + Perso2.getLifePoints() + " HP left");
                                 System.out.println("Come back to the menu : (Press Enter)");
                                 String continuToMenu = liste.nextLine();
                                 fight = false;
-                                System.out.println("Tour " + nbtour + " : " + Perso2.getName() + " à gagné avec " + Perso2.getLifePoints() + " restant");
+                                System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " wins with " + Perso2.getLifePoints() + " HP left");
                                 break;
                             }
                         }else{
@@ -338,14 +336,14 @@ public class Main {
                                 if (Perso1.getLifePoints() > 0){
                                     domage = Perso1.getDamage();
                                     domage = Perso2.takeDamage(domage);
-                                    System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + " he has " + Perso2.getLifePoints() + " left ");
+                                    System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + " he has " + Perso2.getLifePoints() + " HP left ");
                                     try{
                                         Thread.sleep(500);
                                     }catch(InterruptedException e){
                                         e.printStackTrace();
                                     }
                                 }else{
-                                    System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " wins with " + Perso2.getLifePoints() + " left");
+                                    System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " wins with " + Perso2.getLifePoints() + " HP left");
                                     System.out.println("Come back to the menu : (Press Enter)");
                                     String displayMenu = liste.nextLine();
                                     fight = false;
@@ -354,7 +352,7 @@ public class Main {
                                 if (Perso2.getLifePoints() > 0){
                                     domage = Perso2.getDamage();
                                     domage = Perso1.takeDamage(domage);
-                                    System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflected " + domage + " to " + Perso1.getName() + " he has " + Perso1.getLifePoints()+ " left ");
+                                    System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflected " + domage + " to " + Perso1.getName() + " he has " + Perso1.getLifePoints()+ " HP left ");
                                     try{
                                         Thread.sleep(500);
                                     }catch(InterruptedException e){
@@ -362,7 +360,7 @@ public class Main {
                                     }
                                 }
                                 else{
-                                    System.out.println(Perso1.getName() + " wins with " + Perso1.getLifePoints() + " left ");
+                                    System.out.println(Perso1.getName() + " wins with " + Perso1.getLifePoints() + " HP left ");
                                     System.out.println("Come back to the menu : (Press Enter)");
                                     String displaymenu = liste.nextLine();
                                     fight = false;
@@ -373,7 +371,7 @@ public class Main {
                                 if (Perso2.getLifePoints() > 0){
                                     domage = Perso2.getDamage();
                                     domage = Perso1.takeDamage(domage);
-                                    System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflected " + domage + " to " + Perso1.getName() + " he has " + Perso1.getLifePoints()+ " left");System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " à infligé " + domage + " à " + Perso1.getName() + " il lui reste " + Perso1.getLifePoints());
+                                    System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " inflected " + domage + " to " + Perso1.getName() + " he has " + Perso1.getLifePoints()+ " HP left");
                                     try{
                                         Thread.sleep(500);
                                     }catch(InterruptedException e){
@@ -381,7 +379,7 @@ public class Main {
                                     }
                                 }
                                 else{
-                                    System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " wins with " + Perso1.getLifePoints() + " left");
+                                    System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " wins with " + Perso1.getLifePoints() + " HP left");
                                     System.out.println("Come back to the menu : (Press Enter)");
                                     String openMenu = liste.nextLine();
                                     fight = false;
@@ -390,7 +388,7 @@ public class Main {
                                 if (Perso1.getLifePoints() > 0){
                                     domage = Perso1.getDamage();
                                     domage = Perso2.takeDamage(domage);
-                                    System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + "  he has " + Perso2.getLifePoints() + " left");
+                                    System.out.println("Turn " + nbtour + " : " + Perso1.getName() + " inflected " + domage + " to " + Perso2.getName() + "  he has " + Perso2.getLifePoints() + " HP left");
                                     try{
                                         Thread.sleep(500);
                                     }catch(InterruptedException e){
@@ -398,7 +396,7 @@ public class Main {
                                     }
                                 }
                                 else{
-                                    System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " wins with " + Perso2.getLifePoints() + " left");
+                                    System.out.println("Turn " + nbtour + " : " + Perso2.getName() + " wins with " + Perso2.getLifePoints() + " HP left");
                                     System.out.println("Come back to the menu : (Press Enter)");
                                     String menu = liste.nextLine();
                                     fight = false;
