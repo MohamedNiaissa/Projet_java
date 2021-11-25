@@ -59,13 +59,13 @@ public class Main {
                 case 1:
                     System.out.println("Choose the type : \n1) Basic recruit \n2) Warior  \n3) Mage \n4) Rogue");
 
-                    switch (charDefault.nextInt()){
+                    switch (charDefault.nextInt()) {
                         case 1:
                             System.out.println(recruitDefault);
                             list.addListePerso(recruitDefault);
-                            try{
+                            try {
                                 Thread.sleep(1000);
-                            }catch(InterruptedException e){
+                            } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                             break;
@@ -73,9 +73,9 @@ public class Main {
                         case 2:
                             System.out.println(wariorDefault);
                             list.addListePerso(wariorDefault);
-                            try{
+                            try {
                                 Thread.sleep(1000);
-                            }catch(InterruptedException e){
+                            } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                             break;
@@ -83,9 +83,9 @@ public class Main {
                         case 3:
                             System.out.println(mageDefault);
                             list.addListePerso(mageDefault);
-                            try{
+                            try {
                                 Thread.sleep(1000);
-                            }catch(InterruptedException e){
+                            } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                             break;
@@ -93,9 +93,9 @@ public class Main {
                         case 4:
                             System.out.println(roguedDefault);
                             list.addListePerso(roguedDefault);
-                            try{
+                            try {
                                 Thread.sleep(1000);
-                            }catch(InterruptedException e){
+                            } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                             break;
@@ -104,13 +104,11 @@ public class Main {
                     break;
 
 
-
-
                 case 2:
                     System.out.println("Choose the type : \n1) Recruit \n2) Warior  \n3) Mage \n4) Rogue");
 
 
-                    switch (charPersonalize.nextInt()){
+                    switch (charPersonalize.nextInt()) {
                         case 1:
 
                             System.out.println("entrer the name of your character: ");
@@ -150,7 +148,7 @@ public class Main {
                             int iniMag = in.nextInt();
                             System.out.println("choose an amount of magic damage: ");
                             int dmgMagBonus = in.nextInt();
-                            Fighter magician = new Magician(nameMag, dmgMag, lpMag, iniMag,dmgMagBonus);
+                            Fighter magician = new Magician(nameMag, dmgMag, lpMag, iniMag, dmgMagBonus);
                             list.addListePerso(magician);
                             break;
                         case 4:
@@ -166,15 +164,12 @@ public class Main {
                             int crit = in.nextInt();
                             System.out.println("choose a probability of dodge chance: ");
                             int dodge = in.nextInt();
-                            Fighter rogue = new Rogue(name1, dmg1, lp1, ini1,crit,dodge);
+                            Fighter rogue = new Rogue(name1, dmg1, lp1, ini1, crit, dodge);
                             list.addListePerso(rogue);
                             break;
 
 
                     }
-
-
-
 
 
                 case 3:
@@ -197,7 +192,7 @@ public class Main {
                         } else {
                             System.out.println("This character doesn't exist in the list \n Do you want to return to menu ? (0) yes (1) no");
                             index = in.nextInt();
-                            if (index==0){
+                            if (index == 0) {
                                 wantLook = false;
                             }
                         }
@@ -210,56 +205,93 @@ public class Main {
                 case 6:
                     System.out.println("save(1) or load(2) or return to the menu(3) ?");
                     int choose = in.nextInt();
-                    while ((choose != 1)&&(choose != 2)&&(choose != 3)){
+                    while ((choose != 1) && (choose != 2) && (choose != 3)) {
                         choose = in.nextInt();
                     }
-                    if (choose==1){
+                    if (choose == 1) {
                         System.out.println("which file's path ?");
                         String input = in.next();
                         list.exportsave(input);
                         break;
-                    }else if (choose==2){
+                    } else if (choose == 2) {
                         System.out.println("which file's path ?");
                         String output = in.next();
 
-                        try(FileReader reader = new FileReader("/Users/mohamed/Desktop/db.properties")){
+                        try (FileReader reader = new FileReader(output)) { // /Users/mohamed/Documents/ProjetJava/Projet_java/src/com/company/char.txt
+
 
                             System.out.println("lifePointChar");
 
                             Properties properties = new Properties();
                             properties.load(reader);
-                            String classChar = properties.getProperty("Class");
-                            String nameChar = properties.getProperty("Name_"+"didier");
-                            String damageChar = properties.getProperty("Damage_"+"didier");
-                            int damageCharInt = Integer.parseInt(damageChar);
-                            System.out.println(damageChar);
-                            String lifePointChar = properties.getProperty("lifePoints_"+"didier");
-                            int lifePointCharInt = Integer.parseInt(lifePointChar);
-                            System.out.println(lifePointCharInt);
-                            String initiativeChar = properties.getProperty("Initiative_"+"didier");
-                            int initiativeCharInt = Integer.parseInt(initiativeChar);
-                            System.out.println(initiativeCharInt);
-                           /* String shieldResistanceChar = properties.getProperty("ShieldResistance_"+"didier");
-                            int shieldResistanceCharInt = Integer.parseInt(shieldResistanceChar);
-                            String magicDamageChar = properties.getProperty("magicDamage_"+"didier");
-                            int magicDamageCharInt = Integer.parseInt(magicDamageChar);
-                            String critChanceChar = properties.getProperty("CritChance_"+"didier");
-                            int critChanceCharInt = Integer.parseInt(critChanceChar);
-                            String dodgeChanceChar = properties.getProperty("DodgeChance_"+"didier");
-                            int dodgeChanceCharInt = Integer.parseInt(dodgeChanceChar); */
+                            String getnameChar = properties.getProperty("Name");
 
-                            if(classChar == "Recruit"){
-                                Recruit recruitChar = new Recruit(nameChar,damageCharInt,lifePointCharInt,initiativeCharInt);
+
+                            //System.out.println("Blase : "+getnameChar);
+
+                            String classChar = properties.getProperty("Class");
+
+                            // System.out.println(classChar);
+
+                            String nameChar = properties.getProperty("Name_" + getnameChar);
+                            String damageChar = properties.getProperty("Damage_" + getnameChar);
+                            //System.out.println("dommage = " + damageChar);
+
+                            int damageCharInt = Integer.parseInt(damageChar);
+                            //System.out.println(damageChar);
+
+                            String lifePointChar = properties.getProperty("LifePoints_" + getnameChar);
+                            int lifePointCharInt = Integer.parseInt(lifePointChar);
+                            //System.out.println("lp :"+lifePointCharInt);
+
+                            String initiativeChar = properties.getProperty("Initiative_" + getnameChar);
+                            int initiativeCharInt = Integer.parseInt(initiativeChar);
+
+                            //System.out.println(initiativeCharInt);
+
+                            String shieldResistanceChar = properties.getProperty("ShieldResistance_" + getnameChar);
+                            System.out.println("bouclier " + shieldResistanceChar);
+                            String magicDamageChar = properties.getProperty("MagicDamage_" + getnameChar);
+                            System.out.println("magie : " + magicDamageChar);
+
+
+                            String critChanceChar = properties.getProperty("CritChance_" + getnameChar);
+                            String dodgeChanceChar = properties.getProperty("DodgeChance_" + getnameChar);
+
+                            if (shieldResistanceChar == null && magicDamageChar == null && critChanceChar == null && dodgeChanceChar == null) {
+                                System.out.println("test didier");
+                                Recruit recruitChar = new Recruit(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt);
                                 list.addListePerso(recruitChar);
+
+                            } else if (magicDamageChar != null) {
+                                System.out.println("test mesmer");
+                                int magicDamageCharInt = Integer.parseInt(magicDamageChar);
+                                Magician mageChar = new Magician(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, magicDamageCharInt);
+                                list.addListePerso(mageChar);
+
+                            } else if (dodgeChanceChar != null && critChanceChar != null) {
+                                System.out.println("test naruto");
+                                int critChanceCharInt = Integer.parseInt(critChanceChar);
+                                int dodgeChanceCharInt = Integer.parseInt(dodgeChanceChar);
+                                Rogue rogueChar = new Rogue(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, critChanceCharInt, dodgeChanceCharInt);
+                                list.addListePerso(rogueChar);
+
+                            } else if (shieldResistanceChar != null) {
+                                System.out.println("test Hercule");
+                                int shieldResistanceCharInt = Integer.parseInt(shieldResistanceChar);
+                                Warrior rogueChar = new Warrior(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, shieldResistanceCharInt);
+                                list.addListePerso(rogueChar);
                             }
 
 
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             System.out.println("Error in the process of loading the file " + e);
                         }
 
 
                         break;
+
+
                     }else{
                         break;
                     }
@@ -276,7 +308,8 @@ public class Main {
                             wantSuppr = false;
                             list.removeList(index);
                         } else {
-                            System.out.println("This character doesn't exist in the list \n Do you want to return to menu ? (0) yes (1) no");
+                            System.out.println("This character doesn't exist in the list \n " +
+                                                "Do you want to return to menu ? (0) yes (1) no");
                             index = in.nextInt();
                             if (index == 0) {
                                 wantSuppr = false;

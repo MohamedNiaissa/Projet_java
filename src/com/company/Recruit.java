@@ -81,10 +81,11 @@ public class Recruit implements Cloneable, Fighter {
 
     public String toStringFile() {
 
-        return  "\nClass=Recruit" +
+        return  "\nName"+"="+name+
+                "\nClass=Recruit" +
                 "\nName_"+name+ "="+ name +
                 "\nDamage_"+name+ "=" + damage +
-                "\nlifePoints_" +name+ "=" + lifePoints +
+                "\nLifePoints_" +name+ "=" + lifePoints +
                 "\nInitiative_"+name +"=" + initiative ;
 
     }
@@ -189,12 +190,13 @@ public class Recruit implements Cloneable, Fighter {
 
     @Override
     public String toStringFile() {
-        return  "\nClass = Warior" +
-                "\nName_"+name+ " = "+ name +
-                "\nDamage_"+name+ " = " + damage +
-                "\nlifePoints_" +name+ " = " + lifePoints +
-                "\nShieldResistance_" +name+" = " + shieldres +
-                "\ninitiative_"+name+" = " + initiative;
+        return  "\nName"+"="+name+
+                "\nClass=Warior" +
+                "\nName_"+name+ "="+ name +
+                "\nDamage_"+name+ "=" + damage +
+                "\nLifePoints_" +name+ "=" + lifePoints +
+                "\nShieldResistance_" +name+"=" + shieldres +
+                "\nInitiative_"+name+"=" + initiative;
     }
     @Override
     public void setShieldRes(int shieldRes) {
@@ -292,12 +294,13 @@ public class Recruit implements Cloneable, Fighter {
 
     @Override
     public String toStringFile() {
-        return  "\nClass = Magician " +
-                "\nname_"+ name + " = " + name +
-                "\ndamage_" +name+ " = " + damage +
-                "\nlifePoints_" +name+ " = " + lifePoints +
-                "\ninitiative_" + name+ " = " + initiative +
-                "\nmagicDamage_"+ name +" = " + magicDamage;
+        return  "\nName"+"="+name+
+                "\nClass=Magician " +
+                "\nName_"+ name + "=" + name +
+                "\nDamage_" +name+ "=" + damage +
+                "\nLifePoints_" +name+ "=" + lifePoints +
+                "\nInitiative_" + name+ "=" + initiative +
+                "\nMagicDamage_"+ name +"=" + magicDamage;
     }
     @Override
     public void setMagicDamage(int magicDamage) {
@@ -417,13 +420,14 @@ public class Recruit implements Cloneable, Fighter {
 
     @Override
     public String toStringFile() {
-        return  "\nClass = Rogue" +
+        return  "\nName"+"="+name
+                +"\nClass_"+name+ "= Rogue" +
                 "\nName_" + name + "= " + name +
-                "\nDamage_" + name + " = " + damage +
-                "\nCritChance_" +name + " = " + critChance +
-                "\nLifePoints_"+name+ " = " + lifePoints +
-                "\nDodgeChance_"+name+" = " + dodgeChance +
-                "\nInitiative_"+name+" = " + initiative
+                "\nDamage_" + name + "=" + damage +
+                "\nCritChance_" +name + "=" + critChance +
+                "\nLifePoints_"+name+ "=" + lifePoints +
+                "\nDodgeChance_"+name+"=" + dodgeChance +
+                "\nInitiative_"+name+"=" + initiative
                 ;
     }
     @Override
