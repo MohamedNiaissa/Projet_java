@@ -28,6 +28,11 @@ public class Main {
         Scanner charPersonalize = new Scanner(System.in);
         Scanner liste = new Scanner(System.in);
 
+
+
+
+
+
         //creation of the basic Fighter
         Fighter recruitDefault = new Recruit("didier",100,1000,50);
         Fighter wariorDefault = new Warrior("Theo",120,900,100,20);
@@ -38,7 +43,11 @@ public class Main {
         Fighter magevoleurDefault = new MageVoleur("Renardgris",100,1000,30,70,50,20);
         Fighter fouDefault = new Fou("David",100,1000,70,50);
         Fighter marskmenDefault = new Shooter("legolas",100,1000,70,10);
+        Fighter saitama = new Saitama("Saitama",200,100,500,33,36);
         ListPerso list = new ListPerso();
+
+
+
 
         //Fighter that has been chosen if the two fighters have the same initiative stats
         Fighter chooseChar = null;
@@ -66,10 +75,11 @@ public class Main {
                 // First choice, display a new menu for basic Fighter creation
                 case 1:
                     //the choice of class
-                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8)Shooter\n9)Fool");
+                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8)Shooter\n9)Fool \n10)Saitama");
                     System.out.println("Selection: ");
                     switch (charDefault.nextInt()){
                         case 1:
+
                             System.out.println(recruitDefault);
                             list.addListePerso(recruitDefault);
                             System.out.println("Hiring in progress");
@@ -126,6 +136,14 @@ public class Main {
                             System.out.println("Hiring in progress");
                             waitOneSeconde();
                             break;
+
+                        case 10:
+                            System.out.println(saitama);
+                            list.addListePerso(saitama);
+                            System.out.println("Hiring in progress");
+                            waitOneSeconde();
+
+
                         default:
                             System.err.println("Unrecognized option");
                             waitOneSeconde();
