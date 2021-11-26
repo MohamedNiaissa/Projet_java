@@ -1315,52 +1315,57 @@ class Shooter implements Cloneable, Fighter{
 
         if ((value + accuracy) > 98){
             System.out.println(this.name + " shot in the head");
-            System.out.println("  ,\n" +
-                    " C≥ \n" +
-                    " O|\\  -->—|>\n" +
-                    "-||_|\n" +
-                    " ||/\n" +
-                    "/ \\");
+            System.out.println("""
+                      ,
+                     C≥\s
+                     O|\\  -->—|>
+                    -||_|
+                     ||/
+                    / \\""");
             return this.damage*10;
         }
         else if ((value + accuracy) > 35 && (value + accuracy) < 98){
             System.out.println(this.name + " shot in the chest");
-            System.out.println("  ,\n" +
-                    " C≥ \n" +
-                    " O|\\\n" +
-                    "-||_| -->—|>\n" +
-                    " ||/\n" +
-                    "/ \\");
+            System.out.println("""
+                      ,
+                     C≥\s
+                     O|\\
+                    -||_| -->—|>
+                     ||/
+                    / \\""");
             return this.damage;
         }
         else if ((value + accuracy) > 15 && (value + accuracy) < 35){
             System.out.println(this.name + " shot in the limbs");
-            System.out.println("  ,\n" +
-                    " C≥ \n" +
-                    " O|\\\n" +
-                    "-||_|\n" +
-                    " ||/  -->—|>\n" +
-                    "/ \\");
+            System.out.println("""
+                      ,
+                     C≥\s
+                     O|\\
+                    -||_|
+                     ||/  -->—|>
+                    / \\""");
             return this.damage/2;
         }
         else if ((value + accuracy) > 5 && (value + accuracy) < 15){
             System.out.println(this.name + " shot in the foot");
-            System.out.println("  ,\n" +
-                    " C≥ \n" +
-                    " O|\\\n" +
-                    "-||_|\n" +
-                    " ||/\n" +
-                    "/ \\   -->—|>");
+            System.out.println("""
+                      ,
+                     C≥\s
+                     O|\\
+                    -||_|
+                     ||/
+                    / \\   -->—|>""");
             return this.damage/4;
         }
         else{
             System.out.println(this.name + " missed his shot");
-            System.out.println("  ,\n" +
-                    " C≥ \n" +
-                    " O|\\\n" +
-                    "-||_|\n" +
-                    " ||/      U\n" +
-                    "/ \\      _|_");
+            System.out.println("""
+                      ,
+                     C≥\s
+                     O|\\
+                    -||_|
+                     ||/      U
+                    / \\      _|_""");
             return 0;
         }
     }

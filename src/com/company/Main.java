@@ -64,6 +64,15 @@ public class Main {
 
         //print of the welcome msg
         System.out.println("""
+                    \\/
+                 O \\/\\/ O      O|\\        /\\--O  O /\\  O    O
+                 |_/\\/\\_|     -||_| -->—|>\\/-- \\_| \\/\\_|__,_|
+                 |      |      ||/               |\\    |\\ ` |
+                / \\    / \\     /\\               / \\   / \\\\_/ \\""");
+        waitOneSeconde();
+        waitOneSeconde();
+        waitOneSeconde();
+        System.out.println("""
                 Welcome in\s
                 --¡-- __     ___      __ |        /\\   __ __     ¡ _  __ ___ __   ¡--\\ __ ______| __   /--\\'  _   _       | __ ___ _ ¡ _   |||
                   |  /__\\ \\/  | |   |/  ||\\  /   /__\\ /  /  |   ||/  /  | | /__\\  |--</  | |  | |/__\\  '--.||/ \\ / \\ |   ||/  | | / \\|/    |||
@@ -81,7 +90,7 @@ public class Main {
                 // First choice, display a new menu for basic Fighter creation
                 case 1:
                     //the choice of class
-                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8)Shooter\n9)Fool \n10)Saitama");
+                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8)Shooter \n9)Fool \n10)Saitama");
                     System.out.println("Selection: ");
                     switch (charDefault.nextInt()){
                         case 1:
@@ -163,7 +172,7 @@ public class Main {
                 // Second choice, display a new menu for the Fighter creation
                 case 2:
                     // choose the class of the fighter
-                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8) Shooter \n 9)Fool");
+                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8) Shooter \n9)Fool");
                     System.out.println("Selection: ");
                     switch (charPersonalize.nextInt()){
                         // create a recruit
@@ -397,6 +406,12 @@ public class Main {
                     System.out.println("-------------------");
                     System.out.println("You have just left the simulation");
                     System.out.println("Create by David, Mohamed and Jules");
+                    System.out.println("""
+                            _M_      _
+                             O   O   O\\
+                            /D\\ /M\\ /J\\
+                            \\|/ \\|ø \\|/
+                            / \\ / \\ / \\""");
                     cont = false;
                     break;
 
@@ -820,7 +835,7 @@ public class Main {
 
                     while(displayInformation == 0) {
                         System.out.println("-------------------");
-                        System.out.println("which class information do you want to see ? :\n 1) the Recruit \n 2) the Warrior 5) the Magic Warrior\n 3) the Mage    6) the Rogue Mage\n 4) the Rogue   7) the Rogue warrior\n 8) the Shooter\n 9) the Fool\n10) Quit");
+                        System.out.println("which class information do you want to see ? :\n 1) the Recruit \n 2) the Warrior 5) the Magic Warrior\n 3) the Mage    6) the Rogue Mage\n 4) the Rogue   7) the Rogue warrior\n 8) the Shooter\n 9) the Fool\n 10)Saitama\n11) Quit");
                         switch (in.nextInt()){
                             case 1:
                                 System.out.println("-------------------");
@@ -885,6 +900,14 @@ public class Main {
                                 continutoMenu = liste.nextLine();
                                 break;
                             case 10:
+                                System.out.println("-------------------");
+                                System.out.println("Saitama\n" +
+                                        "Saitama");
+                                System.out.println("Like Saitama is only a default class (non editable) he doesn't be save in save file");
+                                System.out.println("Come back to the Dictionary : (Press Enter)");
+                                continutoMenu = liste.nextLine();
+                                break;
+                            case 11:
                                 displayInformation = 1;
                                 break;
                         }
