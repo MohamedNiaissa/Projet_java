@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.*;
 
 public class Main {
@@ -6,7 +7,11 @@ public class Main {
     // a function that display the main menu
     public static void display_menu() {
         System.out.println(" ");
-        System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) List  \n4) Display Character   \n5) Quit   \n6) Save \n7) Remove Character  \n8) Fight 1v1 \n9) Fight 2v2 \n10) Class dictionary" );
+        System.out.println("-------------------------------------------------------------------------------------------------------- ");
+        System.out.println("|  1) Create basic recruit  |  4) Display Character   |  7) Remove Character  |  10) Class dictionary  |");
+        System.out.println("|  2) Create recruit        |  5) Quit                |  8) Fight 1v1         |                        | ");
+        System.out.println("|  3) List                  |  6) Save                |  9) Fight 2v2         |                        |");
+        System.out.println("--------------------------------------------------------------------------------------------------------");
         System.out.print ( "Selection: " );
     }
     public static void waitOneSeconde() {
@@ -81,7 +86,16 @@ public class Main {
                 // First choice, display a new menu for basic Fighter creation
                 case 1:
                     //the choice of class
-                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8)Shooter\n9)Fool \n10)Saitama");
+                    System.out.println("----------------------------------------------------------------------------------------- ");
+                    System.out.println("|                                Basic class Hybrid class                                |");
+                    System.out.println("|       1) Basic recruit       |       4)  Rogue             |      7)  RogueWarrior     |");
+                    System.out.println("|       2) Warrior             |       5) MagicWarrior       |                           |");
+                    System.out.println("|       3) Mage                |       6) RogueMage          |                           |");
+                    System.out.println("------------------------------------------------------------------------------------------");
+                    System.out.println("|                                       Custom class                                     |");
+                    System.out.println("|          8) Shooter         |           9) Fool            |        10) Saitama        |");
+                    System.out.println("------------------------------------------------------------------------------------------");
+
                     System.out.println("Selection: ");
                     switch (charDefault.nextInt()){
                         case 1:
@@ -163,7 +177,15 @@ public class Main {
                 // Second choice, display a new menu for the Fighter creation
                 case 2:
                     // choose the class of the fighter
-                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8) Shooter \n 9)Fool");
+                    System.out.println("----------------------------------------------------------------------------------------- ");
+                    System.out.println("|                                Basic class Hybrid class                                |");
+                    System.out.println("|       1) Basic recruit       |       4)  Rogue             |      7)  RogueWarrior     |");
+                    System.out.println("|       2) Warrior             |       5) MagicWarrior       |                           |");
+                    System.out.println("|       3) Mage                |       6) RogueMage          |                           |");
+                    System.out.println("------------------------------------------------------------------------------------------");
+                    System.out.println("|                                       Custom class                                     |");
+                    System.out.println("|          8) Shooter         |           9) Fool            |                           |");
+                    System.out.println("------------------------------------------------------------------------------------------");
                     System.out.println("Selection: ");
                     switch (charPersonalize.nextInt()){
                         // create a recruit
@@ -396,7 +418,7 @@ public class Main {
                 case 5:
                     System.out.println("-------------------");
                     System.out.println("You have just left the simulation");
-                    System.out.println("Create by David, Mohamed and Jules");
+                    System.out.println("Created by David, Mohamed and Jules");
                     cont = false;
                     break;
 
@@ -820,7 +842,18 @@ public class Main {
 
                     while(displayInformation == 0) {
                         System.out.println("-------------------");
-                        System.out.println("which class information do you want to see ? :\n 1) the Recruit \n 2) the Warrior 5) the Magic Warrior\n 3) the Mage    6) the Rogue Mage\n 4) the Rogue   7) the Rogue warrior\n 8) the Shooter\n 9) the Fool\n10) Quit");
+                        System.out.println("which class information do you want to see ?  ");
+                        System.out.println("----------------------------------------------------------------------------------------- ");
+                        System.out.println("|                                Basic class Hybrid class                                |");
+                        System.out.println("|       1) Basic recruit       |       4)  Rogue             |      7)  RogueWarrior     |");
+                        System.out.println("|       2) Warrior             |       5) MagicWarrior       |                           |");
+                        System.out.println("|       3) Mage                |       6) RogueMage          |                           |");
+                        System.out.println("------------------------------------------------------------------------------------------");
+                        System.out.println("|                                       Custom class                                     |");
+                        System.out.println("|          8) Shooter         |           9) Fool            |        10) Saitama        |");
+                        System.out.println("------------------------------------------------------------------------------------------");
+                        System.out.println("|                                          11) Quit                                      |");
+                        System.out.println("------------------------------------------------------------------------------------------");
                         switch (in.nextInt()){
                             case 1:
                                 System.out.println("-------------------");
@@ -885,10 +918,17 @@ public class Main {
                                 continutoMenu = liste.nextLine();
                                 break;
                             case 10:
+                                System.out.println("-------------------");
+                                continutoMenu = liste.nextLine();
+                                break;
+
+                            case 11:
                                 displayInformation = 1;
                                 break;
                         }
+
                     }
+                    break;
 
                 default:
                     System.err.println("Unrecognized option");
