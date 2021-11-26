@@ -399,9 +399,9 @@ class Rogue implements Cloneable, Voleur {
     protected int lifePoints;
     protected int initiative;
     protected int team;
-    int critChance;
-    int dodgeChance;
-    int critcount = 0;
+    protected int critChance;
+    protected int dodgeChance;
+    protected int critcount = 0;
 
     public Rogue(String name, int damage, int lifePoints, int initiative, int critChance, int dodgeChance) {
         this.name = name;
@@ -571,7 +571,8 @@ class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
     protected int dodgeChance;
     protected int critChance;
     protected int team;
-    int critcount = 0;
+    protected int critcount = 0;
+
     Random random = new Random();
     @Override
     public String toStringFile() {
@@ -773,6 +774,7 @@ class MageGuerrier implements Cloneable,Magicien,Guerrier{
     protected int shieldres;
     protected int magicDamage;
     protected int team;
+
     @Override
     public String toStringFile() {
         return  "Name"+"="+name
@@ -937,9 +939,9 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
     protected int initiative;
     protected int magicDamage;
     protected int team;
-    int critChance;
-    int dodgeChance;
-    int critcount = 0;
+    protected int critChance;
+    protected int dodgeChance;
+    protected int critcount = 0;
     Random random = new Random();
     @Override
     public String toStringFile() {
@@ -1433,9 +1435,9 @@ class Saitama implements Cloneable,Fighter{
     protected int damage;
     protected int initiative;
     protected int lifePoints;
-    int team;
-    int critChance;
-    int dodgeChance;
+    protected int team;
+    protected int critChance;
+    protected int dodgeChance;
 
 
 
