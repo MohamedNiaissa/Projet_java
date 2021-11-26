@@ -1,8 +1,6 @@
 package com.company;
 
 
-import java.io.FileReader;
-import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -39,7 +37,7 @@ public class Main {
         Fighter roguedDefault = new Rogue("Naruto",100,800,90, 50,20);
         Fighter mageguerrierDefault = new MageGuerrier("Eragon",100,1000,30, 20,70);
         Fighter guerriervoleurDefault = new GuerrierVoleur("Robin",100,1000,40, 50,20,20);
-        Fighter magevoleurDefault = new MageVoleur("Renard gris",100,1000,30,70,50,20);
+        Fighter magevoleurDefault = new MageVoleur("Renardgris",100,1000,30,70,50,20);
         Fighter fouDefault = new Fou("David",100,1000,70,50);
         Fighter marskmenDefault = new Shooter("legolas",100,1000,70,10);
         ListPerso list = new ListPerso();
@@ -402,69 +400,7 @@ public class Main {
                         System.out.println("which file's path ?");
                         String output = in.next();
 
-                        try (FileReader reader = new FileReader(output)) { // /Users/mohamed/Documents/ProjetJava/Projet_java/src/com/company/char.txt
-                            Properties properties = new Properties();
-                            properties.load(reader);
-                            int getnbperso = Integer.parseInt(properties.getProperty("Nombreperso"));
-                            for (int i=1;i<getnbperso+1;i++) {
-                                String getnameChar = properties.getProperty(i+"Name");
-
-
-                                //System.out.println("Blase : "+getnameChar);
-
-                                // System.out.println(classChar);
-
-                                String nameChar = properties.getProperty("Name_" + getnameChar);
-                                String damageChar = properties.getProperty("Damage_" + getnameChar);
-                                //System.out.println("dommage = " + damageChar);
-
-                                int damageCharInt = Integer.parseInt(damageChar);
-                                //System.out.println(damageChar);
-
-                                String lifePointChar = properties.getProperty("LifePoints_" + getnameChar);
-                                int lifePointCharInt = Integer.parseInt(lifePointChar);
-                                //System.out.println("lp :"+lifePointCharInt);
-
-                                String initiativeChar = properties.getProperty("Initiative_" + getnameChar);
-                                int initiativeCharInt = Integer.parseInt(initiativeChar);
-
-                                //System.out.println(initiativeCharInt);
-
-                                String shieldResistanceChar = properties.getProperty("ShieldResistance_" + getnameChar);
-                                String magicDamageChar = properties.getProperty("MagicDamage_" + getnameChar);
-                                String critChanceChar = properties.getProperty("CritChance_" + getnameChar);
-                                String dodgeChanceChar = properties.getProperty("DodgeChance_" + getnameChar);
-
-                                if (shieldResistanceChar == null && magicDamageChar == null && critChanceChar == null && dodgeChanceChar == null) {
-                                    //System.out.println("test didier");
-                                    Recruit recruitChar = new Recruit(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt);
-                                    list.addListePerso(recruitChar);
-
-                                } else if (magicDamageChar != null) {
-                                    //System.out.println("test mesmer");
-                                    int magicDamageCharInt = Integer.parseInt(magicDamageChar);
-                                    Magician mageChar = new Magician(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, magicDamageCharInt);
-                                    list.addListePerso(mageChar);
-
-                                } else if (dodgeChanceChar != null && critChanceChar != null) {
-                                    //System.out.println("test naruto");
-                                    int critChanceCharInt = Integer.parseInt(critChanceChar);
-                                    int dodgeChanceCharInt = Integer.parseInt(dodgeChanceChar);
-                                    Rogue rogueChar = new Rogue(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, critChanceCharInt, dodgeChanceCharInt);
-                                    list.addListePerso(rogueChar);
-
-                                } else if (shieldResistanceChar != null) {
-                                    //System.out.println("test Hercule");
-                                    int shieldResistanceCharInt = Integer.parseInt(shieldResistanceChar);
-                                    Warrior rogueChar = new Warrior(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, shieldResistanceCharInt);
-                                    list.addListePerso(rogueChar);
-                                }
-                            }
-
-
-                        } catch (Exception e) {
-                            System.out.println("Error in the process of loading the file " + e);
-                        }
+                        list.importsave(output);
                         list.displayList();
                         System.out.println("Come back to the menu : (Press Enter)");
                         String displaymenu = liste.nextLine();

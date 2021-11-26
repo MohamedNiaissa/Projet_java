@@ -1,12 +1,14 @@
 package com.company;
 
 import java.io.BufferedOutputStream;
+import java.io.FileReader;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 
 import static java.nio.file.StandardOpenOption.*;
@@ -705,7 +707,7 @@ class MageGuerrier implements Cloneable,Magicien,Guerrier{
                 "\nDamage_" + name + "=" + damage +
                 "\nMagicDamage_"+ name +"=" + magicDamage +
                 "\nLifePoints_"+name+ "=" + lifePoints +
-                "\nShieldResist_"+name+"=" + shieldres +
+                "\nShieldResistance_" +name+"=" + shieldres +
                 "\nInitiative_"+name+"=" + initiative + "\n"
                 ;
     }
@@ -1312,14 +1314,93 @@ class ListPerso {
     public int sizeList(){
         return listePerso.size();
     }
-    public void importsave(String input){
+    public void importsave(String output){
+        try (FileReader reader = new FileReader(output)) { // /Users/mohamed/Documents/ProjetJava/Projet_java/src/com/company/char.txt
+            Properties properties = new Properties();
+            properties.load(reader);
+            int getnbperso = Integer.parseInt(properties.getProperty("Nombreperso"));
+            for (int i=1;i<=getnbperso;i++) {
+                String getnameChar = properties.getProperty(i+"Name");
 
+
+                //System.out.println("Blase : "+getnameChar);
+
+                // System.out.println(classChar);
+
+                String nameChar = properties.getProperty("Name_" + getnameChar);
+                String damageChar = properties.getProperty("Damage_" + getnameChar);
+                int damageCharInt = Integer.parseInt(damageChar);
+                String lifePointChar = properties.getProperty("LifePoints_" + getnameChar);
+                int lifePointCharInt = Integer.parseInt(lifePointChar);
+                String initiativeChar = properties.getProperty("Initiative_" + getnameChar);
+                int initiativeCharInt = Integer.parseInt(initiativeChar);
+
+                String shieldResistanceChar = properties.getProperty("ShieldResistance_" + getnameChar);
+                String magicDamageChar = properties.getProperty("MagicDamage_" + getnameChar);
+                String critChanceChar = properties.getProperty("CritChance_" + getnameChar);
+                String dodgeChanceChar = properties.getProperty("DodgeChance_" + getnameChar);
+                String accuracy = properties.getProperty("Accuracy_" + getnameChar);
+                String MentalSanity = properties.getProperty("MentalSanity_" + getnameChar);
+
+                if (accuracy != null) {
+                    int accuracyInt = Integer.parseInt(accuracy);
+                    Shooter shooterChar = new Shooter(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, accuracyInt);
+                    addListePerso(shooterChar);
+
+                } else if (MentalSanity != null){
+                    int MentalSanityInt = Integer.parseInt(MentalSanity);
+                    Fou foolChar = new Fou(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt,MentalSanityInt);
+                    addListePerso(foolChar);
+
+                } else if (magicDamageChar != null && shieldResistanceChar != null) {
+                    int magicDamageCharInt = Integer.parseInt(magicDamageChar);
+                    int shieldResistanceCharInt = Integer.parseInt(shieldResistanceChar);
+                    MageGuerrier magewarriorChar = new MageGuerrier(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, shieldResistanceCharInt, magicDamageCharInt);
+                    addListePerso(magewarriorChar);
+
+                }else if (magicDamageChar != null && dodgeChanceChar != null && critChanceChar != null) {
+                    System.out.println("entrée");
+                    int magicDamageCharInt = Integer.parseInt(magicDamageChar);
+                    int critChanceCharInt = Integer.parseInt(critChanceChar);
+                    int dodgeChanceCharInt = Integer.parseInt(dodgeChanceChar);
+                    MageVoleur roguemageChar = new MageVoleur(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt,magicDamageCharInt,critChanceCharInt,dodgeChanceCharInt);
+                    addListePerso(roguemageChar);
+
+                }else if (magicDamageChar != null) {
+                    int magicDamageCharInt = Integer.parseInt(magicDamageChar);
+                    Magician mageChar = new Magician(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, magicDamageCharInt);
+                    addListePerso(mageChar);
+
+                } else if (dodgeChanceChar != null && critChanceChar != null && shieldResistanceChar != null) {
+                    int critChanceCharInt = Integer.parseInt(critChanceChar);
+                    int dodgeChanceCharInt = Integer.parseInt(dodgeChanceChar);
+                    int shieldResistanceCharInt = Integer.parseInt(shieldResistanceChar);
+                    GuerrierVoleur roguewarriorChar = new GuerrierVoleur(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, critChanceCharInt, dodgeChanceCharInt,shieldResistanceCharInt);
+                    addListePerso(roguewarriorChar);
+
+                }else if (dodgeChanceChar != null && critChanceChar != null) {
+                    int critChanceCharInt = Integer.parseInt(critChanceChar);
+                    int dodgeChanceCharInt = Integer.parseInt(dodgeChanceChar);
+                    Rogue rogueChar = new Rogue(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, critChanceCharInt, dodgeChanceCharInt);
+                    addListePerso(rogueChar);
+
+                } else if (shieldResistanceChar != null) {
+                    int shieldResistanceCharInt = Integer.parseInt(shieldResistanceChar);
+                    Warrior rogueChar = new Warrior(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, shieldResistanceCharInt);
+                    addListePerso(rogueChar);
+
+                } else {
+                    Recruit recruitChar = new Recruit(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt);
+                    addListePerso(recruitChar);
+
+                }
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("Error in the process of loading the file " + e);
+        }
     }
-
-    /*public void LoadData(String name){
-
-
-    } */
     public void exportsave(String outputFile){
 
         Path chemin = Paths.get(outputFile);
