@@ -18,6 +18,7 @@ public class Recruit implements Cloneable, Fighter {
     protected int damage;
     protected int initiative;
     protected int lifePoints;
+    protected int team;
 
     public Recruit(String name, int damage, int lifePoints, int initiative){
         this.damage = damage;
@@ -70,6 +71,16 @@ public class Recruit implements Cloneable, Fighter {
         return this.initiative;
     }
 
+    @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
+    }
+
     public int takeDamage(int Damage){
         this.lifePoints -= Damage;
         return Damage;
@@ -88,6 +99,11 @@ public class Recruit implements Cloneable, Fighter {
                 '}';
     }
 
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
+    }
+
 
     public String toStringFile() {
 
@@ -104,12 +120,13 @@ public class Recruit implements Cloneable, Fighter {
 
 }
 
-    class Warrior implements Cloneable, Guerrier{
-        protected String name;
-        protected int damage;
-        protected int initiative;
-        protected int lifePoints;
-        protected int shieldres;
+class Warrior implements Cloneable, Guerrier{
+    protected String name;
+    protected int damage;
+    protected int initiative;
+    protected int lifePoints;
+    protected int shieldres;
+    protected int team;
 
     public Warrior(String name, int damage, int lifePoints, int initiative, int shield) {
         this.name = name;
@@ -164,6 +181,15 @@ public class Recruit implements Cloneable, Fighter {
     @Override
     public int getInitiative() {
         return this.initiative;
+    }
+    @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
     }
 
     @Override
@@ -226,15 +252,18 @@ public class Recruit implements Cloneable, Fighter {
     public int getShieldRes() {
         return this.shieldres;
     }
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
+    }
 }
-
-
     class Magician implements Cloneable, Magicien {
-        protected String name;
-        protected int damage;
-        protected int lifePoints;
-        protected int initiative;
-        protected int magicDamage;
+    protected String name;
+    protected int damage;
+    protected int lifePoints;
+    protected int initiative;
+    protected int magicDamage;
+    protected int team;
 
 
     public Magician(String name, int damage, int lifePoints, int initiative, int magicDamage) {
@@ -264,7 +293,7 @@ public class Recruit implements Cloneable, Fighter {
     @Override
     public int getDamage() {
         if (magicDamage > 0){
-            System.out.println(name + "use a magic bolt");
+            System.out.println(name + " use a magic bolt");
             System.out.println("""
                     _n_
                      O  O  -/\\
@@ -272,7 +301,7 @@ public class Recruit implements Cloneable, Fighter {
                     /|
                     / \\""");
         }else{
-            System.out.println(name + "use is staff");
+            System.out.println(name + " use is staff");
             System.out.println("""
                     _n_
                      O  O
@@ -303,6 +332,15 @@ public class Recruit implements Cloneable, Fighter {
     @Override
     public int getInitiative() {
         return this.initiative;
+    }
+    @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
     }
 
     @Override
@@ -347,17 +385,22 @@ public class Recruit implements Cloneable, Fighter {
     public int getMagicDamage() {
         return this.magicDamage;
     }
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
+    }
 }
 
-    class Rogue implements Cloneable, Voleur {
-        Random random = new Random();
-        protected String name;
-        protected int damage;
-        protected int lifePoints;
-        protected int initiative;
-        int critChance;
-        int dodgeChance;
-        int critcount = 0;
+class Rogue implements Cloneable, Voleur {
+    Random random = new Random();
+    protected String name;
+    protected int damage;
+    protected int lifePoints;
+    protected int initiative;
+    protected int team;
+    int critChance;
+    int dodgeChance;
+    int critcount = 0;
 
     public Rogue(String name, int damage, int lifePoints, int initiative, int critChance, int dodgeChance) {
         this.name = name;
@@ -433,6 +476,16 @@ public class Recruit implements Cloneable, Fighter {
         return this.initiative;
     }
 
+    @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
+    }
+
     public int takeDamage(int Damage){
         int min = 0;
         int max = 100;
@@ -503,6 +556,10 @@ public class Recruit implements Cloneable, Fighter {
     public int getDodgeChance() {
         return this.dodgeChance;
     }
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
+    }
 }
 class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
     protected String name;
@@ -512,6 +569,7 @@ class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
     protected int shieldres;
     protected int dodgeChance;
     protected int critChance;
+    protected int team;
     int critcount = 0;
     Random random = new Random();
     @Override
@@ -610,6 +668,16 @@ class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
         return this.initiative;
     }
 
+    @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
+    }
+
     public int takeDamage(int Damage){
         int min = 0;
         int max = 100;
@@ -691,6 +759,10 @@ class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
     public int getDodgeChance() {
         return this.dodgeChance;
     }
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
+    }
 }
 class MageGuerrier implements Cloneable,Magicien,Guerrier{
     protected String name;
@@ -699,6 +771,7 @@ class MageGuerrier implements Cloneable,Magicien,Guerrier{
     protected int lifePoints;
     protected int shieldres;
     protected int magicDamage;
+    protected int team;
     @Override
     public String toStringFile() {
         return  "Name"+"="+name
@@ -791,6 +864,16 @@ class MageGuerrier implements Cloneable,Magicien,Guerrier{
         return this.initiative;
     }
 
+    @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
+    }
+
     public int takeDamage(int damage){
         if (damage-shieldres<=0){
             System.out.println(name + " have blocked all damage");
@@ -841,6 +924,10 @@ class MageGuerrier implements Cloneable,Magicien,Guerrier{
     public int getShieldRes() {
         return this.shieldres;
     }
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
+    }
 }
 class MageVoleur implements Cloneable,Magicien,Voleur {
     protected String name;
@@ -848,6 +935,7 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
     protected int lifePoints;
     protected int initiative;
     protected int magicDamage;
+    protected int team;
     int critChance;
     int dodgeChance;
     int critcount = 0;
@@ -964,6 +1052,16 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
     }
 
     @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
+    }
+
+    @Override
     public int takeDamage(int Damage){
         int min = 0;
         int max = 100;
@@ -1032,6 +1130,10 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
     public int getDodgeChance() {
         return this.dodgeChance;
     }
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
+    }
 }
 class Fou implements Cloneable,Fighter{
     Random random = new Random();
@@ -1040,6 +1142,8 @@ class Fou implements Cloneable,Fighter{
     protected int initiative;
     protected int lifePoints;
     protected int mentalSanity;
+    protected int team;
+
     @Override
     public String toStringFile() {
         return  "Name"+"="+name
@@ -1121,6 +1225,16 @@ class Fou implements Cloneable,Fighter{
         return this.initiative;
     }
 
+    @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
+    }
+
     public int takeDamage(int Damage){
         this.lifePoints -= Damage;
         return Damage;
@@ -1139,6 +1253,10 @@ class Fou implements Cloneable,Fighter{
                 ", initiative=" + initiative +
                 '}';
     }
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
+    }
 }
 
 class Shooter implements Cloneable, Fighter{
@@ -1148,6 +1266,7 @@ class Shooter implements Cloneable, Fighter{
     protected int lifePoints;
     protected int initiative;
     protected int accuracy;
+    protected int team;
 
     public String toStringFile() {
 
@@ -1267,6 +1386,16 @@ class Shooter implements Cloneable, Fighter{
     }
 
     @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
+    }
+
+    @Override
     public int takeDamage(int Damage){
         this.lifePoints -= Damage;
         return Damage;
@@ -1285,7 +1414,167 @@ class Shooter implements Cloneable, Fighter{
                 "accuracy=" + accuracy +
                 '}';
     }
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
+    }
 }
+
+
+class Saitama implements Cloneable,Fighter{
+    Random rand = new Random();
+    protected String name;
+    protected int damage;
+    protected int initiative;
+    protected int lifePoints;
+    int team;
+    int critChance;
+    int dodgeChance;
+
+
+
+    public Saitama(String name,int damage,int initiative,int lifePoints,int critChance,int dodgeChance){
+        this.name = name;
+        this.damage = damage;
+        this.lifePoints = lifePoints;
+        this.initiative = initiative;
+        this.critChance = critChance;
+        this.dodgeChance = dodgeChance;
+    }
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage= damage;
+
+    }
+
+    @Override
+    public int getDamage() {
+        int min = 0;
+        int max = 100;
+
+        int value = rand.nextInt(max+1);
+
+        if (value <= critChance){
+            System.out.println(name + " did a one PUUUUUUUUUNCH !!");
+            System.out.println("""
+                     /---
+                 O  /----
+                 |-<-----
+                /|  \\----
+                / \\  \\---""");
+
+            System.out.println(name + " : Seems like the fight is finished, it was not funny.... ");
+
+            int damageSaitama = this.damage*10000;
+
+            return damageSaitama;
+
+
+        }else{
+            System.out.println("Seems like  "+name + " doesn't want to attack");
+            System.out.println("""
+                \s
+                 O no
+                 |
+                /|\\
+                / \\""");
+            return 0;
+        }
+    }
+
+    @Override
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints*3;
+    }
+
+    @Override
+    public int getLifePoints() {
+        return this.lifePoints;
+    }
+
+    @Override
+    public void setInitiative(int initiative) {
+        this.initiative = initiative/2;
+
+    }
+
+    @Override
+    public int getInitiative() {
+        return this.initiative;
+    }
+
+    @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
+    }
+
+    @Override
+    public int takeDamage(int damage) {
+
+        Random random = new Random();
+
+        int min = 0;
+        int max = 100;
+
+        int value = random.nextInt(max +min + 1) + min;
+
+        if (value > dodgeChance+100){
+            this.lifePoints -= damage;
+            return damage;
+        }else{
+            return damage =0;
+        }
+
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
+    public String toString() {
+        return "Saitama {" +
+                " name='" + name + '\'' +
+                ",damage=" + damage +
+                ",lifePoints=" + lifePoints +
+                ",initiative=" + initiative +
+                ",critChance=" + critChance +
+                ",dodgeChance=" + dodgeChance +
+                '}';
+    }
+
+    @Override
+    public String toStringFile()  {
+        return  "Name"+"="+ name
+                +"\nClass_"+ name + "=Saitama" +
+                "\nName_" + name + "=" + name +
+                "\nDamage_" + name + "=" + damage +
+                "\nCritChance_" +name + "=" + critChance +
+                "\nLifePoints_"+name+ "=" + lifePoints +
+                "\nDodgeChance_"+name+"=" + dodgeChance ;
+    }
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
+    }
+}
+
 class ListPerso {
     List<Fighter> listePerso = new ArrayList<>();
 
@@ -1408,7 +1697,6 @@ class ListPerso {
 
         for (int i = 0; i < listePerso.size(); i++) {
             save += (i+1)+listePerso.get(i).toStringFile();
-
         }
 
         byte[] data = save.getBytes();

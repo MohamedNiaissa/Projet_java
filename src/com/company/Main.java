@@ -1,14 +1,11 @@
 package com.company;
-
-
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     // a function that display the main menu
     public static void display_menu() {
-        System.out.println ( "-----------------------\n1) Create basic recruit \n2) Create recruit \n3) List  \n4) Display Character   \n5) Quit   \n6) Save \n7) Remove Character  \n8) Fight  \n9) Class dictionary" );
+        System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) List  \n4) Display Character   \n5) Quit   \n6) Save \n7) Remove Character  \n8) Fight 1v1 \n9) Fight 2v2 \n10) Class dictionary" );
         System.out.print ( "Selection: " );
     }
     public static void waitOneSeconde() {
@@ -30,6 +27,11 @@ public class Main {
         Scanner charPersonalize = new Scanner(System.in);
         Scanner liste = new Scanner(System.in);
 
+
+
+
+
+
         //creation of the basic Fighter
         Fighter recruitDefault = new Recruit("didier",100,1000,50);
         Fighter wariorDefault = new Warrior("Theo",120,900,100,20);
@@ -40,7 +42,11 @@ public class Main {
         Fighter magevoleurDefault = new MageVoleur("Renardgris",100,1000,30,70,50,20);
         Fighter fouDefault = new Fou("David",100,1000,70,50);
         Fighter marskmenDefault = new Shooter("legolas",100,1000,70,10);
+        Fighter saitama = new Saitama("Saitama",200,100,500,33,36);
         ListPerso list = new ListPerso();
+
+
+
 
         //Fighter that has been chosen if the two fighters have the same initiative stats
         Fighter chooseChar = null;
@@ -61,17 +67,17 @@ public class Main {
         //loop of the main menu
         while(cont) {
 
-
             display_menu();
             switch (in.nextInt()) {
 
                 // First choice, display a new menu for basic Fighter creation
                 case 1:
                     //the choice of class
-                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8)Shooter\n9)Fool");
+                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8)Shooter\n9)Fool \n10)Saitama");
                     System.out.println("Selection: ");
                     switch (charDefault.nextInt()){
                         case 1:
+
                             System.out.println(recruitDefault);
                             list.addListePerso(recruitDefault);
                             System.out.println("Hiring in progress");
@@ -128,6 +134,15 @@ public class Main {
                             System.out.println("Hiring in progress");
                             waitOneSeconde();
                             break;
+
+                        case 10:
+                            System.out.println(saitama);
+                            list.addListePerso(saitama);
+                            System.out.println("Hiring in progress");
+                            waitOneSeconde();
+                            break;
+
+
                         default:
                             System.err.println("Unrecognized option");
                             waitOneSeconde();
@@ -333,7 +348,6 @@ public class Main {
                             waitOneSeconde();
                             break;
                         default:
-
                             System.err.println("Unrecognized option");
                             waitOneSeconde();
                             break;
@@ -623,6 +637,154 @@ public class Main {
                     }
                     break;
                 case 9:
+                    list.displayList();
+                    List<Fighter> liste2v2 = new ArrayList<>();
+
+                    // a loop that make sure that you pick an existing fighter
+                    boolean fighter1selected= true;
+                    int indexFighter1 = 0;
+                    while (fighter1selected) {
+                        System.out.println("You are making the first team");
+                        System.out.println("Choose your first character : ");
+                        indexFighter1 = in.nextInt();
+                        if ((list.sizeList()>indexFighter1-1)&&(indexFighter1-1!=-1)) {
+                            list.getRecruit(indexFighter1);
+                            fighter1selected = false;
+                        } else {
+                            System.out.println("This character doesn't exist in the list");
+                        }
+                    }
+                    // cloning the first fighter
+                    Fighter FighterTeam1 = list.getRecruit(indexFighter1);
+                    Fighter fighter1 = (Fighter)FighterTeam1.clone();
+                    fighter1.setTeam(1);
+                    liste2v2.add(fighter1);
+
+                    // a loop that make sure that you pick an existing fighter
+                    boolean fighter2selected= true;
+                    int indexFighter2 = 0;
+                    while (fighter2selected) {
+                        System.out.println("Choose your second character : ");
+                        indexFighter2 = in.nextInt();
+                        if ((list.sizeList()>indexFighter2-1)&&(indexFighter2-1!=-1&& indexFighter2 != indexFighter1)) {
+                            list.getRecruit(indexFighter2);
+                            fighter2selected = false;
+                        } else {
+                            System.out.println("The character you have chosen doesn't exist or you have already choose him");
+                        }
+                    }
+                    // cloning the first fighter
+                    Fighter FighterTeam1bis = list.getRecruit(indexFighter2);
+                    Fighter fighter2 = (Fighter)FighterTeam1bis.clone();
+                    fighter2.setTeam(1);
+                    liste2v2.add(fighter2);
+
+                    list.displayList();
+
+                    // a loop that make sure that you pick an existing fighter
+                    boolean fighter3selected= true;
+                    int indexFighter3 = 0;
+                    while (fighter3selected) {
+                        System.out.println("You are making the second team");
+                        System.out.println("Choose your first character : ");
+                        indexFighter3 = in.nextInt();
+                        if ((list.sizeList()>indexFighter3-1)&&(indexFighter3-1!=-1 && indexFighter3 != indexFighter1 && indexFighter3 != indexFighter2)) {
+                            list.getRecruit(indexFighter3);
+                            fighter3selected = false;
+                        } else {
+                            System.out.println("This character doesn't exist in the list");
+                        }
+                    }
+                    // cloning the first fighter
+                    Fighter FighterTeam2 = list.getRecruit(indexFighter3);
+                    Fighter fighter3 = (Fighter)FighterTeam2.clone();
+                    fighter3.setTeam(2);
+                    liste2v2.add(fighter3);
+
+                    // a loop that make sure that you pick an existing fighter
+                    boolean fighter4selected= true;
+                    int indexFighter4 = 0;
+                    while (fighter4selected) {
+                        System.out.println("Choose your second character : ");
+                        indexFighter4 = in.nextInt();
+                        if ((list.sizeList()>indexFighter4-1)&&(indexFighter4-1!=-1 && indexFighter4 != indexFighter1 && indexFighter4 != indexFighter2 && indexFighter4 != indexFighter3)) {
+                            list.getRecruit(indexFighter4);
+                            fighter4selected = false;
+                        } else {
+                            System.out.println("This character doesn't exist in the list");
+                        }
+                    }
+                    // cloning the first fighter
+                    Fighter FighterTeam2bis = list.getRecruit(indexFighter4);
+                    Fighter fighter4 = (Fighter)FighterTeam2bis.clone();
+                    fighter4.setTeam(2);
+                    liste2v2.add(fighter4);
+
+                    Collections.sort(liste2v2);
+                    System.out.println("l'ordre de combat est le suivant");
+                    for (Fighter fighter : liste2v2){
+                        System.out.println(fighter);
+                    }
+
+                    boolean fight2v2 = true;
+                    int nbtour2V2 = 0;
+                    while(fight2v2){
+                        nbtour2V2++;
+                        for (Fighter fighter : liste2v2){
+                            int damage = 0;
+                            if (fighter.getTeam() == 1){
+                                if (fighter3.getLifePoints()>fighter4.getLifePoints() && fighter3.getLifePoints() > 0){
+                                    damage = fighter.getDamage();
+                                    damage = fighter3.takeDamage(damage);
+                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " inflicted " + damage + " to " + fighter3.getName() + " he has " +fighter3.getLifePoints() + " HP left"  );
+                                }
+                                else if (fighter3.getLifePoints() < 0){
+                                    System.out.println("Malheureusement " + fighter3.getName() + " est tombé au combat");
+                                }
+                                if (fighter4.getLifePoints()>fighter3.getLifePoints() && fighter4.getLifePoints() > 0){
+                                    damage = fighter.getDamage();
+                                    damage = fighter4.takeDamage(damage);
+                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " inflicted " + damage + " to " + fighter4.getName() + " he has " +fighter4.getLifePoints() + " HP left"  );
+                                }
+                                else if (fighter4.getLifePoints() < 0){
+                                    System.out.println("Malheureusement " + fighter4.getName() + " est tombé au combat");
+                                }
+                            }
+                            else{
+                                if (fighter1.getLifePoints()>fighter2.getLifePoints() && fighter1.getLifePoints() > 0){
+                                    damage = fighter.getDamage();
+                                    damage = fighter1.takeDamage(damage);
+                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " inflicted " + damage + " to " + fighter1.getName() + " he has " +fighter1.getLifePoints() + " HP left"  );
+                                }
+                                else if (fighter1.getLifePoints() < 0){
+                                    System.out.println("Malheureusement " + fighter1.getName() + " est tombé au combat");
+                                }
+                                if (fighter2.getLifePoints()>fighter1.getLifePoints() && fighter2.getLifePoints() > 0){
+                                    damage = fighter.getDamage();
+                                    damage = fighter2.takeDamage(damage);
+                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " inflicted " + damage + " to " + fighter2.getName() + " he has " +fighter2.getLifePoints() + " HP left"  );
+                                }
+                                else if (fighter2.getLifePoints() < 0){
+                                    System.out.println("Malheureusement " + fighter2.getName() + " est tombé au combat");
+                                }
+                            }
+                            if (fighter1.getLifePoints() < 0 && fighter2.getLifePoints() < 0){
+                                System.out.println("c'est la deuxième équipe composé de " + fighter3.getName() + " et " + fighter4.getName() + " qui gagne le combat par équipe");
+                                fight2v2 = false;
+                                break;
+                            }
+                            else if (fighter3.getLifePoints() < 0 && fighter4.getLifePoints() <0){
+                                System.out.println("c'est la première équipe composé de " + fighter1.getName() + " et " + fighter2.getName() + " qui gagne le combat par équipe");
+                                fight2v2 = false;
+                                break;
+                            }
+
+                            }
+                        }
+                    break;
+
+
+                case 10:
                     // A class dictionary that explain the effect of the different class
                     int displayInformation = 0;
 
@@ -699,7 +861,6 @@ public class Main {
                     }
 
                 default:
-
                     System.err.println("Unrecognized option");
                     waitOneSeconde();
                     break;
