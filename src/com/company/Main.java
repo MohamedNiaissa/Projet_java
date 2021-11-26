@@ -900,35 +900,35 @@ public class Main {
                             case 2:
                                 System.out.println("-------------------");
                                 System.out.println("The Warrior is a more advanced fighter well trained in the way of the shield \n " +
-                                        "He have a supplementary stat called ShieldRes that block a fixed amount of incoming damage");
+                                        "He has a supplementary stat called ShieldRes that block a fixed amount of incoming damage");
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
                                 break;
                             case 3:
                                 System.out.println("-------------------");
                                 System.out.println("the Mage is a scholar that pursuit the best spell in the world, he resided in the magic tower with a bunch of other mage \n" +
-                                        "he have a supplementary stat called MagicDamage that deal additional damage, but the value of MagicDamage halves each turn");
+                                        "he has a supplementary stat called MagicDamage that deal additional damage, but the value of MagicDamage halves each turn");
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
                                 break;
                             case 4:
                                 System.out.println("-------------------");
                                 System.out.println("The Rogue is an orphan that grew in the undercity, he has been trained in the way of assassination since his childhood making him a fierce enemy \n" +
-                                        "The Rogue have the possibilities of making a critical strike and dodge any attack, the probability of those two characteristic are influenced by the stats CritChance and Dodge Chance  ");
+                                        "The Rogue has the possibilities of making a critical strike and dodge any attack, the probability of those two characteristic are influenced by the stats CritChance and Dodge Chance  ");
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
                                 break;
                             case 5:
                                 System.out.println("-------------------");
                                 System.out.println("The Magic Warrior is a man that grew up with the dream using magic, but he was born in a important military family making him train as a knight \n despite that he trained secretly his magic by himself. While his magic is not very powerful it can do some serious damage \n" +
-                                        "The Magic Warrior have the possibility to block a fixed amount of damage due to his ShieldRes stat and he inflict more damage with his Magic Damage stat but those additional damage halves every turn");
+                                        "The Magic Warrior has the possibility to block a fixed amount of damage due to his ShieldRes stat and he inflict more damage with his Magic Damage stat but those additional damage halves every turn");
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
                                 break;
                             case 6:
                                 System.out.println("-------------------");
                                 System.out.println("The Rogue mage is an infiltrated Rogue in the magic tower, while his magic may not be top notch, he got some serious assassination skills making him a versatile Fighter \n" +
-                                        "The Rogue Mage have the same abilities as a basic rogue, but he use a dagger infused with his magic power that deal additional damage until his power runs out");
+                                        "The Rogue Mage has the same abilities as a basic rogue, but he use a dagger infused with his magic power that deal additional damage until his power runs out");
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
                                 break;
@@ -949,14 +949,14 @@ public class Main {
                             case 9:
                                 System.out.println("-------------------");
                                 System.out.println("The Fool is a priest who turn crazy after he encounter supernatural entity disguise in human, he always interrogate itself if he is a demon or if other are demons and attack all thing he assimilated to supernatural entity at this moment for obey to is God\n" +
-                                        "The Fool have an mental sanity value who define his chance of hit himself or seriously injure his opponent");
+                                        "The Fool has an mental sanity value who define his chance of hit himself or seriously injure his opponent");
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
                                 break;
                             case 10:
                                 System.out.println("-------------------");
                                 System.out.println("Saitama is a normal guy. One day , he was attacked by a monster and lost the fight. He was so angry about that, so he train hisself for 3 years straight. Since this time, he is known as OnePunchGuy, the guy who win all of his fight... just with one pucnh.\n" +
-                                        "Saitama have a high dodge chance value and a really little little chance to deal an incredible amount of damage. In other case, he no deal any damage because he not want on the moment");
+                                        "Saitama has a high dodge chance value and a really little chance to deal an incredible amount of damage. In other case, he refuses to attack");
                                 System.out.println("Like Saitama is only a default class (non editable) he doesn't be save in save file");
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
