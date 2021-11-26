@@ -41,6 +41,7 @@ public class Main {
         Fighter guerriervoleurDefault = new GuerrierVoleur("Robin",100,1000,40, 50,20,20);
         Fighter magevoleurDefault = new MageVoleur("Renard gris",100,1000,30,70,50,20);
         Fighter fouDefault = new Fou("David",100,1000,70,50);
+        Fighter marskmenDefault = new Shooter("legolas",100,1000,70,10);
         ListPerso list = new ListPerso();
 
         //Fighter that has been chosen if the two fighters have the same initiative stats
@@ -122,6 +123,16 @@ public class Main {
                             list.addListePerso(fouDefault);
                             System.out.println("Hiring in progress");
                             waitOneSeconde();
+                            break;
+                        case 8:
+                            System.out.println(marskmenDefault);
+                            list.addListePerso(marskmenDefault);
+                            System.out.println("Hiring in progress");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
                             break;
                         default:
                             System.err.println("Unrecognized option");
@@ -292,6 +303,21 @@ public class Main {
                             list.addListePerso(roguewarrior);
                             System.out.println("Hiring in progress");
                             waitOneSeconde();
+                            break;
+                        case 8:
+
+                            System.out.println("entrer the name of your character: ");
+                            String nameMR = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgMR = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lpMR = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int iniMR = in.nextInt();
+                            System.out.println("choose an accuracy amount: ");
+                            int accu = in.nextInt();
+                            Fighter shooter = new Shooter(nameMR, dmgMR, lpMR, iniMR,accu);
+                            list.addListePerso(shooter);
                             break;
                         case 9:
                             System.out.println("entrer the name of your character: ");
