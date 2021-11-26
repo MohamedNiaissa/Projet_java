@@ -73,7 +73,7 @@ public class Main {
                  O \\/\\/ O      O|\\        /\\--O  O /\\  O    O
                  |_/\\/\\_|     -||_| -->—|>\\/-- \\_| \\/\\_|__,_|
                  |      |      ||/               |\\    |\\ ` |
-                / \\    / \\     /\\               / \\   / \\\\_/ \\""");
+                / \\    / \\    / \\               / \\   / \\\\_/ \\""");
         waitOneSeconde();
         waitOneSeconde();
         waitOneSeconde();
@@ -934,8 +934,8 @@ public class Main {
                                 break;
                             case 10:
                                 System.out.println("-------------------");
-                                System.out.println("Saitama\n" +
-                                        "Saitama");
+                                System.out.println("Saitama is a normal guy. One day , he was attacked by a monster and lost the fight. He was so angry about that, so he train hisself for 3 years straight. Since this time, he is known as OnePunchGuy, the guy who win all of his fight... just with one pucnh.\n" +
+                                        "Saitama have a high dodge chance value and a really little little chance to deal an incredible amount of damage. In other case, he no deal any damage because he not want on the moment");
                                 System.out.println("Like Saitama is only a default class (non editable) he doesn't be save in save file");
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
