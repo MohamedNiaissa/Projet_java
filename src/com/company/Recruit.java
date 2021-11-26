@@ -257,21 +257,13 @@ class Warrior implements Cloneable, Guerrier{
         return -Integer.compare(this.initiative, o.getInitiative());
     }
 }
-class Magician implements Cloneable, Magicien {
+    class Magician implements Cloneable, Magicien {
     protected String name;
     protected int damage;
     protected int lifePoints;
     protected int initiative;
     protected int magicDamage;
     protected int team;
-
-
-    class Magician implements Cloneable, Magicien {
-        protected String name;
-        protected int damage;
-        protected int lifePoints;
-        protected int initiative;
-        protected int magicDamage;
 
 
     public Magician(String name, int damage, int lifePoints, int initiative, int magicDamage) {
