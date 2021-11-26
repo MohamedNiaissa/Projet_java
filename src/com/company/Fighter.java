@@ -1,6 +1,7 @@
 package com.company;
 
 public interface Fighter {
+
     public void setName(String name);
 
     public String getName();
@@ -20,6 +21,10 @@ public interface Fighter {
     public int takeDamage(int damage);
 
     public Object clone() throws CloneNotSupportedException;
+
+    public String toStringFile();
+
+//    public void LoadData(String name);
 
 }
 interface Guerrier extends Fighter {
