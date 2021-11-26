@@ -488,10 +488,9 @@ class Rogue implements Cloneable, Voleur {
     }
 
     public int takeDamage(int Damage){
-        int min = 0;
         int max = 100;
 
-        int value = random.nextInt(max +min + 1) + min;
+        int value = random.nextInt(max+ 1);
 
         if (value > dodgeChance){
             this.lifePoints -= Damage;
@@ -681,10 +680,10 @@ class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
     }
 
     public int takeDamage(int Damage){
-        int min = 0;
+
         int max = 100;
 
-        int value = random.nextInt(max +min + 1) + min;
+        int value = random.nextInt(max + 1);
 
         if (value > dodgeChance){
             if (damage-shieldres<=0){
@@ -1066,10 +1065,9 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
 
     @Override
     public int takeDamage(int Damage){
-        int min = 0;
         int max = 100;
 
-        int value = random.nextInt(max +min + 1) + min;
+        int value = random.nextInt(max + 1);
 
         if (value > dodgeChance){
             this.lifePoints -= Damage;
@@ -1167,10 +1165,9 @@ class Fou implements Cloneable,Fighter{
     }
 
     public int getDamage(){
-        int min = 0;
         int max = 100;
 
-        int value = random.nextInt(max +min + 1) + min;
+        int value = random.nextInt(max + 1);
 
         if (value <= mentalSanity){
             System.out.println(name + "do a Self attack !");
@@ -1308,13 +1305,12 @@ class Shooter implements Cloneable, Fighter{
 
     @Override
     public int getDamage() {
-        int min = 0;
         int max = 100;
         int min2 = -this.accuracy;
         int max2 = this.accuracy;
 
-        int value = random.nextInt(max +min + 1) + min;
-        int accuracy = random.nextInt(max2 +min2 + 1) + min;
+        int value = random.nextInt(max + 1);
+        int accuracy = random.nextInt(max2 + min2 + 1);
 
         if ((value + accuracy) > 98){
             System.out.println(this.name + " shot in the head");
@@ -1430,7 +1426,7 @@ class Shooter implements Cloneable, Fighter{
 
 
 class Saitama implements Cloneable,Fighter{
-    Random rand = new Random();
+    Random random = new Random();
     protected String name;
     protected int damage;
     protected int initiative;
@@ -1467,10 +1463,9 @@ class Saitama implements Cloneable,Fighter{
 
     @Override
     public int getDamage() {
-        int min = 0;
         int max = 100;
 
-        int value = rand.nextInt(max+1);
+        int value = random.nextInt(max+1);
 
         if (value <= critChance){
             System.out.println(name + " did a one PUUUUUUUUUNCH !!");
@@ -1534,12 +1529,9 @@ class Saitama implements Cloneable,Fighter{
     @Override
     public int takeDamage(int damage) {
 
-        Random random = new Random();
-
-        int min = 0;
         int max = 100;
 
-        int value = random.nextInt(max +min + 1) + min;
+        int value = random.nextInt(max + 1);
 
         if (value > dodgeChance+100){
             this.lifePoints -= damage;
