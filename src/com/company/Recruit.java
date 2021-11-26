@@ -293,7 +293,7 @@ class Warrior implements Cloneable, Guerrier{
     @Override
     public int getDamage() {
         if (magicDamage > 0){
-            System.out.println(name + "use a magic bolt");
+            System.out.println(name + " use a magic bolt");
             System.out.println("""
                     _n_
                      O  O  -/\\
@@ -301,7 +301,7 @@ class Warrior implements Cloneable, Guerrier{
                     /|
                     / \\""");
         }else{
-            System.out.println(name + "use is staff");
+            System.out.println(name + " use is staff");
             System.out.println("""
                     _n_
                      O  O
@@ -1422,14 +1422,15 @@ class Shooter implements Cloneable, Fighter{
 
 
 class Saitama implements Cloneable,Fighter{
-
     Random rand = new Random();
     protected String name;
     protected int damage;
     protected int initiative;
     protected int lifePoints;
+    int team;
     int critChance;
     int dodgeChance;
+
 
 
     public Saitama(String name,int damage,int initiative,int lifePoints,int critChance,int dodgeChance){
@@ -1513,6 +1514,16 @@ class Saitama implements Cloneable,Fighter{
     }
 
     @Override
+    public void setTeam(int team) {
+        this.team = team;
+    }
+
+    @Override
+    public int getTeam() {
+        return this.team;
+    }
+
+    @Override
     public int takeDamage(int damage) {
 
         Random random = new Random();
@@ -1557,6 +1568,10 @@ class Saitama implements Cloneable,Fighter{
                 "\nCritChance_" +name + "=" + critChance +
                 "\nLifePoints_"+name+ "=" + lifePoints +
                 "\nDodgeChance_"+name+"=" + dodgeChance ;
+    }
+    @Override
+    public int compareTo(Fighter o) {
+        return -Integer.compare(this.initiative, o.getInitiative());
     }
 }
 

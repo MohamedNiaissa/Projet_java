@@ -5,7 +5,6 @@ public class Main {
 
     // a function that display the main menu
     public static void display_menu() {
-        System.out.println ( "-----------------------\n1) Create basic recruit \n2) Create recruit \n3) List  \n4) Display Character   \n5) Quit   \n6) Save \n7) Remove Character  \n8) Fight  \n9) Class dictionary" );
         System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) List  \n4) Display Character   \n5) Quit   \n6) Save \n7) Remove Character  \n8) Fight 1v1 \n9) Fight 2v2 \n10) Class dictionary" );
         System.out.print ( "Selection: " );
     }
@@ -67,7 +66,6 @@ public class Main {
 
         //loop of the main menu
         while(cont) {
-
 
             display_menu();
             switch (in.nextInt()) {
@@ -142,6 +140,7 @@ public class Main {
                             list.addListePerso(saitama);
                             System.out.println("Hiring in progress");
                             waitOneSeconde();
+                            break;
 
 
                         default:
@@ -349,7 +348,6 @@ public class Main {
                             waitOneSeconde();
                             break;
                         default:
-
                             System.err.println("Unrecognized option");
                             waitOneSeconde();
                             break;
@@ -783,6 +781,7 @@ public class Main {
 
                             }
                         }
+                    break;
 
 
                 case 10:
@@ -862,7 +861,6 @@ public class Main {
                     }
 
                 default:
-
                     System.err.println("Unrecognized option");
                     waitOneSeconde();
                     break;
