@@ -193,6 +193,7 @@ class Warrior implements Cloneable, Guerrier{
     }
 
     @Override
+    //return the right amount of damage after the mitigation of the shield
     public int takeDamage(int damage){
         if (damage-shieldres<=0){
             System.out.println(name + " have blocked all damage");

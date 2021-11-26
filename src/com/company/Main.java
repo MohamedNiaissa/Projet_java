@@ -11,7 +11,7 @@ public class Main {
     }
     public static void waitOneSeconde() {
         try{
-            Thread.sleep(1000);
+            Thread.sleep(600);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
@@ -651,6 +651,14 @@ public class Main {
                                 }
                             }
                         }
+                        //if that permit to not have an infinite fight
+                        if (nbtour == 20){
+                            System.out.println("The fight has become too long and the fighters have lost the will to fight, it's a draw.");
+                            System.out.println("Come back to the menu : (Press Enter)");
+                            String menu = liste.nextLine();
+                            fight = false;
+                            break;
+                        }
                     }
                     break;
                 case 9:
@@ -671,7 +679,7 @@ public class Main {
                             System.out.println("This character doesn't exist in the list");
                         }
                     }
-                    // cloning the first fighter
+                    // cloning the first fighter and adding him to the list
                     Fighter FighterTeam1 = list.getRecruit(indexFighter1);
                     Fighter fighter1 = (Fighter)FighterTeam1.clone();
                     fighter1.setTeam(1);
@@ -690,7 +698,7 @@ public class Main {
                             System.out.println("The character you have chosen doesn't exist or you have already choose him");
                         }
                     }
-                    // cloning the first fighter
+                    // cloning the second fighter and adding him to the list
                     Fighter FighterTeam1bis = list.getRecruit(indexFighter2);
                     Fighter fighter2 = (Fighter)FighterTeam1bis.clone();
                     fighter2.setTeam(1);
@@ -712,7 +720,7 @@ public class Main {
                             System.out.println("This character doesn't exist in the list");
                         }
                     }
-                    // cloning the first fighter
+                    // cloning the third fighter and adding him to the list
                     Fighter FighterTeam2 = list.getRecruit(indexFighter3);
                     Fighter fighter3 = (Fighter)FighterTeam2.clone();
                     fighter3.setTeam(2);
@@ -732,7 +740,7 @@ public class Main {
                         }
                     }
 
-                    // cloning the first fighter
+                    // cloning the fourth fighter and adding him to the list
                     Fighter FighterTeam2bis = list.getRecruit(indexFighter4);
                     Fighter fighter4 = (Fighter)FighterTeam2bis.clone();
                     fighter4.setTeam(2);
@@ -750,10 +758,14 @@ public class Main {
                     System.out.println("It's time to fi-fi-fi-fight !!!");
                     System.out.println("-------------------");
                     waitOneSeconde();
+
+                    //Start of the loop for the  2v2
                     while(fight2v2){
                         nbtour2V2++;
+                        //loop in the list of fighter
                         for (Fighter fighter : liste2v2) {
                             int damage = 0;
+                            //succession of if that determine the different scenario for the fight
                             if (fighter.getTeam() == 1) {
                                 if (fighter3.getLifePoints() >= fighter4.getLifePoints() && fighter3.getLifePoints() > 0) {
                                     damage = fighter.getDamage();
@@ -793,6 +805,7 @@ public class Main {
                                     System.out.println("Unfortunably " + fighter2.getName() + " is fall in the battle");
                                 }
                             }
+                            //succession of if that permit to stop the fight
                             if (fighter1.getLifePoints() <= 0 && fighter2.getLifePoints() <= 0) {
                                 fight2v2 = false;
                                 System.out.println("It's team two composed of " + fighter3.getName() + " and " + fighter4.getName() + " who win the team battle");
@@ -810,6 +823,14 @@ public class Main {
                             }
 
                             }
+                        //if that permit to not have an infinite fight
+                        if (nbtour2V2 == 20){
+                            System.out.println("The fight has become too long and the fighters have lost the will to fight, it's a draw.");
+                            System.out.println("Come back to the menu : (Press Enter)");
+                            String menu = liste.nextLine();
+                            fight = false;
+                            break;
+                        }
                         }
                     break;
 
@@ -872,8 +893,8 @@ public class Main {
                                 break;
                             case 8:
                                 System.out.println("-------------------");
-                                System.out.println("The Shooter \n" +
-                                        "The Shooter ");
+                                System.out.println("The Shooter is a talented hunter and a genius with a bow. With his keen eye he's sure to never miss his target \n" +
+                                        "The Shooter can shoot in various part of the body, each parts take different amount of damage. The chance to touch the higher damages parts is influenced by the accuracy stat");
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
                                 break;
