@@ -1409,9 +1409,9 @@ class Shooter implements Cloneable, Fighter{
         return "Shooter {" +
                 "name='" + name + '\'' +
                 ", damage=" + damage +
-                "%, lifePoints=" + lifePoints +
-                "%, initiative=" + initiative +
-                "accuracy=" + accuracy +
+                ", lifePoints=" + lifePoints +
+                ", initiative=" + initiative +
+                "%, accuracy=" + accuracy +
                 '}';
     }
     @Override
