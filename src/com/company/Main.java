@@ -126,11 +126,7 @@ public class Main {
                             System.out.println(marskmenDefault);
                             list.addListePerso(marskmenDefault);
                             System.out.println("Hiring in progress");
-                            try{
-                                Thread.sleep(1000);
-                            }catch(InterruptedException e){
-                                e.printStackTrace();
-                            }
+                            waitOneSeconde();
                             break;
                         default:
                             System.err.println("Unrecognized option");
@@ -144,7 +140,7 @@ public class Main {
                 // Second choice, display a new menu for the Fighter creation
                 case 2:
                     // choose the class of the fighter
-                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n9)Fool");
+                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8) Shooter \n 9)Fool");
                     System.out.println("Selection: ");
                     switch (charPersonalize.nextInt()){
                         // create a recruit
@@ -303,7 +299,6 @@ public class Main {
                             waitOneSeconde();
                             break;
                         case 8:
-
                             System.out.println("entrer the name of your character: ");
                             String nameMR = in.next();
                             System.out.println("choose a damage amount: ");
@@ -633,7 +628,7 @@ public class Main {
 
                     while(displayInformation == 0) {
                         System.out.println("-------------------");
-                        System.out.println("which class information do you want to see ? :\n 1) the Recruit \n 2) the Warrior 5) the Magic Warrior\n 3) the Mage    6) the Rogue Mage\n 4) the Rogue   7) the Rogue warrior\n 9) the Foul\n10) Quit");
+                        System.out.println("which class information do you want to see ? :\n 1) the Recruit \n 2) the Warrior 5) the Magic Warrior\n 3) the Mage    6) the Rogue Mage\n 4) the Rogue   7) the Rogue warrior\n 8) the Shooter\n 9) the Fool\n10) Quit");
                         switch (in.nextInt()){
                             case 1:
                                 System.out.println("-------------------");
@@ -683,10 +678,17 @@ public class Main {
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
                                 break;
+                            case 8:
+                                System.out.println("-------------------");
+                                System.out.println("The Shooter \n" +
+                                        "The Shooter ");
+                                System.out.println("Come back to the Dictionary : (Press Enter)");
+                                continutoMenu = liste.nextLine();
+                                break;
                             case 9:
                                 System.out.println("-------------------");
-                                System.out.println("The Foul is a priest who turn crazy after he encounter supernatural entity disguise in human, he always interrogate itself if he is a demon or if other are demons and attack all thing he assimilated to supernatural entity at this moment for obey to is God\n" +
-                                        "The Foul have an mental sanity value who define his chance of hit himself or seriously injure his opponent");
+                                System.out.println("The Fool is a priest who turn crazy after he encounter supernatural entity disguise in human, he always interrogate itself if he is a demon or if other are demons and attack all thing he assimilated to supernatural entity at this moment for obey to is God\n" +
+                                        "The Fool have an mental sanity value who define his chance of hit himself or seriously injure his opponent");
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
                                 break;
