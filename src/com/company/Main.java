@@ -427,10 +427,10 @@ public class Main {
                 case 5:
                     System.out.println("-------------------");
                     System.out.println("You have just left the simulation");
-                    System.out.println("Create by David, Mohamed and Jules");
+                    System.out.println("Created by David, Mohamed and Jules");
                     System.out.println("""
                             _M_      _
-                             O   O   O\\
+                             O   O  /O\\
                             /D\\ /M\\ /J\\
                             \\|/ \\|ø \\|/
                             / \\ / \\ / \\""");
