@@ -26,6 +26,7 @@ public class Main {
         Fighter mageguerrierDefault = new MageGuerrier("Eragon",100,1000,30, 20,70);
         Fighter guerriervoleurDefault = new GuerrierVoleur("Robin",100,1000,40, 50,20,20);
         Fighter magevoleurDefault = new MageVoleur("Renard gris",100,1000,30,70,50,20);
+        Fighter marskmenDefault = new Shooter("legolas",100,1000,70,10);
         ListPerso list = new ListPerso();
 
         //Fighter that has been chosen if the two fighters have the same initiative stats
@@ -51,7 +52,7 @@ public class Main {
                 // First choice, display a new menu for basic Fighter creation
                 case 1:
                     //the choice of class
-                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior");
+                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\n8) Shooter");
 
                     switch (charDefault.nextInt()){
                         case 1:
@@ -127,6 +128,16 @@ public class Main {
                                 e.printStackTrace();
                             }
                             break;
+                        case 8:
+                            System.out.println(marskmenDefault);
+                            list.addListePerso(marskmenDefault);
+                            System.out.println("Hiring in progress");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
                         default:
 
                             System.err.println("Unrecognized option");
@@ -144,7 +155,7 @@ public class Main {
                 // Second choice, display a new menu for the Fighter creation
                 case 2:
                     // choose the class of the fighter
-                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior");
+                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\n8) Shooter");
                     switch (charPersonalize.nextInt()){
                         // create a recruit
                         case 1:
@@ -262,6 +273,21 @@ public class Main {
                             int inirw = in.nextInt();
                             Fighter roguewarrior = new GuerrierVoleur(namerw,dmgrw,lprw,inirw, critrw,dodgerw,shieldrw);
                             list.addListePerso(roguewarrior);
+                            break;
+                        case 8:
+
+                            System.out.println("entrer the name of your character: ");
+                            String nameMR = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgMR = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lpMR = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int iniMR = in.nextInt();
+                            System.out.println("choose an accuracy amount: ");
+                            int accu = in.nextInt();
+                            Fighter shooter = new Shooter(nameMR, dmgMR, lpMR, iniMR,accu);
+                            list.addListePerso(shooter);
                             break;
                         default:
 

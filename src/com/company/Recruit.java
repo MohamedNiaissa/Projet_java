@@ -107,7 +107,7 @@ class Warrior implements Cloneable, Guerrier{
 
     @Override
     public int getDamage() {
-        System.out.println(name + "use is axe");
+        System.out.println(name + " use is axe");
         System.out.println("<n>\n" +
                 " O  /\\\n" +
                 " |-/\\/\n" +
@@ -216,14 +216,14 @@ class Magician implements Cloneable, Magicien {
     @Override
     public int getDamage() {
         if (magicDamage > 0){
-            System.out.println(name + "use a magic bolt");
+            System.out.println(name + " use a magic bolt");
             System.out.println("_n_\n" +
                     " O  O  -/\\\n" +
                     " |-/   -\\/\n" +
                     "/|\n" +
                     "/ \\");
         }else{
-            System.out.println(name + "use is staff");
+            System.out.println(name + " use is staff");
             System.out.println("_n_\n" +
                     " O  O\n" +
                     " |-/\n" +
@@ -340,7 +340,7 @@ class Rogue implements Cloneable, Voleur {
             return this.damage*2;
         }
         else {
-            System.out.println(name + "use is knife");
+            System.out.println(name + " use his knife");
             System.out.println(" n\n" +
                     "/O\\,/\n" +
                     " |_/`\n" +
@@ -490,7 +490,7 @@ class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
             return this.damage*2;
         }
         else {
-            System.out.println(name + " use is blade");
+            System.out.println(name + " use his blade");
             System.out.println("<n>  /\n" +
                     "/O\\,/\n" +
                     " |_/`\n" +
@@ -783,14 +783,14 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
             critcount++;
             System.out.println("Critical hit !");
             if (magicDamage > 0){
-                System.out.println(name + "use a magic stinger");
+                System.out.println(name + " use a magic stinger");
                 System.out.println("_n_\n" +
                         " O ,O --->\n" +
                         " |-/`\n" +
                         "/|\n" +
                         "/ \\");
             }else{
-                System.out.println(name + "use the hidden knife of his staff");
+                System.out.println(name + " use the hidden knife of his staff");
                 System.out.println("_n_\n" +
                         "/O\\,/!\n" +
                         " |_/':\n" +
@@ -801,14 +801,14 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
         }
         else {
             if (magicDamage > 0){
-                System.out.println(name + "use a magic bolt");
+                System.out.println(name + " use a magic bolt");
                 System.out.println("_n_\n" +
                         "/O\\ O  -/\\\n" +
                         " |-/   -\\/\n" +
                         "/|\n" +
                         "/ \\");
             }else{
-                System.out.println(name + "use the hidden knife of his staff");
+                System.out.println(name + " use the hidden knife of his staff");
                 System.out.println("_n_\n" +
                         "/O\\,/\n" +
                         " |-/'\n" +
@@ -909,6 +909,111 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
         return this.dodgeChance;
     }
 }
+class Shooter implements Cloneable, Fighter{
+    Random random = new Random();
+    protected String name;
+    protected int damage;
+    protected int lifePoints;
+    protected int initiative;
+    protected int accuracy;
+
+
+    public Shooter(String name, int damage, int lifePoints, int initiative, int accuracy) {
+        this.name = name;
+        this.damage = damage;
+        this.lifePoints = lifePoints;
+        this.initiative = initiative;
+        this.accuracy = accuracy;
+        ;
+
+    }
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    @Override
+    public int getDamage() {
+        int min = 0;
+        int max = 100;
+        int min2 = -this.accuracy;
+        int max2 = this.accuracy;
+
+        int value = random.nextInt(max +min + 1) + min;
+        int accuracy = random.nextInt(max2 +min2 + 1) + min;
+
+        if ((value + accuracy) > 98){
+            System.out.println(this.name + " shot in the head");
+            return this.damage*10;
+        }
+        else if ((value + accuracy) > 35 && (value + accuracy) < 98){
+            System.out.println(this.name + " shot in the chest");
+            return this.damage;
+        }
+        else if ((value + accuracy) > 15 && (value + accuracy) < 35){
+            System.out.println(this.name + " shot in the limbs");
+            return this.damage/2;
+        }
+        else if ((value + accuracy) > 5 && (value + accuracy) < 15){
+            System.out.println(this.name + " shot in the foot");
+            return this.damage/4;
+        }
+        else{
+            System.out.println(this.name + " missed his shot");
+            return 0;
+        }
+    }
+
+    @Override
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints;
+    }
+
+    @Override
+    public int getLifePoints() {
+        return this.lifePoints;
+    }
+
+    @Override
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+    }
+
+    @Override
+    public int getInitiative() {
+        return this.initiative;
+    }
+
+    @Override
+    public int takeDamage(int Damage){
+        this.lifePoints -= Damage;
+        return Damage;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return  (Fighter)super.clone();
+    }
+    public String toString() {
+        return "Shooter {" +
+                "name='" + name + '\'' +
+                ", damage=" + damage +
+                "%, lifePoints=" + lifePoints +
+                "%, initiative=" + initiative +
+                "accuracy=" + accuracy +
+                '}';
+    }
+}
 class ListPerso {
     List<Fighter> listePerso = new ArrayList<>();
 
@@ -978,6 +1083,7 @@ class ListPerso {
 
     }
 }
+
 
 
 
