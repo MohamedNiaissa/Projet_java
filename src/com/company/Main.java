@@ -714,6 +714,7 @@ public class Main {
                             System.out.println("This character doesn't exist in the list");
                         }
                     }
+
                     // cloning the first fighter
                     Fighter FighterTeam2bis = list.getRecruit(indexFighter4);
                     Fighter fighter4 = (Fighter)FighterTeam2bis.clone();
@@ -733,47 +734,47 @@ public class Main {
                         for (Fighter fighter : liste2v2){
                             int damage = 0;
                             if (fighter.getTeam() == 1){
-                                if (fighter3.getLifePoints()>fighter4.getLifePoints() && fighter3.getLifePoints() > 0){
+                                if (fighter3.getLifePoints()>=fighter4.getLifePoints() && fighter3.getLifePoints() > 0){
                                     damage = fighter.getDamage();
                                     damage = fighter3.takeDamage(damage);
                                     System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " inflicted " + damage + " to " + fighter3.getName() + " he has " +fighter3.getLifePoints() + " HP left"  );
                                 }
-                                else if (fighter3.getLifePoints() < 0){
+                                else if (fighter3.getLifePoints() <= 0){
                                     System.out.println("Malheureusement " + fighter3.getName() + " est tombé au combat");
                                 }
-                                if (fighter4.getLifePoints()>fighter3.getLifePoints() && fighter4.getLifePoints() > 0){
+                                if (fighter4.getLifePoints()>=fighter3.getLifePoints() && fighter4.getLifePoints() > 0){
                                     damage = fighter.getDamage();
                                     damage = fighter4.takeDamage(damage);
                                     System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " inflicted " + damage + " to " + fighter4.getName() + " he has " +fighter4.getLifePoints() + " HP left"  );
                                 }
-                                else if (fighter4.getLifePoints() < 0){
+                                else if (fighter4.getLifePoints() <= 0){
                                     System.out.println("Malheureusement " + fighter4.getName() + " est tombé au combat");
                                 }
                             }
                             else{
-                                if (fighter1.getLifePoints()>fighter2.getLifePoints() && fighter1.getLifePoints() > 0){
+                                if (fighter1.getLifePoints()>=fighter2.getLifePoints() && fighter1.getLifePoints() > 0){
                                     damage = fighter.getDamage();
                                     damage = fighter1.takeDamage(damage);
                                     System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " inflicted " + damage + " to " + fighter1.getName() + " he has " +fighter1.getLifePoints() + " HP left"  );
                                 }
-                                else if (fighter1.getLifePoints() < 0){
+                                else if (fighter1.getLifePoints() <= 0){
                                     System.out.println("Malheureusement " + fighter1.getName() + " est tombé au combat");
                                 }
-                                if (fighter2.getLifePoints()>fighter1.getLifePoints() && fighter2.getLifePoints() > 0){
+                                if (fighter2.getLifePoints()>= fighter1.getLifePoints() && fighter2.getLifePoints() > 0){
                                     damage = fighter.getDamage();
                                     damage = fighter2.takeDamage(damage);
                                     System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " inflicted " + damage + " to " + fighter2.getName() + " he has " +fighter2.getLifePoints() + " HP left"  );
                                 }
-                                else if (fighter2.getLifePoints() < 0){
+                                else if (fighter2.getLifePoints() <= 0){
                                     System.out.println("Malheureusement " + fighter2.getName() + " est tombé au combat");
                                 }
                             }
-                            if (fighter1.getLifePoints() < 0 && fighter2.getLifePoints() < 0){
+                            if (fighter1.getLifePoints() <= 0 && fighter2.getLifePoints() <= 0){
                                 System.out.println("c'est la deuxième équipe composé de " + fighter3.getName() + " et " + fighter4.getName() + " qui gagne le combat par équipe");
                                 fight2v2 = false;
                                 break;
                             }
-                            else if (fighter3.getLifePoints() < 0 && fighter4.getLifePoints() <0){
+                            else if (fighter3.getLifePoints() <= 0 && fighter4.getLifePoints() <= 0){
                                 System.out.println("c'est la première équipe composé de " + fighter1.getName() + " et " + fighter2.getName() + " qui gagne le combat par équipe");
                                 fight2v2 = false;
                                 break;
