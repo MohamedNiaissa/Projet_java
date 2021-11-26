@@ -53,7 +53,7 @@ public class Main {
         Fighter mageguerrierDefault = new MageGuerrier("Eragon",100,1000,30, 20,70);
         Fighter guerriervoleurDefault = new GuerrierVoleur("Robin",100,1000,40, 50,20,20);
         Fighter magevoleurDefault = new MageVoleur("Renardgris",100,1000,30,70,50,20);
-        Fighter fouDefault = new Fou("David",100,1000,70,50);
+        Fighter fouDefault = new Fou("Gerard",100,1000,70,50);
         Fighter marskmenDefault = new Shooter("legolas",100,1000,70,10);
         Fighter saitama = new Saitama("Saitama",200,100,500,33,36);
         ListPerso list = new ListPerso();
