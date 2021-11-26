@@ -1,5 +1,4 @@
 package com.company;
-import javax.script.ScriptEngine;
 import java.util.Random;
 import java.util.Scanner;
 public class Main {
@@ -26,6 +25,8 @@ public class Main {
         Fighter mageguerrierDefault = new MageGuerrier("Eragon",100,1000,30, 20,70);
         Fighter guerriervoleurDefault = new GuerrierVoleur("Robin",100,1000,40, 50,20,20);
         Fighter magevoleurDefault = new MageVoleur("Renard gris",100,1000,30,70,50,20);
+        Fighter fouDefault = new Fou("David",100,1000,70,50);
+        Fighter marskmenDefault = new Shooter("legolas",100,1000,70,10);
         ListPerso list = new ListPerso();
 
         //Fighter that has been chosen if the two fighters have the same initiative stats
@@ -51,7 +52,7 @@ public class Main {
                 // First choice, display a new menu for basic Fighter creation
                 case 1:
                     //the choice of class
-                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior");
+                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n9)Fool");
 
                     switch (charDefault.nextInt()){
                         case 1:
@@ -127,8 +128,27 @@ public class Main {
                                 e.printStackTrace();
                             }
                             break;
+                        case 8:
+                            System.out.println(fouDefault);
+                            list.addListePerso(fouDefault);
+                            System.out.println("Hiring in progress");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
+                        case 8:
+                            System.out.println(marskmenDefault);
+                            list.addListePerso(marskmenDefault);
+                            System.out.println("Hiring in progress");
+                            try{
+                                Thread.sleep(1000);
+                            }catch(InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            break;
                         default:
-
                             System.err.println("Unrecognized option");
                             try{
                                 Thread.sleep(1000);
@@ -144,7 +164,7 @@ public class Main {
                 // Second choice, display a new menu for the Fighter creation
                 case 2:
                     // choose the class of the fighter
-                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior");
+                    System.out.println("Choose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n9)Foul");
                     switch (charPersonalize.nextInt()){
                         // create a recruit
                         case 1:
@@ -262,6 +282,35 @@ public class Main {
                             int inirw = in.nextInt();
                             Fighter roguewarrior = new GuerrierVoleur(namerw,dmgrw,lprw,inirw, critrw,dodgerw,shieldrw);
                             list.addListePerso(roguewarrior);
+                            break;
+                        case 8:
+
+                            System.out.println("entrer the name of your character: ");
+                            String nameMR = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgMR = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lpMR = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int iniMR = in.nextInt();
+                            System.out.println("choose an accuracy amount: ");
+                            int accu = in.nextInt();
+                            Fighter shooter = new Shooter(nameMR, dmgMR, lpMR, iniMR,accu);
+                            list.addListePerso(shooter);
+                            break;
+                        case 9:
+                            System.out.println("entrer the name of your character: ");
+                            String namef = in.next();
+                            System.out.println("choose a damage amount: ");
+                            int dmgf = in.nextInt();
+                            System.out.println("choose an amount of mental sanity: ");
+                            int msf = in.nextInt();
+                            System.out.println("choose an amount of life points: ");
+                            int lpf = in.nextInt();
+                            System.out.println("choose an initative amount: ");
+                            int inif = in.nextInt();
+                            Fighter foul = new Fou(namef, dmgf, lpf, inif, msf);
+                            list.addListePerso(foul);
                             break;
                         default:
 
@@ -613,7 +662,7 @@ public class Main {
 
                     while(displayInformation == 0) {
 
-                        System.out.println("which class information do you want to see ? :\n 1) the Recruit \n 2) the Warrior \n 3) the Mage \n 4) the Rogue \n 5) the Magic Warrior \n 6) the Rogue Mage \n 7) the Rogue warrior\n 8) Quit");
+                        System.out.println("which class information do you want to see ? :\n 1) the Recruit \n 2) the Warrior \n 3) the Mage \n 4) the Rogue \n 5) the Magic Warrior \n 6) the Rogue Mage \n 7) the Rogue warrior\n 9) the Foul\n10) Quit");
                         switch (in.nextInt()){
                             case 1:
                                 System.out.println("A basic fighter with no special specificity");
@@ -656,7 +705,13 @@ public class Main {
                                 System.out.println("Come back to the Dictionary : (Press Enter)");
                                 continutoMenu = liste.nextLine();
                                 break;
-                            case 8:
+                            case 9:
+                                System.out.println("The Foul is a priest who turn crazy after he encounter supernatural entity disguise in human, he always interrogate itself if he is a demon or if other are demons and attack all thing he assimilated to supernatural entity at this moment for obey to is God\n" +
+                                        "The Foul have an mental sanity value who define his chance of hit himself or seriously injure his opponent");
+                                System.out.println("Come back to the Dictionary : (Press Enter)");
+                                continutoMenu = liste.nextLine();
+                                break;
+                            case 10:
                                 displayInformation = 1;
                                 break;
                         }
