@@ -28,7 +28,7 @@ public class Recruit implements Cloneable, Fighter {
     }
 
     public int getDamage(){
-        System.out.println(name + " use is pitchfork");
+        System.out.println(name + " use his pitchfork");
         System.out.println("""
                   \s
                    /

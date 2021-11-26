@@ -5,12 +5,20 @@ public class Main {
 
     // a function that display the main menu
     public static void display_menu() {
+        System.out.println(" ");
         System.out.println ( "1) Create basic recruit \n2) Create recruit \n3) List  \n4) Display Character   \n5) Quit   \n6) Save \n7) Remove Character  \n8) Fight 1v1 \n9) Fight 2v2 \n10) Class dictionary" );
         System.out.print ( "Selection: " );
     }
     public static void waitOneSeconde() {
         try{
             Thread.sleep(1000);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+    public static void wait2v2() {
+        try{
+            Thread.sleep(400);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
@@ -432,8 +440,17 @@ public class Main {
                         int index = in.nextInt();
                         if ((list.sizeList() > index - 1) && (index - 1 != -1)) {
                             list.displayChar(index);
-                            wantSuppr = false;
-                            list.removeList(index);
+                            System.out.println("Are you sure you want to delete this character ? yes / no :");
+                            String confirmation = in.next();
+                            if (confirmation.equals("yes")){
+                                wantSuppr = false;
+                                list.removeList(index);
+                            }
+                            else {
+                                System.out.println("you choose to don't delete the character");
+                                System.out.println(" ");
+                                wantSuppr = false;
+                            }
                         } else {
                             System.out.println("This character doesn't exist in the list \n " +
                                                 "Do you want to return to menu ? (0) yes (1) no");
@@ -714,6 +731,7 @@ public class Main {
                             System.out.println("This character doesn't exist in the list");
                         }
                     }
+
                     // cloning the first fighter
                     Fighter FighterTeam2bis = list.getRecruit(indexFighter4);
                     Fighter fighter4 = (Fighter)FighterTeam2bis.clone();
@@ -734,60 +752,57 @@ public class Main {
                     waitOneSeconde();
                     while(fight2v2){
                         nbtour2V2++;
-                        for (Fighter fighter : liste2v2){
+                        for (Fighter fighter : liste2v2) {
                             int damage = 0;
-                            if (fighter.getTeam() == 1){
-                                if (fighter3.getLifePoints()>=fighter4.getLifePoints() && fighter3.getLifePoints() > 0){
+                            if (fighter.getTeam() == 1) {
+                                if (fighter3.getLifePoints() >= fighter4.getLifePoints() && fighter3.getLifePoints() > 0) {
                                     damage = fighter.getDamage();
-                                    waitOneSeconde();
+                                    wait2v2();
                                     damage = fighter3.takeDamage(damage);
-                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " of " + fighter.getTeam() +" inflicted " + damage + " to " + fighter3.getName() + " he has " +fighter3.getLifePoints() + " HP left"  );
-                                    waitOneSeconde();
-                                }
-                                else if (fighter3.getLifePoints() < 0){
+                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " of " + fighter.getTeam() + " inflicted " + damage + " to " + fighter3.getName() + " he has " + fighter3.getLifePoints() + " HP left");
+                                    wait2v2();
+                                } else if (fighter3.getLifePoints() < 0) {
                                     System.out.println("Unfortunably " + fighter3.getName() + " is fall in the battle");
                                 }
-                                if (fighter4.getLifePoints()>fighter3.getLifePoints() && fighter4.getLifePoints() > 0){
+                                if (fighter4.getLifePoints() >= fighter3.getLifePoints() && fighter4.getLifePoints() > 0) {
                                     damage = fighter.getDamage();
-                                    waitOneSeconde();
+                                    wait2v2();
                                     damage = fighter4.takeDamage(damage);
-                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " of " + fighter.getTeam() +" inflicted " + damage + " to " + fighter4.getName() + " he has " +fighter4.getLifePoints() + " HP left"  );
-                                    waitOneSeconde();
-                                }
-                                else if (fighter4.getLifePoints() < 0){
+                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " of " + fighter.getTeam() + " inflicted " + damage + " to " + fighter4.getName() + " he has " + fighter4.getLifePoints() + " HP left");
+                                    wait2v2();
+                                } else if (fighter4.getLifePoints() < 0) {
                                     System.out.println("Unfortunably " + fighter4.getName() + " is fall in the battle");
                                 }
-                            }else{
-                                if (fighter1.getLifePoints()>=fighter2.getLifePoints() && fighter1.getLifePoints() > 0){
+                            } else {
+                                if (fighter1.getLifePoints() >= fighter2.getLifePoints() && fighter1.getLifePoints() > 0) {
                                     damage = fighter.getDamage();
-                                    waitOneSeconde();
+                                    wait2v2();
                                     damage = fighter1.takeDamage(damage);
-                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " of " + fighter.getTeam() +" inflicted " + damage + " to " + fighter1.getName() + " he has " +fighter1.getLifePoints() + " HP left"  );
-                                    waitOneSeconde();
-                                }
-                                else if (fighter1.getLifePoints() < 0){
+                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " of " + fighter.getTeam() + " inflicted " + damage + " to " + fighter1.getName() + " he has " + fighter1.getLifePoints() + " HP left");
+                                    wait2v2();
+                                } else if (fighter1.getLifePoints() < 0) {
                                     System.out.println("Unfortunably " + fighter1.getName() + " is fall in the battle");
                                 }
-                                if (fighter2.getLifePoints()>fighter1.getLifePoints() && fighter2.getLifePoints() > 0){
+                                if (fighter2.getLifePoints() >= fighter1.getLifePoints() && fighter2.getLifePoints() > 0) {
                                     damage = fighter.getDamage();
-                                    waitOneSeconde();
+                                    wait2v2();
                                     damage = fighter2.takeDamage(damage);
-                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " of " + fighter.getTeam() +" inflicted " + damage + " to " + fighter2.getName() + " he has " +fighter2.getLifePoints() + " HP left"  );
-                                    waitOneSeconde();
-                                }
-                                else if (fighter2.getLifePoints() < 0){
+                                    System.out.println("Turn " + nbtour2V2 + " : " + fighter.getName() + " of " + fighter.getTeam() + " inflicted " + damage + " to " + fighter2.getName() + " he has " + fighter2.getLifePoints() + " HP left");
+                                    wait2v2();
+                                } else if (fighter2.getLifePoints() < 0) {
                                     System.out.println("Unfortunably " + fighter2.getName() + " is fall in the battle");
                                 }
                             }
-                            if (fighter1.getLifePoints() < 0 && fighter2.getLifePoints() < 0){
-                                System.out.println("This is team two composed of " + fighter3.getName() + " and " + fighter4.getName() + " who win the team battle");
+                            if (fighter1.getLifePoints() <= 0 && fighter2.getLifePoints() <= 0) {
+                                fight2v2 = false;
+                                System.out.println("It's team two composed of " + fighter3.getName() + " and " + fighter4.getName() + " who win the team battle");
                                 System.out.println("Come back to the menu : (Press Enter)");
                                 String menu = liste.nextLine();
-                                fight2v2 = false;
                                 break;
                             }
-                            else if (fighter3.getLifePoints() < 0 && fighter4.getLifePoints() <0){
-                                System.out.println("This is team two composed of " + fighter1.getName() + " and " + fighter2.getName() + " who win the team battle");
+
+                            else if (fighter3.getLifePoints() <= 0 && fighter4.getLifePoints() <= 0){
+                                System.out.println("It's team one composed of " + fighter1.getName() + " and " + fighter2.getName() + " who win the team battle");
                                 System.out.println("Come back to the menu : (Press Enter)");
                                 String menu = liste.nextLine();
                                 fight2v2 = false;
