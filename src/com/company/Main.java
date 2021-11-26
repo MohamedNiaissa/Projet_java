@@ -70,7 +70,7 @@ public class Main {
                 // First choice, display a new menu for basic Fighter creation
                 case 1:
                     //the choice of class
-                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n9)Fool");
+                    System.out.println("---------------------------\nChoose the type : \n1) Basic recruit \nBasic class Hybrid class\n2) Warrior  5) MagicWarrior\n3) Mage     6) RogueMage\n4) Rogue    7) RogueWarrior\nCustom class\n8)Shooter\n9)Fool");
                     System.out.println("Selection: ");
                     switch (charDefault.nextInt()){
                         case 1:
@@ -118,7 +118,7 @@ public class Main {
                             System.out.println("Hiring in progress");
                             waitOneSeconde();
                             break;
-                        case 8:
+                        case 9:
                             System.out.println(fouDefault);
                             list.addListePerso(fouDefault);
                             System.out.println("Hiring in progress");
