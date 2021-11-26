@@ -1038,6 +1038,7 @@ class Fou implements Cloneable,Fighter{
     protected int initiative;
     protected int lifePoints;
     protected int mentalSanity;
+
     @Override
     public String toStringFile() {
         return  "Name"+"="+name
@@ -1284,6 +1285,147 @@ class Shooter implements Cloneable, Fighter{
                 '}';
     }
 }
+
+
+class Saitama implements Cloneable,Fighter{
+
+    Random rand = new Random();
+    protected String name;
+    protected int damage;
+    protected int initiative;
+    protected int lifePoints;
+    int critChance;
+    int dodgeChance;
+
+
+    public Saitama(String name,int damage,int initiative,int lifePoints,int critChance,int dodgeChance){
+        this.name = name;
+        this.damage = damage;
+        this.lifePoints = lifePoints;
+        this.initiative = initiative;
+        this.critChance = critChance;
+        this.dodgeChance = dodgeChance;
+    }
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage= damage;
+
+    }
+
+    @Override
+    public int getDamage() {
+        int min = 0;
+        int max = 100;
+
+        int value = rand.nextInt(max+1);
+
+        if (value <= critChance){
+            System.out.println(name + " did a one PUUUUUUUUUNCH !!");
+            System.out.println("""
+                     /---
+                 O  /----
+                 |-<-----
+                /|  \\----
+                / \\  \\---""");
+
+            System.out.println(name + " : Seems like the fight is finished, it was not funny.... ");
+
+            int damageSaitama = this.damage*10000;
+
+            return damageSaitama;
+
+
+        }else{
+            System.out.println("Seems like  "+name + " doesn't want to attack");
+            System.out.println("""
+                \s
+                 O no
+                 |
+                /|\\
+                / \\""");
+            return 0;
+        }
+    }
+
+    @Override
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints*3;
+    }
+
+    @Override
+    public int getLifePoints() {
+        return this.lifePoints;
+    }
+
+    @Override
+    public void setInitiative(int initiative) {
+        this.initiative = initiative/2;
+
+    }
+
+    @Override
+    public int getInitiative() {
+        return this.initiative;
+    }
+
+    @Override
+    public int takeDamage(int damage) {
+
+        Random random = new Random();
+
+        int min = 0;
+        int max = 100;
+
+        int value = random.nextInt(max +min + 1) + min;
+
+        if (value > dodgeChance+100){
+            this.lifePoints -= damage;
+            return damage;
+        }else{
+            return damage =0;
+        }
+
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
+    public String toString() {
+        return "Saitama {" +
+                " name='" + name + '\'' +
+                ",damage=" + damage +
+                ",lifePoints=" + lifePoints +
+                ",initiative=" + initiative +
+                ",critChance=" + critChance +
+                ",dodgeChance=" + dodgeChance +
+                '}';
+    }
+
+    @Override
+    public String toStringFile()  {
+        return  "Name"+"="+ name
+                +"\nClass_"+ name + "=Saitama" +
+                "\nName_" + name + "=" + name +
+                "\nDamage_" + name + "=" + damage +
+                "\nCritChance_" +name + "=" + critChance +
+                "\nLifePoints_"+name+ "=" + lifePoints +
+                "\nDodgeChance_"+name+"=" + dodgeChance ;
+    }
+}
+
 class ListPerso {
     List<Fighter> listePerso = new ArrayList<>();
 
@@ -1312,9 +1454,7 @@ class ListPerso {
     public int sizeList(){
         return listePerso.size();
     }
-    public void importsave(String input){
 
-    }
 
     /*public void LoadData(String name){
 
@@ -1327,7 +1467,6 @@ class ListPerso {
 
         for (int i = 0; i < listePerso.size(); i++) {
             save += (i+1)+listePerso.get(i).toStringFile();
-
         }
 
         byte[] data = save.getBytes();
