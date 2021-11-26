@@ -4,7 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -25,6 +25,7 @@ public class Recruit implements Cloneable, Fighter {
     }
 
     public int getDamage(){
+        System.out.println(name + " use is pitchfork");
         System.out.println("""
                   \s
                    /
@@ -88,12 +89,12 @@ public class Recruit implements Cloneable, Fighter {
 
     public String toStringFile() {
 
-        return  "\nName="+ name +
+        return  "Name="+ name +
                 "\nClass_"+ name +"=Recruit" +
                 "\nName_"+ name + "="+ name +
                 "\nDamage_"+ name + "=" + damage +
                 "\nLifePoints_" + name + "=" + lifePoints +
-                "\nInitiative_"+ name +"=" + initiative ;
+                "\nInitiative_"+ name +"=" + initiative + "\n";
 
     }
 
@@ -206,13 +207,13 @@ public class Recruit implements Cloneable, Fighter {
 
     @Override
     public String toStringFile() {
-        return  "\nName"+"="+name+
+        return  "Name"+"="+name+
                 "\nClass_"+ name +"=Warrior" +
                 "\nName_"+name+ "="+ name +
                 "\nDamage_"+name+ "=" + damage +
                 "\nLifePoints_" +name+ "=" + lifePoints +
                 "\nShieldResistance_" +name+"=" + shieldres +
-                "\nInitiative_"+name+"=" + initiative;
+                "\nInitiative_"+name+"=" + initiative + "\n";
     }
     @Override
     public void setShieldRes(int shieldRes) {
@@ -327,13 +328,13 @@ public class Recruit implements Cloneable, Fighter {
 
     @Override
     public String toStringFile() {
-        return  "\nName"+"="+name+
+        return  "Name"+"="+name+
                 "\nClass_" + name +"=Magician " +
                 "\nName_"+ name + "=" + name +
                 "\nDamage_" +name+ "=" + damage +
                 "\nLifePoints_" +name+ "=" + lifePoints +
                 "\nInitiative_" + name+ "=" + initiative +
-                "\nMagicDamage_"+ name +"=" + magicDamage;
+                "\nMagicDamage_"+ name +"=" + magicDamage + "\n";
     }
     @Override
     public void setMagicDamage(int magicDamage) {
@@ -382,10 +383,9 @@ public class Recruit implements Cloneable, Fighter {
 
     @Override
     public int getDamage() {
-        int min = 0;
         int max = 100;
 
-        int value = random.nextInt(max +min + 1) + min;
+        int value = random.nextInt(max + 1);
 
         if (value <= critChance && critcount == 0){
             critcount++;
@@ -472,14 +472,14 @@ public class Recruit implements Cloneable, Fighter {
 
     @Override
     public String toStringFile() {
-        return  "\nName"+"="+ name
+        return  "Name"+"="+ name
                 +"\nClass_"+ name + "=Rogue" +
                 "\nName_" + name + "=" + name +
                 "\nDamage_" + name + "=" + damage +
                 "\nCritChance_" +name + "=" + critChance +
                 "\nLifePoints_"+name+ "=" + lifePoints +
                 "\nDodgeChance_"+name+"=" + dodgeChance +
-                "\nInitiative_"+name+"=" + initiative
+                "\nInitiative_"+name+"=" + initiative + "\n"
                 ;
     }
     @Override
@@ -514,7 +514,7 @@ class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
     Random random = new Random();
     @Override
     public String toStringFile() {
-        return  "\nName"+"="+name
+        return  "Name"+"="+name
                 +"\nClass_"+name+ "=RogueWarrior" +
                 "\nName_" + name + "=" + name +
                 "\nDamage_" + name + "=" + damage +
@@ -522,7 +522,7 @@ class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
                 "\nLifePoints_"+name+ "=" + lifePoints +
                 "\nShieldResistance_" +name+"=" + shieldres +
                 "\nDodgeChance_"+name+"=" + dodgeChance +
-                "\nInitiative_"+name+"=" + initiative
+                "\nInitiative_"+name+"=" + initiative + "\n"
                 ;
     }
     public int getShieldRes() {
@@ -560,10 +560,9 @@ class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
 
     @Override
     public int getDamage() {
-        int min = 0;
         int max = 100;
 
-        int value = random.nextInt(max +min + 1) + min;
+        int value = random.nextInt(max + 1);
 
         if (value <= critChance && critcount == 0){
             critcount++;
@@ -700,14 +699,14 @@ class MageGuerrier implements Cloneable,Magicien,Guerrier{
     protected int magicDamage;
     @Override
     public String toStringFile() {
-        return  "\nName"+"="+name
+        return  "Name"+"="+name
                 +"\nClass_"+name+ "=MagicWarrior" +
                 "\nName_" + name + "=" + name +
                 "\nDamage_" + name + "=" + damage +
                 "\nMagicDamage_"+ name +"=" + magicDamage +
                 "\nLifePoints_"+name+ "=" + lifePoints +
                 "\nShieldResist_"+name+"=" + shieldres +
-                "\nInitiative_"+name+"=" + initiative
+                "\nInitiative_"+name+"=" + initiative + "\n"
                 ;
     }
     @Override
@@ -853,7 +852,7 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
     Random random = new Random();
     @Override
     public String toStringFile() {
-        return  "\nName"+"="+ name
+        return  "Name"+"="+ name
                 +"\nClass_"+ name + "=RogueMage" +
                 "\nName_" + name + "=" + name +
                 "\nDamage_" + name + "=" + damage +
@@ -861,7 +860,7 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
                 "\nCritChance_" +name + "=" + critChance +
                 "\nLifePoints_"+name+ "=" + lifePoints +
                 "\nDodgeChance_"+name+"=" + dodgeChance +
-                "\nInitiative_"+name+"=" + initiative
+                "\nInitiative_"+name+"=" + initiative + "\n"
                 ;
     }
     public MageVoleur(String name, int damage, int lifePoints, int initiative, int magicDamage, int critChance, int dodgeChance) {
@@ -892,11 +891,10 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
 
     @Override
     public int getDamage() {
-        int min = 0;
         int max = 100;
         int totalDamage = damage + magicDamage;
         magicDamage /= 2;
-        int value = random.nextInt(max +min + 1) + min;
+        int value = random.nextInt(max + 1);
 
         if (value <= critChance && critcount == 0){
             critcount++;
@@ -1042,13 +1040,13 @@ class Fou implements Cloneable,Fighter{
     protected int mentalSanity;
     @Override
     public String toStringFile() {
-        return  "\nName"+"="+name
+        return  "Name"+"="+name
                 +"\nClass_"+name+ "=Fool" +
                 "\nName_" + name + "=" + name +
                 "\nDamage_" + name + "=" + damage +
                 "\nMentalSanity_" + name + "=" + mentalSanity +
                 "\nLifePoints_"+name+ "=" + lifePoints +
-                "\nInitiative_"+name+"=" + initiative
+                "\nInitiative_"+name+"=" + initiative + "\n"
                 ;
     }
     public Fou(String name, int damage, int lifePoints, int initiative,int mentalSanity){
@@ -1151,13 +1149,13 @@ class Shooter implements Cloneable, Fighter{
 
     public String toStringFile() {
 
-        return  "\nName="+ name +
+        return  "Name="+ name +
                 "\nClass_"+ name +"=Shooter" +
                 "\nName_"+ name + "="+ name +
                 "\nDamage_"+ name + "=" + damage +
                 "\nAccuracy_" + name + "=" + accuracy +
                 "\nLifePoints_" + name + "=" + lifePoints +
-                "\nInitiative_"+ name +"=" + initiative ;
+                "\nInitiative_"+ name +"=" + initiative + "\n";
 
     }
     public Shooter(String name, int damage, int lifePoints, int initiative, int accuracy) {
@@ -1325,10 +1323,10 @@ class ListPerso {
     public void exportsave(String outputFile){
 
         Path chemin = Paths.get(outputFile);
-        String save = "Nombreperso=" + listePerso.size();
+        String save = "Nombreperso=" + listePerso.size() + "\n";
 
         for (int i = 0; i < listePerso.size(); i++) {
-            save += "\nIndex="+(i+1)+listePerso.get(i).toStringFile();
+            save += (i+1)+listePerso.get(i).toStringFile();
 
         }
 

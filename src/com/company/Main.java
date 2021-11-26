@@ -406,21 +406,11 @@ public class Main {
                             Properties properties = new Properties();
                             properties.load(reader);
                             int getnbperso = Integer.parseInt(properties.getProperty("Nombreperso"));
-                            System.out.println(getnbperso);
-                            for (int i=0;i<getnbperso+1;i++) {
-                                int getIndex = Integer.parseInt(properties.getProperty("Index"));
-                                System.out.println(getIndex);
-                                if (getIndex!=i){
-                                    System.out.println("prochainperso");
-                                    i++;
-                                    continue;
-                                }
-                                String getnameChar = properties.getProperty("Name");
+                            for (int i=1;i<getnbperso+1;i++) {
+                                String getnameChar = properties.getProperty(i+"Name");
 
 
                                 //System.out.println("Blase : "+getnameChar);
-
-                                String classChar = properties.getProperty("Class");
 
                                 // System.out.println(classChar);
 
@@ -441,34 +431,30 @@ public class Main {
                                 //System.out.println(initiativeCharInt);
 
                                 String shieldResistanceChar = properties.getProperty("ShieldResistance_" + getnameChar);
-                                System.out.println("bouclier " + shieldResistanceChar);
                                 String magicDamageChar = properties.getProperty("MagicDamage_" + getnameChar);
-                                System.out.println("magie : " + magicDamageChar);
-
-
                                 String critChanceChar = properties.getProperty("CritChance_" + getnameChar);
                                 String dodgeChanceChar = properties.getProperty("DodgeChance_" + getnameChar);
 
                                 if (shieldResistanceChar == null && magicDamageChar == null && critChanceChar == null && dodgeChanceChar == null) {
-                                    System.out.println("test didier");
+                                    //System.out.println("test didier");
                                     Recruit recruitChar = new Recruit(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt);
                                     list.addListePerso(recruitChar);
 
                                 } else if (magicDamageChar != null) {
-                                    System.out.println("test mesmer");
+                                    //System.out.println("test mesmer");
                                     int magicDamageCharInt = Integer.parseInt(magicDamageChar);
                                     Magician mageChar = new Magician(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, magicDamageCharInt);
                                     list.addListePerso(mageChar);
 
                                 } else if (dodgeChanceChar != null && critChanceChar != null) {
-                                    System.out.println("test naruto");
+                                    //System.out.println("test naruto");
                                     int critChanceCharInt = Integer.parseInt(critChanceChar);
                                     int dodgeChanceCharInt = Integer.parseInt(dodgeChanceChar);
                                     Rogue rogueChar = new Rogue(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, critChanceCharInt, dodgeChanceCharInt);
                                     list.addListePerso(rogueChar);
 
                                 } else if (shieldResistanceChar != null) {
-                                    System.out.println("test Hercule");
+                                    //System.out.println("test Hercule");
                                     int shieldResistanceCharInt = Integer.parseInt(shieldResistanceChar);
                                     Warrior rogueChar = new Warrior(nameChar, damageCharInt, lifePointCharInt, initiativeCharInt, shieldResistanceCharInt);
                                     list.addListePerso(rogueChar);
