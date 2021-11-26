@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static java.nio.file.StandardOpenOption.CREATE;
+import static java.nio.file.StandardOpenOption.*;
 
 public class Recruit implements Cloneable, Fighter {
     protected String name;
@@ -88,12 +88,12 @@ public class Recruit implements Cloneable, Fighter {
 
     public String toStringFile() {
 
-        return  "\nName"+"="+name+
-                "\nClass=Recruit" +
-                "\nName_"+name+ "="+ name +
-                "\nDamage_"+name+ "=" + damage +
-                "\nLifePoints_" +name+ "=" + lifePoints +
-                "\nInitiative_"+name +"=" + initiative ;
+        return  "\nName="+ name +
+                "\nClass_"+ name +"=Recruit" +
+                "\nName_"+ name + "="+ name +
+                "\nDamage_"+ name + "=" + damage +
+                "\nLifePoints_" + name + "=" + lifePoints +
+                "\nInitiative_"+ name +"=" + initiative ;
 
     }
 
@@ -207,7 +207,7 @@ public class Recruit implements Cloneable, Fighter {
     @Override
     public String toStringFile() {
         return  "\nName"+"="+name+
-                "\nClass=Warior" +
+                "\nClass_"+ name +"=Warrior" +
                 "\nName_"+name+ "="+ name +
                 "\nDamage_"+name+ "=" + damage +
                 "\nLifePoints_" +name+ "=" + lifePoints +
@@ -328,7 +328,7 @@ public class Recruit implements Cloneable, Fighter {
     @Override
     public String toStringFile() {
         return  "\nName"+"="+name+
-                "\nClass=Magician " +
+                "\nClass_" + name +"=Magician " +
                 "\nName_"+ name + "=" + name +
                 "\nDamage_" +name+ "=" + damage +
                 "\nLifePoints_" +name+ "=" + lifePoints +
@@ -472,9 +472,9 @@ public class Recruit implements Cloneable, Fighter {
 
     @Override
     public String toStringFile() {
-        return  "\nName"+"="+name
-                +"\nClass_"+name+ "= Rogue" +
-                "\nName_" + name + "= " + name +
+        return  "\nName"+"="+ name
+                +"\nClass_"+ name + "=Rogue" +
+                "\nName_" + name + "=" + name +
                 "\nDamage_" + name + "=" + damage +
                 "\nCritChance_" +name + "=" + critChance +
                 "\nLifePoints_"+name+ "=" + lifePoints +
@@ -512,7 +512,19 @@ class GuerrierVoleur implements Cloneable,Guerrier,Voleur{
     protected int critChance;
     int critcount = 0;
     Random random = new Random();
-
+    @Override
+    public String toStringFile() {
+        return  "\nName"+"="+name
+                +"\nClass_"+name+ "=RogueWarrior" +
+                "\nName_" + name + "=" + name +
+                "\nDamage_" + name + "=" + damage +
+                "\nCritChance_" +name + "=" + critChance +
+                "\nLifePoints_"+name+ "=" + lifePoints +
+                "\nShieldResistance_" +name+"=" + shieldres +
+                "\nDodgeChance_"+name+"=" + dodgeChance +
+                "\nInitiative_"+name+"=" + initiative
+                ;
+    }
     public int getShieldRes() {
         return this.shieldres;
     }
@@ -687,6 +699,18 @@ class MageGuerrier implements Cloneable,Magicien,Guerrier{
     protected int shieldres;
     protected int magicDamage;
     @Override
+    public String toStringFile() {
+        return  "\nName"+"="+name
+                +"\nClass_"+name+ "=MagicWarrior" +
+                "\nName_" + name + "=" + name +
+                "\nDamage_" + name + "=" + damage +
+                "\nMagicDamage_"+ name +"=" + magicDamage +
+                "\nLifePoints_"+name+ "=" + lifePoints +
+                "\nShieldResist_"+name+"=" + shieldres +
+                "\nInitiative_"+name+"=" + initiative
+                ;
+    }
+    @Override
     public void setMagicDamage(int magicDamage) {
         this.magicDamage = magicDamage;
     }
@@ -827,7 +851,19 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
     int dodgeChance;
     int critcount = 0;
     Random random = new Random();
-
+    @Override
+    public String toStringFile() {
+        return  "\nName"+"="+ name
+                +"\nClass_"+ name + "=RogueMage" +
+                "\nName_" + name + "=" + name +
+                "\nDamage_" + name + "=" + damage +
+                "\nMagicDamage_"+ name +"=" + magicDamage +
+                "\nCritChance_" +name + "=" + critChance +
+                "\nLifePoints_"+name+ "=" + lifePoints +
+                "\nDodgeChance_"+name+"=" + dodgeChance +
+                "\nInitiative_"+name+"=" + initiative
+                ;
+    }
     public MageVoleur(String name, int damage, int lifePoints, int initiative, int magicDamage, int critChance, int dodgeChance) {
         this.name = name;
         this.damage = damage;
@@ -1004,7 +1040,17 @@ class Fou implements Cloneable,Fighter{
     protected int initiative;
     protected int lifePoints;
     protected int mentalSanity;
-
+    @Override
+    public String toStringFile() {
+        return  "\nName"+"="+name
+                +"\nClass_"+name+ "=Fool" +
+                "\nName_" + name + "=" + name +
+                "\nDamage_" + name + "=" + damage +
+                "\nMentalSanity_" + name + "=" + mentalSanity +
+                "\nLifePoints_"+name+ "=" + lifePoints +
+                "\nInitiative_"+name+"=" + initiative
+                ;
+    }
     public Fou(String name, int damage, int lifePoints, int initiative,int mentalSanity){
         this.damage = damage;
         this.initiative = initiative;
@@ -1134,10 +1180,10 @@ class ListPerso {
     public void exportsave(String outputFile){
 
         Path chemin = Paths.get(outputFile);
-        String save = " ";
+        String save = "Nombreperso=" + listePerso.size();
 
         for (int i = 0; i < listePerso.size(); i++) {
-            save += listePerso.get(i).toStringFile();
+            save += "\nIndex="+(i+1)+listePerso.get(i).toStringFile();
 
         }
 
@@ -1145,7 +1191,7 @@ class ListPerso {
 
         OutputStream output = null;
         try {
-            output = new BufferedOutputStream(Files.newOutputStream(chemin, CREATE));
+            output = new BufferedOutputStream(Files.newOutputStream(chemin, CREATE, TRUNCATE_EXISTING));
             output.write(data);
             output.flush();
             output.close();
