@@ -909,6 +909,102 @@ class MageVoleur implements Cloneable,Magicien,Voleur {
         return this.dodgeChance;
     }
 }
+class Fou implements Cloneable,Fighter{
+    Random random = new Random();
+    protected String name;
+    protected int damage;
+    protected int initiative;
+    protected int lifePoints;
+    protected int mentalSanity;
+
+    public Fou(String name, int damage, int lifePoints, int initiative,int mentalSanity){
+        this.damage = damage;
+        this.initiative = initiative;
+        this.lifePoints = lifePoints;
+        this.name = name;
+        this.mentalSanity = mentalSanity;
+    }
+
+    public int getDamage(){
+        int min = 0;
+        int max = 100;
+
+        int value = random.nextInt(max +min + 1) + min;
+
+        if (value <= mentalSanity){
+            System.out.println("Self attack");
+            System.out.println(",n,\n" +
+                    "°ø° \n" +
+                    " |\\\n" +
+                    "/| \\\n" +
+                    "/ \\ \\");
+            lifePoints -= damage;
+            System.out.println(name + " lost " + damage + " and have now " + lifePoints + " HP");
+            return 0;
+        }
+        else {
+            System.out.println(name + " use is staff");
+            System.out.println(",n,_\n" +
+                    "°O°(/(\n" +
+                    " |_/ )\n" +
+                    "/|/( (\n" +
+                    "//\\) (");
+            return this.damage*3;
+        }
+    }
+
+    @Override
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    @Override
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public int getLifePoints(){
+        return this.lifePoints;
+    }
+
+    @Override
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+    }
+
+    public int getInitiative(){
+        return this.initiative;
+    }
+
+    public int takeDamage(int Damage){
+        this.lifePoints -= Damage;
+        return Damage;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return  (Fighter)super.clone();
+    }
+
+    public String toString() {
+        return "Foul {" +
+                "name='" + name + '\'' +
+                ", damage=" + damage +
+                ", mentalSanity=" + mentalSanity +
+                ", lifePoints=" + lifePoints +
+                ", initiative=" + initiative +
+                '}';
+    }
+}
+
 class Shooter implements Cloneable, Fighter{
     Random random = new Random();
     protected String name;
