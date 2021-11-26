@@ -1,6 +1,8 @@
 package com.company;
 
-public interface Fighter {
+import java.util.Collections;
+
+public interface Fighter extends Comparable<Fighter> {
     public void setName(String name);
 
     public String getName();
@@ -16,6 +18,10 @@ public interface Fighter {
     public void setInitiative(int initiative);
 
     public int getInitiative();
+
+    public void setTeam(int team);
+
+    public int getTeam();
 
     public int takeDamage(int damage);
 
